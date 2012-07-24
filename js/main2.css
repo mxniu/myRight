@@ -1,0 +1,558 @@
+body {
+	font: 100%/1.4 "geneva", tahoma, verdana, sans-serif;
+	margin: 0;
+	padding: 0;
+	color: #000;
+	background-image: url('../main_bg1.png');
+	background-repeat: repeat-x;
+	background-position: left bottom;
+}
+
+/* ~~ Element/tag selectors ~~ */
+ul, ol, dl { /* Due to variations between browsers, it's best practices to zero padding and margin on lists. For consistency, you can either specify the amounts you want here, or on the list items (LI, DT, DD) they contain. Remember that what you do here will cascade to the .nav list unless you write a more specific selector. */
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+h1, h2, h3, h4, h5, h6 {
+	margin-top: 0;	 /* removing the top margin gets around an issue where margins can escape from their containing div. The remaining bottom margin will hold it away from any elements that follow. */
+	padding-right: 15px;
+	padding-left: 15px; /* adding the padding to the sides of the elements within the divs, instead of the divs themselves, gets rid of any box model math. A nested div with side padding can also be used as an alternate method. */
+	text-align: center;
+}
+p{
+	margin-top: 0;
+	padding-right: 15px;
+	padding-left: 30px;
+	text-align: left;
+}
+a img { /* this selector removes the default blue border displayed in some browsers around an image when it is surrounded by a link */
+	border: none;
+}
+/* ~~ Styling for your site's links must remain in this order - including the group of selectors that create the hover effect. ~~ */
+a:link {
+	color: #42413C;
+	text-decoration: none; /* unless you style your links to look extremely unique, it's best to provide underlines for quick visual identification */
+}
+a:visited {
+	color: #6E6C64;
+	text-decoration: none;
+}
+a:hover, a:active, a:focus { /* this group of selectors will give a keyboard navigator the same hover experience as the person using a mouse. */
+	text-decoration: none;
+}
+
+/* ~~ this fixed width container surrounds the other divs ~~ */
+.container {
+	position: relative;
+	width: 1200px;
+	height: 700px;
+	background: #FFF;
+	margin: 0 auto; /* the auto value on the sides, coupled with the width, centers the layout */
+	border-radius:10px;
+	box-shadow: 0px 5px 17px #CCC;
+	text-align: center;
+}
+
+.container_alt {
+	position: relative;
+	width: 1200px;
+	background: #FFF;
+	margin: 0 auto; /* the auto value on the sides, coupled with the width, centers the layout */
+	border-radius:10px;
+	box-shadow: 0px 5px 15px #CCC;
+	text-align: center;
+	padding: 20px;
+	/*padding-bottom: 158px;*/
+}
+
+/* ~~ the header is not given a width. It will extend the full width of your layout. It contains an image placeholder that should be replaced with your own linked logo ~~ */
+.header {
+	background-image:url('../main_band_right.jpg');
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	color: #FFF;
+	height:49px;
+	position:relative;
+}
+
+.header-left
+{
+	width:563px;
+	height: 49px;
+	background-image:url('../main_band.jpg');
+	margin:	0;
+	padding: 0;
+    bottom:0;
+    position:absolute;
+    left:0;
+}
+
+.header-left img
+{
+	position:absolute;
+	left:28px;
+	top:3px;
+}
+/* ~~ This is the layout information. ~~ 
+
+1) Padding is only placed on the top and/or bottom of the div. The elements within this div have padding on their sides. This saves you from any "box model math". Keep in mind, if you add any side padding or border to the div itself, it will be added to the width you define to create the *total* width. You may also choose to remove the padding on the element in the div and place a second div within it with no width and the padding necessary for your design.
+
+*/
+
+.content {
+	font-family: georgia, serif;
+	padding: 10px 0 0 0;
+	text-align:center;
+	display: inline-block;
+	margin-top: 30px;
+}
+
+.content h1 a
+{
+	color: #1ab5ef;
+	border-bottom:2px solid #1ab5ef;
+	font-weight: bold;
+}
+
+.content b{
+	color: #1ab5ef;
+}
+
+.content h1{
+	font-weight: normal;
+	font-size: 42px;
+}
+
+.content h3{
+	font-weight: normal;
+	font-size: 24px;
+}
+
+/* ~~ miscellaneous float/clear classes ~~ */
+.fltrt {  /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
+	float: right;
+	margin-left: 8px;
+}
+.link-outer {
+	margin: 0;
+	padding: 0;
+	height: 110px;
+	width: 260px;
+	display: inline-block;
+}
+.link-inner{
+	height: 91px;
+	width: 247px;
+	margin: 8px;
+	background: url('/../main_button1.png');
+	/* [disabled]color: #FFF; */
+	font-size: 23px;
+	/*font-weight: bold;*/
+	display: table-cell;
+	vertical-align: middle;
+	font-family: "Gill Sans MT", "Gill Sans", Calibri, sans-serif;
+	color: #FFF;
+	text-align: center;
+}
+
+.link-inner:hover{
+	background: url('/../main_button2.png');
+}
+
+#a_yes{
+	font-size: 32px;
+}
+
+#a_no{
+	font-size: 32px;
+}
+
+.option{
+	width: 1000px;
+	height: 40px;
+	margin: 0;
+	margin-left: 40px;
+	padding: 0;
+	font-size: 23px;
+	color: #777;
+	text-align: left;
+}
+
+.optiontext
+{
+	margin: 0;
+	padding: 0;
+	color: #777;
+	display: inline;
+	font-family: "Gill Sans MT", "Gill Sans", Calibri, sans-serif;
+}
+
+.optiontext:hover{
+	color: #000;
+}
+
+.clearfloat { /* this class can be placed on a <br /> or empty div as the final element following the last floated div (within the #container) if the #footer is removed or taken out of the #container */
+	clear:both;
+	height:0;
+	font-size: 1px;
+	line-height: 0px;
+}
+
+.tooltip {
+	display:none;
+	background:transparent url(/../images/black.png);
+	font-size:12px;
+	height:55px;
+	width:160px;
+	padding:25px;
+	color:#fff;	
+}
+
+#wmark{
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	height: 148px;
+	width: 108px;
+	margin: 10px;
+	padding: 5px;
+	display: none;
+}
+
+#wmark_on{
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	height: 148px;
+	width: 108px;
+	margin: 10px;
+	padding: 5px;
+}
+
+.first_question
+{
+	font-family: georgia, serif;
+	margin: 0 0 0 0;
+	padding: 0;
+	display: block;
+}
+
+.first_question h1{
+	font-weight: normal;
+	font-size: 42px;
+}
+
+.menudiv
+{
+	width: 1200px;
+	margin: 0 auto; /* the auto value on the sides, coupled with the width, centers the layout */
+	padding: 0;
+	height: 100px;
+}
+
+ul.menu { float: right; margin: 0; }
+	ul.menu li {
+		display: inline;
+		font-family: "geneva", tahoma, verdana, sans-serif;
+}
+	
+ul.menu li a.active, ul.menu li a.active:visited {
+		background: url('../main_menu_hover.png');
+		border-radius: 0 0 3px 3px;
+		-moz-border-radius: 0 0 3px 3px;
+		padding-top: 27px;
+		margin-top: -9px;
+		border-left: 2px solid #FFF;
+		color: #777;
+		/*width: 85px;*/
+}
+	
+ul.menu li a, ul.menu li a:visited {
+		color: #777;
+		display: block;
+		float: left;
+		margin: 10px 0 0 0;
+		padding: 8px 22px 11px 20px;
+		/*width: 85px;*/
+		border-left: 2px solid #FFF;
+		font-size: 19px;
+}
+	
+ul.menu li a:hover {
+		background: url('../main_menu_hover.png');
+		border-radius: 0 0 3px 3px;
+		-moz-border-radius: 0 0 3px 3px;
+		color: #000;
+		padding-top: 27px;
+		margin-top: -9px;
+		border-left: 2px solid #FFF;
+		/*width: 85px;
+		text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);*/
+}
+
+.topad{
+	margin: 0px;
+	margin-top: 20px;
+	padding: 5px;
+	height: 60px;
+	width: 468px;
+	border: 1px solid #AAA;
+	color: #AAA;
+	display: inline-block;
+}
+
+.figurebox
+{
+	position: relative;
+	width: 400px;
+	height: 400px;
+	padding: 0;
+	margin: 0;
+	text-align: right;
+	display: inline-block;
+}
+
+.figure
+{
+	background: url('../images/main_figure0.jpeg');
+	position: absolute;
+	width: 400px;
+	height: 283px;
+	top: 50%;
+	margin-top:-147px;
+}
+
+.sidead
+{
+	position: absolute;
+	text-align: left;
+	bottom: 0px;
+	margin: 10px;
+	padding: 5px;
+	margin-bottom: 30px;
+	height: 60px;
+	width: 600px;
+	/*border: 1px solid #AAA;*/
+	color: #333;
+	display: none;
+}
+
+#pb
+{
+	display: none;
+}
+
+.footer
+{
+	width: 1200px;
+	height: 40px;
+	margin: 0 auto;
+	display: block;
+	position: relative;
+}
+
+.rights
+{
+	position: absolute;
+	color: #777;
+	display: inline;
+	font-family: "Gill Sans MT", "Gill Sans", Calibri, sans-serif;
+	margin: 8px 0 0 0;
+	padding: 8px 0 0 0;
+	left: 0;
+}
+
+.lowmenu
+{
+	position: absolute;
+	margin: 0;
+	right: 0
+}
+
+ul.lowmenu li
+{
+	display: inline;
+	font-family: "geneva", tahoma, verdana, sans-serif;
+}
+
+ul.lowmenu li a{
+		color: #777;
+		display: block;
+		float: left;
+		margin: 8px 0 0 0;
+		padding: 8px 10px 8px 8px;
+		/*width: 85px;*/
+		border-left: 2px solid #FFF;
+		font-size: 16px;
+}
+
+ul.lowmenu li a:hover {
+		color: #000;
+}
+
+#loading{
+	/*display:none;*/
+}
+
+.backbutton
+{
+	position: absolute;
+	left: 5px;
+	top: 5px;
+	margin: 10px 10px 0 0;
+	background: url('../main_back1.png');
+	height: 66px;
+	width: 93px;
+}
+
+.submit-button {
+	width:70px;
+	height:auto;
+	background:#CCC;
+	color:#000;
+	padding:6px 5px;
+	text-transform:uppercase;
+	font-family: "geneva", tahoma, verdana, sans-serif;
+}
+.submit-button:hover {
+	background:#333;
+	color:#FFF;
+}
+
+.main_text
+{
+	text-align: left;
+	margin: 20px;
+	/* [disabled]font-family: "geneva", tahoma, verdana, sans-serif; */
+	color: #000;
+}
+
+.main_text h1
+{
+	font-family: "Gill Sans MT", "Gill Sans", Calibri, sans-serif;
+	font-size: 32px;
+	font-weight: bold;
+	text-align: left;
+	color: #1ab5ef;
+}
+
+.main_text h3
+{
+	font-size: 18px;
+	text-align: left;
+}
+
+.main_text a
+{
+	color: #1ab5ef;
+}
+
+.main_text p
+{
+	font-size: 12px;
+	text-align: left;
+}
+
+.slide1
+{
+	font-family: "geneva", tahoma, verdana, sans-serif;
+	background: url('/images/home_slide1.jpeg') no-repeat right;
+	background-color: #FFF;
+	text-align: left;
+}
+.slide2
+{
+	font-family: "geneva", tahoma, verdana, sans-serif;
+	background: url('/images/home_slide2.jpeg') no-repeat right;
+	background-color: #FFF;
+	text-align: left;
+}
+.slide3
+{
+	font-family: "geneva", tahoma, verdana, sans-serif;
+	background: url('/images/home_slide3.jpeg') no-repeat right;
+	background-color: #FFF;
+	text-align: left;
+}
+.slide4
+{
+	font-family: "geneva", tahoma, verdana, sans-serif;
+	background: url('/images/home_slide4.jpeg') no-repeat right;
+	background-color: #FFF;
+	text-align: left;
+}
+.slide5
+{
+	font-family: "geneva", tahoma, verdana, sans-serif;
+	background: url('/images/home_slide5.jpeg') no-repeat right;
+	background-color: #FFF;
+	text-align: left;
+}
+.slide6
+{
+	font-family: "geneva", tahoma, verdana, sans-serif;
+	background: url('/images/home_slide6.jpeg') no-repeat right;
+	background-color: #FFF;
+	text-align: left;
+}
+
+.slidetext
+{
+	height: 283px;
+	width: 400px;
+	left: 0;
+}
+
+.slidetext h1, h2{font-family: "geneva", tahoma, verdana, sans-serif; text-align:left;}
+
+.slidetext h2{color: #333; font-weight: normal;}
+
+.slideframe
+{
+	height: 323px;
+	width: 840px;
+	margin: 0 auto;
+	border-radius:10px;
+	box-shadow: 0px 0px 20px #999;
+	text-align: center;
+	background: #1ab5ef;
+	padding-top: 5px;
+}
+
+.home_left
+{
+	font-family: "geneva", tahoma, verdana, sans-serif;
+	font-size: 22px;
+	text-align:center;
+	margin-top: 40px;
+	color: #333;
+	height: 292px;
+	width: 376px;
+	display: inline-block;
+
+}
+.home_right
+{
+	margin-left: 48px;
+	margin-top: 40px;
+	height: 292px;
+	width: 376px;
+	border-radius:10px;
+	box-shadow: 0px 0px 20px #CCC;
+	text-align: center;
+	display: inline-block;
+	padding: 10px;
+}
+
+.edit_test
+{
+	margin-top: 20px;
+	height: 1060px;
+	width: 1000px;
+	border-radius:10px;
+	box-shadow: 0px 0px 20px #CCC;
+	text-align: left;
+	padding: 10px;
+}

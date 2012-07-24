@@ -1,0 +1,2 @@
+[08-Jun-2012 22:40:57] PHP Fatal error:  Call to undefined function get_header() in /home/checkmyr/public_html/blog/wp-content/themes/twentyeleven/index.php on line 15
+[08-Jun-2012 22:44:10] PHP Fatal error:  Call to undefined function get_header() in /home/checkmyr/public_html/blog/wp-content/themes/twentyeleven/index.php on line 15

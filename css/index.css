@@ -1,0 +1,424 @@
+body
+{ 
+	margin: 0;
+	padding: 0;
+	background: url(/images/index_bg.png) repeat-x bottom left;
+	font: 100%/1.4 "Open Sans", sans-serif;
+	font-size: 14px;
+	text-align: center;
+}
+
+a img { /* this selector removes the default blue border displayed in some browsers around an image when it is surrounded by a link */
+	border: none;
+}
+/* ~~ Styling for your site's links must remain in this order - including the group of selectors that create the hover effect. ~~ */
+a:link {
+	color: #42413C;
+	text-decoration: none; /* unless you style your links to look extremely unique, it's best to provide underlines for quick visual identification */
+}
+a:visited {
+	color: #6E6C64;
+	text-decoration: none;
+}
+a:hover, a:active, a:focus { /* this group of selectors will give a keyboard navigator the same hover experience as the person using a mouse. */
+	text-decoration: none;
+}
+
+.logo
+{
+	margin: 20px auto 8px auto;
+	height: 118px;
+	width: 318px;
+	background: url(/images/index_logo.png);
+	position: relative;
+	display: block;
+}
+
+.container{
+	width: 700px;
+	height: 460px;
+	background:#FFF;
+	margin: 0 auto; /* the auto value on the sides, coupled with the width, centers the layout */
+	padding: 25px;
+	text-align:center;
+	border-radius:10px;
+	box-shadow: 0px 7px 18px #999;
+	position: relative;
+}
+
+.tagline
+{
+	margin: 30px auto;
+	padding: 15px 0;
+	width: 800px;
+	height: 46px;
+	background: #19b5ef;
+	color: #FFF;
+	font-family: georgia, serif;
+	font-size: 2.5em;
+	border-radius: 10px;
+	box-shadow: 0px 10px 30px #61CBF2 inset, 0px 8px 23px #BBB;
+	text-align: center;
+}
+
+.container2
+{
+	margin: 30px auto 0 auto;
+	width: 750px;
+	height: 290px;	
+	position: relative;
+}
+
+.container2_left
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 360px;
+	height: 290px;
+	background: #FFF;
+	border-radius: 10px;
+	box-shadow: 0px 8px 23px #BBB;
+	text-align: center;
+}
+
+.container2_right
+{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 360px;
+	height: 290px;
+	background: #FFF;
+	border-radius: 10px;
+	box-shadow: 0px 8px 23px #BBB;
+	text-align: center;
+}
+
+a img {border: none; }
+
+.scrollbox
+{
+	margin: 0 auto 0 auto;
+	display: block;
+	position:relative;
+	overflow:hidden;
+	width: 700px;
+	height: 350px;
+	background: #19b5ef;
+	border-radius: 10px 10px 0 0;
+	box-shadow: 0px 5px 10px #61CBF2 inset, 0px 0px 23px #BBB;
+}
+
+/* root element for horizontal scrollables */
+.scrollable {
+	width:650px;
+	height:300px;
+	display: block;
+	overflow: hidden;
+	position: relative;
+	margin: 25px;
+	box-shadow: 0px 0px 20px #FFF;
+}
+
+/* root element for scrollable items */
+.scrollable .items {
+width:20000em;
+position:absolute;
+clear:both;
+}
+
+/* single scrollable item */
+.item {
+float:left;
+width:650px;
+height:300px;
+background: #FFF;
+}
+
+/* position and dimensions of the navigator */
+.navi {
+	position: relative;
+	display:block;
+    width:700px;
+    height:40px;
+	margin: 0 auto 0 auto;
+	padding: 0;
+}
+
+/* items inside navigator */
+.navi a {
+    width:172px;
+    height:25px;
+	padding: 15px 0;
+	margin: 0 4px 0 0;
+    float:left;
+    display:block;
+	cursor: pointer;
+	background: #3176a2;
+	color: #FFF;
+	border-radius: 0 0 5px 5px;
+	font-family: "Gill Sans MT", "Gill Sans", Calibri, sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.navi a:active
+{
+	background: #19b5ef;
+}
+
+.navi a.active
+{
+	background: #19b5ef;
+	box-shadow: 0px 5px 5px #BBB;
+}
+
+.navi a:hover
+{
+	background: #429ED6;
+}
+
+.navi a.active:hover
+{
+	background: #19b5ef;
+	box-shadow: 0px 5px 5px #BBB;
+}
+
+.login
+{
+	height: 40px;
+	width: 700px;
+	margin: 40px auto 0 auto;
+	padding: 0;
+	display: block;
+	font-family: "Open Sans", sans-serif;
+	font-size: 16px;
+	/*color: #3176a2;*/
+	color: #333;
+	position: relative;
+}
+
+.enter_button
+{
+	width: 100px;
+	height: 34px;
+	margin: 0;
+	padding: 0;
+	background: url(/images/index_enter.png) 0 0 no-repeat;
+	position: absolute;
+	top: 0;
+	right: 0;
+	cursor: pointer;
+}
+.enter_button:hover{background-position: 0px -34px}
+
+.enter_button:active{background-position: 0px -68px}
+
+.inputarea
+{
+	position: absolute;
+	top: 5px; left: 2px;
+	margin: 0;
+	padding: 0;
+}
+
+.custominput
+{
+	width:170px; 
+	height:17px; 
+	padding: 5px;
+	margin: 0 24px 0 12px;
+	font-size:16px;
+	border-radius:8px;
+	-webkit-border-radius:8px;
+	-moz-border-radius:8px;
+	border:2px solid #444;
+	box-shadow:2px 2px 5px #CCC inset;
+	-moz-box-shadow:2px 2px 5px #CCC inset;
+	-webkit-box-shadow:2px 2px 5px #CCC inset;
+	outline: none;
+	display: inline;
+}
+
+.custominput:focus
+{
+	box-shadow:2px 2px 5px #CCC inset, 0px 0px 7px #286AAA;
+	-moz-box-shadow:2px 2px 5px #CCC inset, 0px 0px 7px #286AAA;
+	-webkit-box-shadow:2px 2px 5px #CCC inset, 0px 0px 7px #286AAA;
+}
+
+.smallimage
+{
+	width: 200px;
+	height: 140px;
+	display: block;
+	border-radius: 8px;
+	border: 3px solid #19b5ef;
+	margin: 20px auto;
+	background: url(/images/index_notify1.png);
+}
+
+#alt
+{
+	background: url(/images/index_notify2.png);
+}
+
+.smallcaption
+{
+	width: 300px;
+	height: 50px;
+	display: block;
+	font-family: "Open Sans", sans-serif;
+	font-size: 16px;
+	text-align: left;
+	margin: 20px auto 0 auto;
+}
+
+.notify_button
+{
+	width: 113px;
+	height: 36px;
+	background: url(/images/index_notify.png) 0 0 no-repeat;
+	display: block;
+	margin: 0 auto;
+	cursor: pointer;
+	border: none;
+}
+
+.notify_button:hover{background-position: 0px -36px}
+.notify_button:active{background-position: 0px -72px}
+
+#slide1{background: url(/images/index_slide1.png);}
+#slide2{background: url(/images/index_slide2.png);}
+#slide3{background: url(/images/index_slide3.png);}
+#slide4{background: url(/images/index_slide4.png);}
+
+.notify_form
+{
+	font-family: "Open Sans", sans-serif;
+	font-size: 16px;
+	margin: 0 auto;
+}
+
+.contact_button
+{
+	width: 140px;
+	height: 50px;
+	background: url(/images/button_contact_small.png) 0 0 no-repeat;
+	display: block;
+	cursor: pointer;
+	border: none; 
+	margin: 15px auto 0 auto;
+}
+.contact_button:hover{background-position: 0px -50px}
+.contact_button:active{background-position: 0px -100px}
+
+.overlay{
+	padding:20px 20px;
+	background:#FFF;
+	display:none;
+	z-index:99999 !important;
+	border:3px solid;
+	border-color: #1ab5ef;
+	border-radius:10px;
+	box-shadow: 0px 0px 20px #666;
+	width: 400px;
+}
+
+.overlay .close{
+	position:absolute;
+	top:-15px; 
+	right:-15px; 
+	width:30px; 
+	height:30px; 
+	cursor:pointer; 
+	background:url(../images/close.png) no-repeat
+}
+
+.overlay .close:hover{
+	background-position:0 -30px;
+}
+
+.notify_box_logo
+{
+	display: block;
+	height: 55px;
+	width: 155px;
+	background: url(/images/index_logo_small.png);
+}
+
+.notify_box_header
+{
+	display: block;
+	margin: 10px auto 0 auto;
+	text-align: center;
+	width: 360px;
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.notify_box_text
+{
+	margin: 10px auto;
+	text-align: left;
+	width: 360px;
+}
+
+.footer
+{
+	width: 750px;
+	height: 40px;
+	margin: 0 auto;
+	padding: 0;
+	display: block;
+	position: relative;
+}
+
+.rights
+{
+	float: left;
+	color: #777;
+	display: inline;
+	font-family: "Gill Sans MT", "Gill Sans", Calibri, sans-serif;
+	margin: 8px 0 0 0;
+	padding: 8px 0 0 0;
+}
+
+.lowmenu
+{
+	float:right;
+	margin: 0;
+	right: 0;
+}
+
+ul.lowmenu li
+{
+	display: inline;
+	font-family: "Open Sans", sans-serif;
+	color: #777;
+	float: left;
+	margin: 8px 0 0 0;
+	padding: 8px 10px 8px 8px;
+	/*width: 85px;*/
+	font-size: 16px;
+	cursor: pointer;
+}
+
+ul.lowmenu li:hover {
+		color: #000;
+}
+
+.form_line
+{
+	height: 40px;
+}
+
+label
+{
+	width: 150px;
+	float: left;
+	text-align: right;
+	margin: 0;
+	padding: 0;
+}

@@ -1,0 +1,878 @@
+/* ~~ Element/tag selectors ~~ */
+ul, ol, dl { /* Due to variations between browsers, it's best practices to zero padding and margin on lists. For consistency, you can either specify the amounts you want here, or on the list items (LI, DT, DD) they contain. Remember that what you do here will cascade to the .nav list unless you write a more specific selector. */
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+h1, h2, h3, h4, h5, h6 {
+	margin-top: 0;	 /* removing the top margin gets around an issue where margins can escape from their containing div. The remaining bottom margin will hold it away from any elements that follow. */
+	padding-right: 15px;
+	padding-left: 15px; /* adding the padding to the sides of the elements within the divs, instead of the divs themselves, gets rid of any box model math. A nested div with side padding can also be used as an alternate method. */
+	text-align: center;
+}
+p{
+	margin-top: 0;
+	padding-right: 15px;
+	padding-left: 30px;
+	text-align: left;
+}
+
+
+/* ~~ this fixed width container surrounds the other divs ~~ */
+
+.container_alt {
+	position: relative;
+	width: 1000px;
+	background: #FFF;
+	margin: 0 auto; /* the auto value on the sides, coupled with the width, centers the layout */
+	border-radius:10px;
+	box-shadow: 0px 0px 15px #BBB;
+	text-align: center;
+	padding: 20px 0 20px 0;
+	/*padding-bottom: 158px;*/
+}
+
+/* ~~ the header is not given a width. It will extend the full width of your layout. It contains an image placeholder that should be replaced with your own linked logo ~~ */
+#header {
+	background-image:url('../images/navbar2.png');
+	margin: 20px auto 25px auto;
+	padding: 0;
+	width: 1000px;
+	color: #FFF;
+	height:42px;
+	position:relative;
+	border-radius:9px;
+	box-shadow: 0px 0px 2px #CCC;
+	list-style: none;
+}
+
+#header li
+{
+	height: 38px;
+	margin-top: 2px;
+	position: relative;
+	float: right;
+	border-left: 2px groove #1ab5ef;
+}
+
+#header li a
+{
+	padding-top: 6px;
+	padding-left: 21px;
+	padding-right: 21px;  
+	text-align: center;
+	color: #FFF;
+	font-family: "Open Sans", sans-serif;
+	font-size: 17px;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+#header li:hover
+{
+	background: url('../images/navbutton_hover.png');
+}
+
+#header ul
+{
+	position:absolute; 
+    top: 27px;
+	left:-2px; 
+    display:none; 
+    margin: 10px 0;
+    padding:0; 
+    list-style:none;
+	z-index: 2000;
+	border-top: 1px solid black;
+}
+
+#header ul li {
+	background: #18c4ef;
+	height: 40px;
+    width: 170px; 
+    float:left; 
+	border: 1px solid black;
+	border-top: none;
+}
+         
+#header ul a {
+    display:block;
+    padding: 7px 5px 5px 15px; 
+    color:#FFF;
+	text-align: left;
+}
+
+.searchbar
+{
+	background: #FFF url('../images/navmag.png') no-repeat 2% 50%;
+	width:258px; 
+	height:20px; 
+	padding: 3px 4px 3px 27px;
+	margin: 6px 27px 0 27px;
+	font-size:14px;
+	border-radius:10px;
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-top:2px solid black;
+	border-left:2px solid black;
+	border-right:2px solid black;
+	border-bottom:2px solid black;
+	box-shadow:2px 2px 5px #CCC inset;
+	-moz-box-shadow:2px 2px 5px #CCC inset;
+	-webkit-box-shadow:2px 2px 5px #CCC inset;
+	outline: none;
+	float: right;
+}
+
+/* ~~ This is the layout information. ~~ 
+
+1) Padding is only placed on the top and/or bottom of the div. The elements within this div have padding on their sides. This saves you from any "box model math". Keep in mind, if you add any side padding or border to the div itself, it will be added to the width you define to create the *total* width. You may also choose to remove the padding on the element in the div and place a second div within it with no width and the padding necessary for your design.
+
+*/
+
+/* ~~ miscellaneous float/clear classes ~~ */
+.fltrt {  /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
+	float: right;
+}
+
+
+
+.clearfloat { /* this class can be placed on a <br /> or empty div as the final element following the last floated div (within the #container) if the #footer is removed or taken out of the #container */
+	clear:both;
+	height:0;
+	font-size: 1px;
+	line-height: 0px;
+}
+
+#wmark{
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	height: 148px;
+	width: 108px;
+	margin: 10px;
+	padding: 5px;
+	display: none;
+}
+
+#wmark_on{
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	height: 148px;
+	width: 108px;
+	margin: 10px;
+	padding: 5px;
+}
+
+.first_question
+{
+	font-family: georgia, serif;
+	margin: 0 0 0 0;
+	padding: 0;
+	display: block;
+}
+
+.first_question h1{
+	font-weight: normal;
+	font-size: 28px;
+}
+
+.menudiv
+{
+	width: 1000px;
+	margin: 0 auto; /* the auto value on the sides, coupled with the width, centers the layout */
+	padding: 0;
+	height: 100px;
+}
+
+ul.menu { float: right; margin: 0; }
+	ul.menu li {
+		display: inline;
+		font-family: "Open Sans", sans-serif;
+}
+	
+ul.menu li a.active, ul.menu li a.active:visited {
+		background: url('../main_menu_hover.png');
+		border-radius: 0 0 3px 3px;
+		-moz-border-radius: 0 0 3px 3px;
+		padding-top: 27px;
+		margin-top: -9px;
+		border-left: 2px solid #FFF;
+		color: #777;
+		/*width: 85px;*/
+}
+	
+ul.menu li a, ul.menu li a:visited {
+		color: #777;
+		display: block;
+		float: left;
+		margin: 10px 0 0 0;
+		padding: 8px 17px 11px 15px;
+		/*width: 85px;*/
+		border-left: 2px solid #FFF;
+		font-size: 18px;
+}
+	
+ul.menu li a:hover {
+		background: url('../main_menu_hover.png');
+		border-radius: 0 0 3px 3px;
+		-moz-border-radius: 0 0 3px 3px;
+		color: #000;
+		padding-top: 27px;
+		margin-top: -9px;
+		border-left: 2px solid #FFF;
+		/*width: 85px;
+		text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);*/
+}
+
+.topad{
+	margin: 0px;
+	margin-top: 20px;
+	padding: 5px;
+	height: 60px;
+	width: 328px;
+	border: 1px solid #AAA;
+	color: #AAA;
+	display: inline-block;
+}
+
+.sidead
+{
+	position: absolute;
+	text-align: left;
+	bottom: 0px;
+	margin: 10px;
+	padding: 5px;
+	margin-bottom: 30px;
+	height: 60px;
+	width: 600px;
+	/*border: 1px solid #AAA;*/
+	color: #333;
+	display: none;
+}
+
+#pb
+{
+	display: none;
+}
+
+.footer
+{
+	width: 1000px;
+	height: 40px;
+	margin: 0 auto;
+	padding: 0;
+	display: block;
+	position: relative;
+}
+
+.rights
+{
+	float: left;
+	color: #777;
+	display: inline;
+	font-family: "Gill Sans MT", "Gill Sans", Calibri, sans-serif;
+	margin: 8px 0 0 0;
+	padding: 8px 0 0 0;
+}
+
+.lowmenu
+{
+	float:right;
+	margin: 0;
+	right: 0;
+}
+
+ul.lowmenu li
+{
+	display: inline;
+	font-family: "Open Sans", sans-serif;
+}
+
+ul.lowmenu li a{
+		color: #777;
+		display: block;
+		float: left;
+		margin: 8px 0 0 0;
+		padding: 8px 10px 8px 8px;
+		/*width: 85px;*/
+		font-size: 16px;
+}
+
+ul.lowmenu li a:hover {
+		color: #000;
+}
+
+#loading{
+	/*display:none;*/
+}
+
+.endtest
+{
+	height: 114px;
+	width: 92px;
+	background: url('../images/main_bookmark.png');
+	position: absolute;
+	right: 17px;
+	top: -12px;
+	cursor: pointer;
+	display: none;
+}
+
+.endprescreen
+{
+	height: 114px;
+	width: 92px;
+	background: url('../images/main_bookmark2.png');
+	position: absolute;
+	right: 17px;
+	top: -12px;
+	cursor: pointer;
+	display: none;
+}
+
+.demotests
+{
+	height: 114px;
+	width: 92px;
+	background: url('../images/main_bookmark3.png');
+	position: absolute;
+	right: 17px;
+	top: -12px;
+	cursor: pointer;
+}
+
+.submit-button {
+	width:70px;
+	height:auto;
+	background:#CCC;
+	color:#000;
+	padding:6px 5px;
+	text-transform:uppercase;
+	font-family: "Open Sans", sans-serif;
+}
+.submit-button:hover {
+	background:#333;
+	color:#FFF;
+}
+
+.main_text
+{
+	position: relative;
+	text-align: left;
+	margin: 20px;
+	/* [disabled]font-family: "Open Sans", sans-serif; */
+	color: #000;
+}
+
+.main_text h1
+{
+	font-family: "Gill Sans MT", "Gill Sans", Calibri, sans-serif;
+	font-size: 32px;
+	font-weight: bold;
+	text-align: left;
+	color: #1ab5ef;
+}
+
+.main_text h3
+{
+	font-size: 18px;
+	text-align: left;
+}
+
+.main_text a
+{
+	color: #1ab5ef;
+}
+
+.main_text p
+{
+	font-size: 12px;
+	text-align: left;
+}
+
+.edit_test
+{
+	margin-top: 20px;
+	height: 1060px;
+	width: 1000px;
+	border-radius:10px;
+	box-shadow: 0px 0px 20px #CCC;
+	text-align: left;
+	padding: 10px;
+}
+
+.bigtip {
+	display:none;
+	background:#FFF;
+	font-size:12px;
+	height:234px;
+	width:663px;
+	margin: 0;
+	padding: 10px;
+	color:#000;	
+	border-radius: 10px;
+	border: medium solid #1ab5ef;
+	box-shadow: 0px 0px 20px #AAA;
+	font-family: "Gill Sans MT", "Gill Sans", Calibri, sans-serif;
+}
+
+.bigtip_left
+{
+	height: 214px;
+	width: 180px;
+	margin: 0;
+	margin-left: 10px;
+	padding: 0;
+	display: inline-block;
+}
+
+.bigtip_topleft
+{
+	font-size: 16px;
+	height: 94px;
+	width: 180px;
+	margin: 0;
+	padding: 0;
+	display: block;
+}
+
+.bigtip_middleleft
+{
+	font-size: 16px;
+	font-weight: bold;
+	height: 100px;
+	width: 180px;
+	margin: 0;
+	padding: 0;
+	display: block;
+}
+
+.bigtip_prac
+{
+	background: url(../images/results_pracfill.png) no-repeat left center;
+	height: 16px;
+	width: 16px;
+	margin: 3px;
+	padding: 0;
+	display: inline-block;
+	text-align: center;
+}
+
+.bigtip_bottomleft
+{
+	font-size: 16px;
+	color: #999;
+	font-family: georgia, serif;
+	height: 20px;
+	width: 180px;
+	margin: 0;
+	padding: 0;
+	display: block;
+}
+
+.bigtip_center
+{
+	height: 214px;
+	width: 180px;
+	margin: 0;
+	padding: 0;
+	display: inline-block;
+}
+
+.bigtip_topcenter
+{
+	font-size: 16px;
+	font-weight: bold;
+	height: 20px;
+	width: 180px;
+	margin: 0;
+	margin-bottom: 10px;
+	padding: 0;
+	display: block;
+	text-align: center;
+}
+
+.bigtip_middlecenter
+{
+	background: url(../images/results_pillarfill.png) no-repeat center center;
+	height: 144px;
+	width: 180px;
+	margin: 0;
+	padding: 0;
+	display: block;
+	text-align: center;
+}
+
+.bigtip_bottomcenter
+{
+	font-size: 40px;
+	color: #999;
+	font-family: georgia, serif;
+	height: 40px;
+	width: 180px;
+	margin: 0;
+	padding: 0;
+	display: block;
+	text-align: center;
+}
+
+.bigtip_right
+{
+	height: 214px;
+	width: 243px;
+	margin: 0;
+	margin-left: 30px;
+	padding: 0;
+	display: inline-block;
+}
+
+.bigtip_topright
+{
+	font-size: 16px;
+	font-weight: bold;
+	height: 20px;
+	width: 243px;
+	margin: 0;
+	margin-bottom: 10px;
+	padding: 0;
+	display: block;
+	text-align: center;
+}
+
+.bigtip_middleright
+{
+	height: 144px;
+	width: 243px;
+	margin: 0;
+	padding: 0;
+	display: block;
+	text-align: left;
+}
+
+.bigtip_case
+{
+	background: url(../images/results_briefcasefill.png) no-repeat left center;
+	height: 60px;
+	width: 71px;
+	margin: 5px;
+	padding: 0;
+	display: inline-block;
+	text-align: center;
+}
+
+.bigtip_bottomright
+{
+	font-size: 40px;
+	color: #999;
+	font-family: georgia, serif;
+	height: 40px;
+	width: 243px;
+	margin: 0;
+	padding: 0;
+	display: block;
+	text-align: center;
+}
+
+.tabbox
+{
+	height: 555px;
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0;
+	display: block;
+	position: relative;
+}
+
+.navtab
+{
+	height: 55px;
+	width: 205px;
+	margin: 0;
+	padding: 0;
+	background: url(../images/lawyer_tab.png);
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	box-shadow: 0px -5px 15px #DDD;
+	border-radius: 5px 5px 0 0;
+	font-family: "Gill Sans MT", "Gill Sans", Calibri, sans-serif;
+	font-weight: bold;
+	position: relative;
+	z-index: 1000;
+}
+
+.navtab:hover
+{
+	background: url(../images/lawyer_htab.png);
+}
+
+.navtab#active
+{
+	background: url(../images/lawyer_stab.png);
+	color: #000;
+}
+
+.navtab a
+{
+	color: #000;
+}
+
+.tabfiller
+{
+	height: 54px;
+	width: 171px;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 0;
+	right: 9px;
+	z-index: 1000;
+	border-bottom: 1px solid black;
+	box-shadow: 5px -5px 5px #EEE inset;
+}
+
+.tabpage
+{
+	position: relative;
+	height: 500px;
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 160px;
+	padding: 0;
+	display: block;
+	border-radius: 0px 10px 10px 10px;
+	border-bottom: 1px solid black;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	box-shadow: 0px 0px 20px #AAA;
+	background-color: #FFF;
+}
+
+.lawyer_login_content
+{
+	margin-left: auto;
+	margin-right: auto;
+	height: 400px;
+	width: 930px;
+	position: relative;
+}
+
+.lawyer_login_content_left
+{
+	position: absolute;
+	bottom: 0px;
+	left: 20px;
+	height: 370px;
+	width: 400px;
+	text-align: left;
+	font-family: "Gill Sans MT", "Gill Sans", Calibri, sans-serif;
+}
+
+.lawyer_login_content_right
+{
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	height: 348px;
+	width: 530px;
+}
+
+.custominput
+{
+	height:1.4em; 
+	padding: 5px;
+	margin: 0;
+	font-size:1em;
+	border-radius:8px;
+	border:2px solid #444;
+	box-shadow:2px 2px 10px #BBB inset;
+	outline: none;
+	display: inline-block;
+	font-family: "Open Sans", sans-serif;
+	background: #fbfefe;
+}
+
+.custominput:focus
+{
+	box-shadow:2px 2px 5px #CCC inset, 0px 0px 7px #286AAA;
+	-moz-box-shadow:2px 2px 5px #CCC inset, 0px 0px 7px #286AAA;
+	-webkit-box-shadow:2px 2px 5px #CCC inset, 0px 0px 7px #286AAA;
+}
+
+.customtextarea
+{
+	height: 60px;
+	width: 190px;
+	padding: 5px;
+	font-size:1em;
+	border-radius:8px;
+	border:2px solid #444;
+	box-shadow:2px 2px 10px #BBB inset;
+	outline: none;
+	display: inline-block;
+	font-family: "Open Sans", sans-serif;
+	background: #fbfefe;
+	resize: none;
+}
+
+.small_buttonbox {
+	padding: 0;
+	height: 70px;
+	width: 173px;
+	display: inline-block;
+}
+
+.small_button{
+	height: 64px;
+	width: 173px;
+	background: url('/../main_button1.png') no-repeat center center;
+	background-size: 173px 64px;
+	/* [disabled]color: #FFF; */
+	font-size: 23px;
+	/*font-weight: bold;*/
+	display: table-cell;
+	vertical-align: middle;
+	font-family: "Gill Sans MT", "Gill Sans", Calibri, sans-serif;
+	color: #FFF;
+	text-align: center;
+	cursor: pointer;
+}
+
+.small_button:hover{
+	background: url('/../main_button2.png') no-repeat center center;
+	background-size: 173px 64px;
+}
+
+.biginput
+{
+	width:200px; 
+	height:30px; 
+	padding: 4px;
+	font-size:20px;
+	border-radius:8px;
+	-webkit-border-radius:8px;
+	-moz-border-radius:8px;
+	border-top:2px solid black;
+	border-left:2px solid black;
+	border-right:2px solid black;
+	border-bottom:2px solid black;
+	box-shadow:2px 2px 5px #CCC inset;
+	-moz-box-shadow:2px 2px 5px #CCC inset;
+	-webkit-box-shadow:2px 2px 5px #CCC inset;
+	outline: none;
+}
+
+.biginput:focus
+{
+	box-shadow:2px 2px 5px #CCC inset, 0px 0px 7px #286AAA;
+	-moz-box-shadow:2px 2px 5px #CCC inset, 0px 0px 7px #286AAA;
+	-webkit-box-shadow:2px 2px 5px #CCC inset, 0px 0px 7px #286AAA;
+}
+
+.warning_message
+{
+	color: #F00;
+	font-size: 22px;
+	font-family: "Gill Sans MT", "Gill Sans", Calibri, sans-serif;
+}
+
+.search
+{
+	position: relative;
+	z-index: 1000;
+}
+
+.infolink
+{
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	margin: 10px;
+	font-size: 22px;
+	font-family: "Gill Sans MT", "Gill Sans", Calibri, sans-serif;
+	color: #1ab5ef;
+	border-bottom:1px solid #1ab5ef;
+	display: none;
+	cursor: pointer;
+}
+.tbox {position:absolute; display:none; padding:14px 17px; z-index:900;}
+.tinner {padding:15px 10px 15px 10px; -moz-border-radius:10px; border-radius:10px; border: 2px solid #1BBFFC; background:#fff url(../loading.gif) no-repeat 50% 50%; background-size: 50px 50px; box-shadow: 0px 0px 20px #1BBFFC;}
+.tmask {position:absolute; display:none; top:0px; left:0px; height:100%; width:100%; background:#000; z-index:800}
+.tclose {position:absolute; top:0px; right:0px; width:30px; height:30px; cursor:pointer; background:url(../images/close.png) no-repeat}
+.tclose:hover {background-position:0 -30px}
+
+.infobox
+{
+	font-size: 18px;
+	font-family: georgia, serif;
+}
+
+.infobox_header
+{
+	width: 292px;
+	height: 78px;
+	background: url(../images/infobox_header.png);
+	margin: -2px 0 15px -34px;
+}
+
+.tcontent h1
+{
+	text-align: left;
+	font-size: 20px;
+	font-family: "Gill Sans MT", "Gill Sans", Calibri, sans-serif;
+	margin-left: 10px;
+	padding-left: 0;
+}
+
+.tcontent h1 b
+{
+	color: #1ab5ef;
+}
+
+.tcontent p
+{
+	font-family: georgia, serif;
+	margin-left: 10px;
+	padding-left: 0;
+}
+
+.tcontent p i 
+{
+	font-family: "Open Sans", sans-serif;
+	font-style: normal;
+	color: #49B537;
+}
+
+.testtab_box
+{
+	height: 50px;
+	width: 1002px;
+	margin: 15px auto 0 auto;
+	padding: 0;
+	display: block;
+	overflow: hidden;
+}
+
+.testtab
+{
+	height: 50px;
+	width: 200px;
+	display: block;
+	margin: 0;
+	padding: 0;
+	float: left;
+	text-align: center;
+	/*box-shadow: 0px 0px 22px #999;*/
+	border-radius: 5px 5px 0 0;
+	font-family: "Gill Sans MT", "Gill Sans", Calibri, sans-serif;
+	font-weight: bold;
+	position: relative;
+	border: 1px solid #262626;
+	background: #FFF;
+}
+
+

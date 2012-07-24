@@ -1,0 +1,12 @@
+#view_container{margin-top: 100px;}
+.container_pane{border-radius: 10px; box-shadow: 0px 0px 6px #777;}
+.element{width: 95%; margin-left: auto; margin-right: auto;}
+#element_top{margin-top: 10px;}
+#element_body{margin-top: 20px;}
+#review_buttons{margin-top: 10px;}
+#view_source{border-radius: 10px; height: 45px; font-size: 2em; text-align: center; background: orange; padding-top: 10px; display: block;}
+#view_source:hover{background: red; cursor: pointer;}
+#comment_types{margin-top:10px; padding-top: 30px; border-top: 2px ridge #DDD; text-align: center;}
+#rating_box{margin-top: 10px; display: block; height: 60px; background: gold; border-radius: 10px;}
+#post_new{margin-top: 30px;}
+#comments{margin-top: 30px;}
