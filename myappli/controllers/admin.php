@@ -7,6 +7,8 @@ class Admin extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->load->database();
 		$this->load->model('Adminmodel');
+		
+		//$this->Adminmodel->slug_script();
 	
 		$data['heading'] = 'ADMIN CONSOLE';
 		$data['categories'] = $this->Adminmodel->get_categories();
