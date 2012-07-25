@@ -8,7 +8,7 @@ class Layout extends CI_Controller {
 	
 	public function _remap($method)
 	{
-		if($method === 'election2012' || $method === 'startups')
+		if($method === 'election2012' || $method === 'startups'|| $method === 'tickets'|| $method === 'dui')
 		{
 			$this->load->model('Layoutmodel');
 			$category_data = $this->Layoutmodel->get_category_data($method);

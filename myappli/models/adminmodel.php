@@ -43,6 +43,7 @@ class Adminmodel extends CI_Model {
 			'url' => $this->input->post('url'),
 			'category' => $this->input->post('category'),
 			'tags' => $this->input->post('tags'),
+			'location' => $this->input->post('location'),
 			'votes' => $this->input->post('votes'),
 			'type' => $this->input->post('type')
 		);
@@ -63,6 +64,7 @@ class Adminmodel extends CI_Model {
 			'url' => $this->input->post('url'),
 			'category' => $this->input->post('category'),
 			'tags' => $this->input->post('tags'),
+			'location' => $this->input->post('location'),
 			'votes' => $this->input->post('votes'),
 			'type' => $this->input->post('type')
 		);

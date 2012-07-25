@@ -59,6 +59,9 @@
 	
 	<label for="tags">Tags (tag1,tag2,...)</label>
 	<input type="input" name="tags" style="width: 300px" maxlength="200" <?php if(isset($element_data)) echo 'value="'.$element_data->tags.'"'; ?>/><br />
+
+	<label for="location">Location</label>
+	<input type="input" name="location" style="width: 300px" maxlength="50" <?php if(isset($element_data)) echo 'value="'.$element_data->location.'"'; ?>/><br />
 	
 	<label for="votes">Votes</label>
 	<input type="number" name="votes" min="-10" max="100" <?php if(isset($element_data)) echo 'value="'.$element_data->votes.'"'; else echo 'value="0"' ?>/><br />
