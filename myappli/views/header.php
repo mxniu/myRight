@@ -3,11 +3,21 @@
 <head>
   <meta charset="utf-8" />
   <title>myRight | <?=$title?></title>
+  
   <link rel="stylesheet" href="../css/common.css" />
   <link rel="stylesheet" href="../css/viewport.css" />
   <link rel="stylesheet" href="../css/grid.css" />
   <link rel="stylesheet" href="../css/isotope.css" />
+  
+  <!--
+  <link rel="stylesheet" href="/css/common.css" />
+  <link rel="stylesheet" href="/css/viewport.css" />
+  <link rel="stylesheet" href="/css/grid.css" />
+  <link rel="stylesheet" href="/css/isotope.css" />
+  -->
   <link href='http://fonts.googleapis.com/css?family=Quattrocento:400,700|Quattrocento+Sans:400,700|Lato:700,400,300|Cabin:600' rel='stylesheet' type='text/css'>
+  <!-- Young 07/24/2012 -->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,700,600' rel='stylesheet' type='text/css'>
 </head>
 <body>
 <div id="topbar">
