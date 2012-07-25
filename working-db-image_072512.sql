@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.1
+-- version 3.4.5
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 25, 2012 at 12:55 PM
--- Server version: 5.0.95
--- PHP Version: 5.2.9
+-- Generation Time: Jul 25, 2012 at 07:18 PM
+-- Server version: 5.5.16
+-- PHP Version: 5.3.8
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -27,11 +27,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `categories` (
-  `id` int(2) NOT NULL auto_increment,
-  `slug` varchar(20) collate latin1_general_ci NOT NULL,
-  `name` varchar(60) collate latin1_general_ci NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=5 ;
+  `id` int(2) NOT NULL AUTO_INCREMENT,
+  `slug` varchar(20) COLLATE latin1_general_ci NOT NULL,
+  `name` varchar(60) COLLATE latin1_general_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `categories`
@@ -41,7 +41,9 @@ INSERT INTO `categories` (`id`, `slug`, `name`) VALUES
 (1, 'election2012', 'Election 2012'),
 (2, 'startups', 'Startup Law'),
 (3, 'tickets', 'Tickets'),
-(4, 'dui', 'DUI');
+(4, 'dui', 'DUI'),
+(5, 'drugs', 'Drugs'),
+(6, 'smallclaims', 'Small Claims');
 
 -- --------------------------------------------------------
 
@@ -50,13 +52,13 @@ INSERT INTO `categories` (`id`, `slug`, `name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `comments` (
-  `id` int(20) NOT NULL auto_increment,
+  `id` int(20) NOT NULL AUTO_INCREMENT,
   `element_id` int(20) NOT NULL,
   `poster` int(10) NOT NULL,
-  `comment` varchar(500) collate latin1_general_ci NOT NULL,
+  `comment` varchar(500) COLLATE latin1_general_ci NOT NULL,
   `votes` int(5) NOT NULL,
-  `date_created` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
-  PRIMARY KEY  (`id`)
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -66,21 +68,21 @@ CREATE TABLE IF NOT EXISTS `comments` (
 --
 
 CREATE TABLE IF NOT EXISTS `links` (
-  `id` int(20) NOT NULL auto_increment,
-  `type` varchar(15) collate latin1_general_ci NOT NULL,
-  `url` text collate latin1_general_ci NOT NULL,
+  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `type` varchar(15) COLLATE latin1_general_ci NOT NULL,
+  `url` text COLLATE latin1_general_ci NOT NULL,
   `category` int(2) NOT NULL,
-  `summary` varchar(1000) collate latin1_general_ci NOT NULL,
-  `title` varchar(200) collate latin1_general_ci NOT NULL,
+  `summary` varchar(1000) COLLATE latin1_general_ci NOT NULL,
+  `title` varchar(200) COLLATE latin1_general_ci NOT NULL,
   `votes` int(5) NOT NULL,
-  `tags` varchar(200) collate latin1_general_ci NOT NULL,
-  `slug` varchar(200) collate latin1_general_ci NOT NULL,
-  `source` varchar(50) collate latin1_general_ci NOT NULL,
+  `tags` varchar(200) COLLATE latin1_general_ci NOT NULL,
+  `slug` varchar(200) COLLATE latin1_general_ci NOT NULL,
+  `source` varchar(50) COLLATE latin1_general_ci NOT NULL,
   `poster` int(10) NOT NULL,
   `date_created` int(10) NOT NULL,
-  `location` varchar(50) collate latin1_general_ci NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=149 ;
+  `location` varchar(50) COLLATE latin1_general_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=192 ;
 
 --
 -- Dumping data for table `links`
@@ -219,7 +221,50 @@ INSERT INTO `links` (`id`, `type`, `url`, `category`, `summary`, `title`, `votes
 (145, 'news', 'http://www.huffingtonpost.com/2012/06/28/obamacare-women-supreme-court-contraception-pregnancy_n_1634480.html', 1, 'WASHINGTON -- Although the requirement that contraception be covered by employers'' health care plans was not an issue addressed by the Supreme Court on Thursday, the measure has become one of the most controversial aspects of the Affordable Care Act.', 'Obamacare Ruling Is ''Major Victory'' For Women', 83, 'healthcare reform, women, obamacare', 'obamacare-ruling-is-major-victory-for-women', '', 0, 0, ''),
 (146, 'secondary', 'http://inventors.about.com/od/trademarks/a/register.htm', 2, 'You are not required to register a trademark and can establish rights over that mark based on legitimate use. However, The benefits of having a registered trademark as compared to a common law trademark include: constructive notice nationwide of the trademark owner''s claim, additional evidence of the ownership of the trademark, jurisdiction of federal courts may be invoked, registration can be used as a basis for obtaining registration in other countries.', 'Why You Should Register a Trademark', 84, 'ip, trademark', 'why-you-should-register-a-trademark', '', 0, 0, ''),
 (147, 'secondary', 'https://www.google.com/?tbm=pts&hl=en', 2, 'With Google Patents, you can search the full text of the U.S. patent corpus. The search engine covers the entire collection of issued patents and millions of patent application made available by the USPTO, from patents issued in the 1790s through the present.', 'Search for Patent', 82, 'ip, patent, name search', 'search-for-patent', '', 0, 0, ''),
-(148, 'primary', 'http://walkercorporatelaw.com/entrepreneurship/issuing-stock-options-ten-tips-for-entrepreneurs/', 2, 'Stock options should be issued ASAP. This is so that employees can profit from any increase in revenue. A company should establish a realistic vesting schedule. This will incentivize the employees to remain w/the company to help grow the business.', 'Issuing Stock Options: Ten Tips For Entrepreneurs', 50, 'tax, stocks, options', 'issuing-stock-options-ten-tips-for-entrepreneurs', '', 0, 0, '');
+(148, 'primary', 'http://walkercorporatelaw.com/entrepreneurship/issuing-stock-options-ten-tips-for-entrepreneurs/', 2, 'Stock options should be issued ASAP. This is so that employees can profit from any increase in revenue. A company should establish a realistic vesting schedule. This will incentivize the employees to remain w/the company to help grow the business.', 'Issuing Stock Options: Ten Tips For Entrepreneurs', 50, 'tax, stocks, options', 'issuing-stock-options-ten-tips-for-entrepreneurs', '', 0, 0, ''),
+(149, 'Secondary', 'http://money.msn.com/auto-insurance/7-ways-to-talk-your-way-out-of-a-ticket', 3, 'Cities and counties are in huge budget deficits. They need more revenue to make up for lavish spendings and high cost. Reasonable or not, there is no excuses any more. It used to be about education, warnings, and reasonable fine.', '7 ways to talk your way out of a ticket', 0, '', '7-ways-to-talk-your-way-out-of-a-ticket', 'Msn', 0, 1343079037, ''),
+(150, 'Secondary', 'http://www.executivetravelmagazine.com/articles/best-and-worst-states-for-traffic-tickets', 3, 'Where are you most (and least) likely to get traffic tickets? Don''t put that pedal down until you read this list. Last spring, cops clocked a car on a rural road outside Charlotte, N.C., doing 128 mph in a 45 mph zone. The offender was NASCAR racer Kyle Busch, who apparently forgot he wasn''t at work.', 'Best & Worst States for Traffic Tickets', 0, '', 'best-worst-states-for-traffic-tickets', 'Executivetravelmagazine', 0, 1343079644, ''),
+(151, 'Secondary', 'http://www.canorml.org/history.html', 5, 'NULL', 'Historical Information | California NORML', 0, '', 'historical-information-california-norml', 'Canorml', 0, 1343084988, ''),
+(152, 'Secondary', 'http://www.canorml.org/camp.html', 5, 'CAMP Eradicates 4.3 Million Plants - More Than State''s Annual Consumption October 30, 2010 - California''s CAMP (Campaign Against Marijuana Planting) marijuana eradication reported 4,320,314 plant seizures in 2010, slightly less than last year''s all-time record of 4,463,917.Read more.', 'CAMP (Campaign Against Marijuana Planting) | California NORML', 0, '', 'camp-campaign-against-marijuana-planting-california-norml', 'Canorml', 0, 1343084988, ''),
+(153, 'Secondary', 'http://www.canorml.org/costs/federal_medical_marijuana_prisoners_and_cases', 5, 'LAST UPDATED: 7/17/2012 Pending Cases in California and Elsewhere In Prison Sentenced or Case Terminated Died Pending Prosecution Raided by DEA (partial list) Current California Defendants and Prisoners: * = currently incarcerated Pending Cases in California and Elsewhere 7/17/2012 - Federal agents raided a medical marijuana dispensary in unincorporated Lake Elsinore, for the second time in three months.', 'Federal Medical Marijuana Prisoners and Cases | California NORML', 0, '', 'federal-medical-marijuana-prisoners-and-cases-california-norml', 'Canorml', 0, 1343084988, ''),
+(154, 'Secondary', 'http://canorml.org/background/CA_legalization2.html', 5, 'Marijuana Legalization Could Yield California Taxpayers Over $1.2 Billion Per YearAdditional Spinoff Benefits Up To $12 -$18 Billion While California struggles to address the state''s swelling budget deficit, the legalization of marijuana looms as an attractive way of raising revenue for the state.', 'Benefits of Marijuana Legalization in California | California NORML', 0, '', 'benefits-of-marijuana-legalization-in-california-california-norml', 'Canorml', 0, 1343084988, ''),
+(155, 'Secondary', 'http://www.canorml.org/arrestsprisoners.html', 5, 'Marijuana Arrests Decline in California in 2010 September 14, 2011 - California reported a moderate decline in marijuana arrests in 2010, according to the latest figures from the Criminal Justice Statistics Center.', 'California Arrest and Prisoner Data | California NORML', 0, '', 'california-arrest-and-prisoner-data-california-norml', 'Canorml', 0, 1343084988, ''),
+(156, 'Secondary', 'http://www.canorml.org/costs.html', 5, 'Marijuana prohibition is costly, not only in the amount spent on law enforcement and prisons, but also in the lost revenue from taxing a legally regulated market, as well as the loss of jobs, payroll taxes, etc.', 'Costs of Prohibition | California NORML', 0, '', 'costs-of-prohibition-california-norml', 'Canorml', 0, 1343084988, ''),
+(157, 'Secondary', 'http://www.canorml.org/paincomplaints.html', 5, 'UPDATE: July 19, 2010 - The Veterans Health Administration has made it known that it will allow use of medical marijuana by VA patients on opiod therapy. This is good news for the many chronic pain patients who have been told that they must give up', 'Pain Doctors Discriminate Against Medical Marijuana Patients | California NORML', 0, '', 'pain-doctors-discriminate-against-medical-marijuana-patients-california-norml', 'Canorml', 0, 1343084988, ''),
+(158, 'Secondary', 'http://www.canorml.org/health/student.html', 5, 'CALIFORNIA SURVEY SHOWS STUDENT MARIJUANA USE STABLE, PRESCRIPTION DRUG USE HIGH Jan 30, 2009 -- The newly released biennial Attorney General''s Survey of Student Drug Use in California shows that marijuana use among 7th. 9th and 11th graders remained stable during 2007-8, but reports an "alarming rate" of prescription drug abuse.', 'Student/Youth Usage Studies | California NORML', 0, '', 'studentyouth-usage-studies-california-norml', 'Canorml', 0, 1343084988, ''),
+(159, 'Secondary', 'http://canorml.org/news/ringtest.html', 5, 'Cal NORML Release - Sep 21, 2011 California NORML and Project CBD release the results of the first "Ring Test" to assess the accuracy of analytical laboratories Mixed findings show strengths and problems among analytic testing services In the winter of 2010/11, California NORML and Project CBD initiated a "Ring Test" to assess the accuracy of analytical cannabis testing laboratories that have recently emerged to serve medical marijuana collectives, breeders, growers and patients.', 'How Accurate Is Cannabis Potency Testing? | California NORML', 0, '', 'how-accurate-is-cannabis-potency-testing-california-norml', 'Canorml', 0, 1343084988, ''),
+(160, 'Secondary', 'http://canorml.org/news/cbcsurvey2011.html', 5, 'Cal. NORML Estimates 750,000 - 1,125,000 Medical Marijuana Patients in California Retail Medical Market is $1.5 - $4.5 Billion Per Year May 31st, 2011. California NORML estimates that there are now over 750,000 medical marijuana users in the state, or 2% of the population, according to the most recent data.', 'Medical Marijuana Patient Population in CA | California NORML', 0, '', 'medical-marijuana-patient-population-in-ca-california-norml', 'Canorml', 0, 1343084988, ''),
+(161, 'Secondary', 'http://www.canorml.org/bizorgs.html', 5, 'Accounting and Business Development Liana Limited - Experienced support in business development for the medical cannabis industry. Accounting, human resources, permit applications, business plans, public relations and more. Consultants MarijuanaTech.com (213) 435-7794 Technology Support for Medical Marijuana Collectives.', 'Business and NonProfit Listings | California NORML', 0, '', 'business-and-nonprofit-listings-california-norml', 'Canorml', 0, 1343084988, ''),
+(162, 'Secondary', 'http://www.canorml.org/medical-marijuana/local-growing-limits-in-California', 5, 'UPDATED 7/20/2012 2/20/2012 - California NORML has filed an appeal to a judge''s ruling in a lawsuit against Tehama county''s ordinance, a test case for the rest of the state. Read more. Explanation of SB420 Cultivation Guidelines Localities NOT listed below adhere to CA state default guidelines, which are: 6 mature OR 12 immature plants and 8 oz.', 'Local Medical Marijuana Cultivation & Possession Guidelines in California | California NORML', 0, '', 'local-medical-marijuana-cultivation-possession-guidelines-in-california-california-norml', 'Canorml', 0, 1343084988, ''),
+(163, 'Secondary', 'http://www.canorml.org/prop/listings.html', 5, 'The Original The Most Respected The Most Cost-Effective California NORML maintains a weblist of dispensaries and a delivery services page. We are the originator of these lists, the most respected and cost-effective on the web. Three million visitors come to CalNORML.org yearly for information they can trust about medical marijuana, and our collective listings get over 500,000 page views yearly.', 'How to List on CaNORML''s Collective and Delivery Service Pages | California NORML', 0, '', 'how-to-list-on-canormls-collective-and-delivery-service-pages-california-norml', 'Canorml', 0, 1343084988, ''),
+(164, 'Secondary', 'http://listings.canorml.org/medical-marijuana-doctors-in-California/list.lasso', 5, 'The licensed California physicians searchable on this page are available for consultation as medical cannabis specialists. Patients should have a documented medical record of diagnosis and treatment or a physician referral. Medical marijuana patients should begin by consulting with their own physicians about medical use of cannabis.', 'NULL', 0, '', 'null', 'Canorml', 0, 1343084988, ''),
+(165, 'Secondary', 'http://www.legislature.ca.gov/legislators_and_districts/legislators/your_legislator.html', 5, 'The portal site for the California State Legislature--State Senate and Assembly. Look up your state representative and search our legislation database.', 'California State Legislature-Your Legislator', 0, '', 'california-state-legislature-your-legislator', 'Ca', 0, 1343084988, ''),
+(166, 'Secondary', 'http://canorml.org/medical-marijuana/California-collectives-and-dispensaries-guide', 5, 'The Collectives on these pages are California NORML supporters. Cannabis Delivery Services are listed here. Northern California North Coast Arcata, Clearlake, Corte Madera, Cotati, Fort Bragg, Guerneville, Kelseyville, Lower Lake, Lucerne, Middletown, Napa, Santa Rosa, Sebastopol, Ukiah Central Valley to Redding Anderson, Chico, Colfax, Dunsmuir, Marysville, Shasta, Redding, Rocklin, San Andreas, Stockton, Tahoe, Tracy, Yuba Sacramento Area Auburn, Orangevale, Sacramento, Shingle Springs San Francisco (S.F.)', 'Medical Marijuana Collectives and Dispensary Guide to California | California NORML', 0, '', 'medical-marijuana-collectives-and-dispensary-guide-to-california-california-norml', 'Canorml', 0, 1343084988, ''),
+(167, 'Secondary', 'http://www.canorml.org/background/CA_legalization2.html', 5, 'Marijuana Legalization Could Yield California Taxpayers Over $1.2 Billion Per YearAdditional Spinoff Benefits Up To $12 -$18 Billion While California struggles to address the state''s swelling budget deficit, the legalization of marijuana looms as an attractive way of raising revenue for the state.', 'Benefits of Marijuana Legalization in California | California NORML', 0, '', 'benefits-of-marijuana-legalization-in-california-california-norml', 'Canorml', 0, 1343084988, ''),
+(168, 'Secondary', 'https://www.wepay.com/stores/982287', 5, 'California NORML is a non-profit, membership organization dedicated to reforming California''s marijuana laws. Established in 1972, our mission is to establish the right of adults to use cannabis legally. We are the only state organization devoted specifically to marijuana reform. We publish a newsletter, lobby lawmakers, sponsor events, offer legal, educational, and consumer health advice, and sponsor scientific research.', 'CalNORML Store', 0, '', 'calnorml-store', 'Wepay', 0, 1343084988, ''),
+(169, 'Secondary', 'http://www.canorml.org/staff.html', 5, 'CalNORML Director Dale Gieringer, Ph.D. dale@canorml.org Dale Gieringer has been the state coordinator of California NORML (National Organization for the Reform of Marijuana Laws) since 1987. He is also Vice-Chairman of the national NORML board of directors, director of the California Drug Policy Forum (DPFCA) and treasurer of the Oakland Civil Liberties Alliance (OCLA).', 'Our Staff | California NORML', 0, '', 'our-staff-california-norml', 'Canorml', 0, 1343084988, ''),
+(170, 'Secondary', 'http://norml.org/laws/item/new-york-penalties-2?category_id=876', 5, 'Marijuana and its synthetic "equivalents" are considered Schedule I hallucinogenic substances under New York Public Health Law. Synthetic equivalents include resinous extracts and derivatives with similar chemical properties. See: New York Pub. Health §3306(d)(13) New York Pub. Health §3306(d)(21) Possession for Personal Use For a first offender, possession of up to 25 grams of marijuana is punishable by a fine of $100.', 'New York Penalties', 0, '', 'new-york-penalties', 'Norml', 0, 1343086139, ''),
+(171, 'Primary', 'http://norml.org/laws/item/pennsylvania-penalties-2?category_id=882', 5, 'Marijuana is a Schedule I drug. See: Pennsylvania Consolidated Statutes Possession Possession of 30g or less is a misdemeanor punishable by 30 days in jail and a $500 fine. Possession of more than 30g is a misdemeanor with a maximum penalty of one year in jail and a $5,000 fine.', 'Pennsylvania Penalties', 0, '', 'pennsylvania-penalties', 'Norml', 0, 1343086169, ''),
+(172, 'Secondary', 'http://norml.org/laws/item/texas-penalties-2?category_id=888', 5, 'Possession Possession of 2 ounces or less of marijuana is a Class B misdemeanor, punishable by up to 180 days imprisonment and a fine not to exceed $2,000. Possession of between 2 and 4 ounces of marijuana is a Class A misdemeanor, punishable by imprisonment of up to 1 year and a fine not to exceed $4,000.', 'Texas Penalties', 0, '', 'texas-penalties', 'Norml', 0, 1343086200, ''),
+(173, 'Secondary', 'http://norml.org/laws/item/illinois-penalties?category_id=857', 5, 'Possession for Personal Use Possession of less than 2.5 grams of marijuana is a Class C misdemeanor, punishable by a jail term of up to 30 days. Possession of between 2.5 - 10 grams of marijuana is a Class B misdemeanor, punishable by up to 6 months imprisonment.', 'Illinois Penalties', 0, '', 'illinois-penalties', 'Norml', 0, 1343086217, ''),
+(174, 'Secondary', 'http://norml.org/laws/item/massachusetts-penalties-2?category_id=865', 5, 'Marijuana is a class D controlled substance under the Massachusett''s Controlled Substances Act. Possession for Personal Use Possession of 1 ounce or less of marijuana is decriminalized and is punishable as a civil offense. If the offender is over the age of 18 they must pay a fine of $100.', 'Massachusetts Penalties', 0, '', 'massachusetts-penalties', 'Norml', 0, 1343086233, ''),
+(175, 'Secondary', 'http://www.shouselaw.com/marijuana-possession-sale.html', 5, 'Marijuana Possession for the Purpose of Sale in California It''s very common in Southern California to be falsely accused of violating California Health and Safety Code 11359, which makes it a felony crime to possess marijuana with the intent to sell it. Police often mistake innocent evidence or simple marijuana possession for a marijuana sale waiting to happen.', 'Possession of Marijuana for Sale | CA Health & Safety Code 11359', 0, '', 'possession-of-marijuana-for-sale-ca-health-safety-code-11359', 'Shouselaw', 0, 1343086347, ''),
+(176, 'Secondary', 'http://www.mcsocal.com/medical-marijuana-legal-guide', 5, '© Americans For Safe Access Table of Contents Becoming A Patient How to become a medical marijuana patient in the state of California Registration Fee Eligible medical conditions: "Serious Medical Condition" Written Certification Must be Provided to Prove Eligibility Finding a Doctor Renewal Applications Personal Records Limitations and Protections under Initiative Possession and Growing Limitations Consumption of Medical Marijuana Paraphernalia associated with medical use Access to Medical Marijuana Growing/Dispensing Collectives and Cooperatives Caregivers Employment Reciprocity Law Enforcement Confidentiality I.', 'Medical Marijuana Legal Guide | MCSocal', 0, '', 'medical-marijuana-legal-guide-mcsocal', 'Mcsocal', 0, 1343086409, ''),
+(177, 'Primary', 'http://www.sdcourt.ca.gov/portal/page?_pageid=55,1424500&_dad=portal&_schema=PORTAL', 6, 'Back to Top Rental Income Garnishment If the judgment debtor owns rental property, you may garnish the rents paid by the current tenants. The procedure is the same as wage garnishment, except you instruct the Sheriff''s Department to do a rent garnishment instead of a wage garnishment.', 'How to Collect Judgment', 0, '', 'how-to-collect-judgment', 'Ca', 0, 1343086525, ''),
+(178, 'Primary', 'http://www.sdcourt.ca.gov/portal/page?_pageid=55,1424410&_dad=portal&_schema=PORTAL&a=1#1', 6, 'Small Claims Frequently Asked Questions 1. Who can file a claim? 2. Where can I file a claim? 3. Does the court provide an interpreter? 4. Does the court provide a small claims advisor? 5. What are the rules about designating a defendant? 6. How does the defendant find out about the lawsuit?', 'Small Claims FAQs', 0, '', 'small-claims-faqs', 'Ca', 0, 1343087565, ''),
+(179, 'Secondary', 'http://www.sandiegotriallaw.com/blog/handling-your-own-case-in-small-claims-court/', 6, 'If you have a dispute over money with a person or business, you may be considering filing a small claims court lawsuit. In San Diego Small Claims Court, an individual may file a claim against a person or business for up to $7,500.00. Businesses may file claims for up to $5,000.00.', 'Handling Your Own Case in Small Claims Court | San Diego Trial Law', 0, '', 'handling-your-own-case-in-small-claims-court-san-diego-trial-law', 'Sandiegotriallaw', 0, 1343088209, ''),
+(180, 'Primary', 'http://www.sdcourt.ca.gov/pls/portal/docs/PAGE/SDCOURT/GENERALINFORMATION/FORMS/SMALLCLAIMSFORMS/PKT019.PDF', 6, '[PDF] How to File a Small Claims Case', 'Small Claims Packet - How to File a Small Claims Case', 0, '', 'small-claims-packet-how-to-file-a-small-claims-case', 'Ca', 0, 1343088952, ''),
+(181, 'Primary', 'http://www.courts.ca.gov/sc100info.pdf', 6, '[PDF] SC-100-INFO', 'Information for the Plaintiff (Small Claims)', 0, '', 'information-for-the-plaintiff-small-claims', 'Ca', 0, 1343089249, ''),
+(182, 'Primary', 'http://www.sdcourt.ca.gov/pls/portal/docs/PAGE/SDCOURT/GENERALINFORMATION/FORMS/SMALLCLAIMSFORMS/SC024.PDF', 6, '[PDF] SC-024', 'Zip Code List - Small Claims ', 0, '', 'zip-code-list-small-claims', 'Ca', 0, 1343089301, ''),
+(183, 'Primary', 'http://www.sdcourt.ca.gov/pls/portal/docs/PAGE/SDCOURT/GENERALINFORMATION/FORMS/SMALLCLAIMSFORMS/SC023.PDF', 6, '[PDF] SC-023', 'How to File a Small Claims Case (SC-023)', 0, '', 'how-to-file-a-small-claims-case-sc-023', 'Ca', 0, 1343089043, ''),
+(184, 'Primary', 'http://www.sdcourt.ca.gov/pls/portal/docs/PAGE/SDCOURT/GENERALINFORMATION/FORMS/SMALLCLAIMSFORMS/SC100.PDF', 6, '[PDF] SC-100', 'Plaintiff''s Claim and Order to Go to Small Claims Court (Small Claims) ', 0, '', 'plaintiffs-claim-and-order-to-go-to-small-claims-court-small-claims', 'Ca', 0, 1343089327, ''),
+(185, 'Primary', 'http://www.sdcourt.ca.gov/pls/portal/docs/PAGE/SDCOURT/GENERALINFORMATION/FORMS/SMALLCLAIMSFORMS/SC-100A_FILLABLE.PDF', 6, '[PDF] SC-100A', 'Other Plaintiffs and Defendants ', 0, '', 'other-plaintiffs-and-defendants', 'Ca', 0, 1343089353, ''),
+(186, 'Primary', 'http://www.courts.ca.gov/sc104b.pdf', 6, '[PDF] SC-104B', 'What is "Proof of Service"? (Small Claims) ', 0, '', 'what-is-proof-of-service-small-claims', 'Ca', 0, 1343089376, ''),
+(187, 'Primary', 'http://www.sdcourt.ca.gov/pls/portal/docs/PAGE/SDCOURT/GENERALINFORMATION/FORMS/SMALLCLAIMSFORMS/SC104C.PDF', 6, '[PDF] SC-104C', 'How to Serve a Business or Public Entity (Small Claims) ', 0, '', 'how-to-serve-a-business-or-public-entity-small-claims', 'Ca', 0, 1343089415, ''),
+(188, 'Primary', 'http://www.courts.ca.gov/sc104.pdf', 6, '[PDF] SC-104', 'Proof of Service (Small Claims) ', 0, '', 'proof-of-service-small-claims', 'Ca', 0, 1343089446, ''),
+(189, 'Primary', 'http://www.sdcourt.ca.gov/pls/portal/docs/PAGE/SDCOURT/GENERALINFORMATION/FORMS/SMALLCLAIMSFORMS/SC026.PDF', 6, '[PDF] SC-026', 'Notice to Party(ies) Filing Small Claims Action ', 0, '', 'notice-to-partyies-filing-small-claims-action', 'Ca', 0, 1343089468, ''),
+(190, 'Primary', 'http://www.sdcourt.ca.gov/pls/portal/docs/PAGE/SDCOURT/GENERALINFORMATION/FORMS/SMALLCLAIMSFORMS/SC044.PDF', 6, '[PDF] SC-044', 'Request for Dismissal - Small Claims', 0, '', 'request-for-dismissal-small-claims', 'Ca', 0, 1343089490, ''),
+(191, 'Primary', 'http://www.sdcourt.ca.gov/portal/page?_pageid=55,1424466&_dad=portal&_schema=PORTAL', 6, 'San Diego Small Claims Forms', 'Small Claims Forms', 0, '', 'small-claims-forms', 'Ca', 0, 1343089538, '');
 
 -- --------------------------------------------------------
 
@@ -228,11 +273,11 @@ INSERT INTO `links` (`id`, `type`, `url`, `category`, `summary`, `title`, `votes
 --
 
 CREATE TABLE IF NOT EXISTS `tags` (
-  `id` int(10) NOT NULL auto_increment,
-  `tagname` varchar(30) collate latin1_general_ci NOT NULL,
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `tagname` varchar(30) COLLATE latin1_general_ci NOT NULL,
   `parent` int(10) NOT NULL,
-  `summary` varchar(1000) collate latin1_general_ci NOT NULL,
-  PRIMARY KEY  (`id`),
+  `summary` varchar(1000) COLLATE latin1_general_ci NOT NULL,
+  PRIMARY KEY (`id`),
   UNIQUE KEY `tagname` (`tagname`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=6 ;
 
