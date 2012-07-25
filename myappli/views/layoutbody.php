@@ -9,7 +9,7 @@
 	
 	<?php $counter++; ?>
 	
-	<a href="view/<?php echo $element->slug?>" class="<?php echo strtolower($element->type); ?> isotope-item hidden<?php 
+	<a href="view/<?=$element->slug?>" class="<?php echo strtolower($element->type); ?> isotope-item hidden<?php 
 	if($counter > 3 && $counter < 10)
 	{
 		echo ' width2';
@@ -18,19 +18,17 @@
 	{
 		echo ' size2';
 	}
-	?>" id="<?php echo $element->slug?>">
-		<div class="leader">
-			<div class="icon" id="icon_<?php echo strtolower($element->type);?>"></div>
-			<div class="rating" style="float: right"><?php echo $element->votes?></div>
-			<!-- ADDED BY YOUNG 07/24/2012 --><div class="clear"></div>
-		</div>
-		
+	?>" id="<?=$element->slug?>">
 		<?php if(strtolower($element->type) === 'photo') echo '<img src="'.$element->url.'"/>'; ?>
 		
-		<h3 class="title"><?php echo $element->title?></h3>
-
+		<div class="leader">
+			<div class="icon" id="icon_<?php echo strtolower($element->type);?>"></div>
+			<div class="rating" style="float: right"><?=$element->votes?></div>
+		</div>
+		<h3 class="title"><?=$element->title?></h3>
+		
 		<div class="details">
-			<?php echo $element->summary?>
+			<?=$element->summary?>
 		</div>
 	</a>
 
@@ -191,4 +189,11 @@ $(function() {
 });
 
 </script>
+
+<!-- Young 07/25/2012 -->
+<script src="http://scripts.embed.ly/jquery.embedly.min.js"></script> 
+<script src="/js/jquery.expand.js"></script>
+<script src="/js/expand.and.embed.js"></script>
+<!-- End Young -->
+
 </section> <!-- #content -->

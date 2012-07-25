@@ -10,3 +10,125 @@
 #rating_box{margin-top: 10px; display: block; height: 60px; background: gold; border-radius: 10px;}
 #post_new{margin-top: 30px;}
 #comments{margin-top: 30px;}
+
+.link-submit-form {
+margin-top: 100px;
+height: 100px;
+text-align: center;
+width: 100%;
+}
+
+.link-submit-form:before,
+.link-submit-form:after {
+content: '';
+display: block;	
+height: 1px;
+left: 50%;
+margin: 0 0 0 -400px;
+position: absolute;
+width: 800px;
+}
+
+.link-submit-form:before {
+background: #444;
+background: -webkit-linear-gradient(left, #151515, #444, #151515);
+background: -moz-linear-gradient(left, #151515, #444, #151515);
+background: -o-linear-gradient(left, #151515, #444, #151515);
+background: -ms-linear-gradient(left, #151515, #444, #151515);
+background: linear-gradient(left, #151515, #444, #151515);
+top: 179px;
+}
+
+.link-submit-form:after {
+background: #000;
+background: -webkit-linear-gradient(left, #151515, #000, #151515);	
+background: -moz-linear-gradient(left, #151515, #000, #151515);	
+background: -o-linear-gradient(left, #151515, #000, #151515);	
+background: -ms-linear-gradient(left, #151515, #000, #151515);	
+background: linear-gradient(left, #151515, #000, #151515);	
+top: 182px;
+}
+
+.link-submit-form form {
+background: #FFF;
+background: -webkit-linear-gradient(#FCFCFC, #FFF);
+background: -moz-linear-gradient(#FCFCFC, #FFF);
+background: -o-linear-gradient(#FCFCFC, #FFF);
+background: -ms-linear-gradient(#FCFCFC, #FFF);
+background: linear-gradient(#FCFCFC, #FFF);
+border: 1px solid #CCC;
+border-radius: 5px;
+display: inline-block;
+margin: 0 auto;
+padding: 10px;
+position: relative;
+z-index: 99;
+}
+
+.link-submit-form input#link-input {
+background: #FFF;
+border: 1px solid #333;
+border-radius: 5px 0 0 5px;
+display: block;
+float: left;
+font-family: 'Cabin', helvetica, arial, sans-serif;
+font-size: 14px;
+font-weight: 400;
+height: 40px;
+margin: 0;
+padding: 0 10px;
+width: 300px;
+}
+
+.ie .link-submit-form input#link-input {
+line-height: 40px;
+}
+
+.link-submit-form input#link-input:-webkit-input-placeholder,
+.link-submit-form input#link-input:-moz-placeholder {
+   color: #333;
+}
+
+#link-publish a {
+	display: inline-block;
+	height: 22px;
+    padding: 10px 0;
+    width: 80px;
+	margin-left: 5px;
+	color: #FFF;
+	background: #666;
+	background: -webkit-linear-gradient(#999, #666);
+	background: -moz-linear-gradient(#999, #666);
+	background: -o-linear-gradient(#999, #666);
+	background: -ms-linear-gradient(#999, #666);
+	background: linear-gradient(#999, #666);
+	border-radius: 0 5px 5px 0;
+}
+
+.link-submit-form form div.collapse {
+	display: block;
+	clear: both;
+	font-size: 14px;
+}
+	.link-submit-form form div.collapse label {
+		display: inline-block;
+		width: 100px;
+		vertical-align: top;
+	}
+	
+	.link-submit-form form div.collapse input[type="text"],
+	.link-submit-form form div.collapse textarea {
+		border: 1px #333 solid;
+		border-radius: 5px;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		width: 284px;
+		padding: 3px;
+	}
+	
+
+div.form-input {
+	text-align: left;
+	clear: both;
+	margin: 1em 0;
+}
