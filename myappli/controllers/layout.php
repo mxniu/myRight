@@ -16,6 +16,7 @@ class Layout extends CI_Controller {
 			$data['method'] = $method;
 			$data['urlstem'] = '';
 			$data['categories'] = $this->Layoutmodel->get_categories();
+			$data['count'] = $this->Layoutmodel->get_all_links();
 			if(sizeof($params) == 1)
 			{
 				$data['urlstem'] = '../';

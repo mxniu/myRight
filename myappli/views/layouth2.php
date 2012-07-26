@@ -1,6 +1,6 @@
 <section id="content">
 <section class="link-submit-form">
-	<h2 class="counting">19,203,209 articles and counting.</h2>
+	<h2 class="counting"><?=$count?> articles and counting.</h2>
 	<form action="#" method="post">
 		<input id="link-input" name="link-input" type="search" placeholder="Add Link" />
 		<span id="link-publish">Publish</span>

@@ -68,6 +68,12 @@ class Layoutmodel extends CI_Model {
 		return $query->result();
 	}
 	
+	public function get_all_links()
+	{
+		$query = $this->db->query('SELECT count(id) AS link_count FROM links');
+		return $query->row()->link_count;
+	}
+	
 	/*public function get_related($slug)
 	{
 		$this->db->select('*');
