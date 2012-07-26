@@ -1,10 +1,57 @@
+#content
+{
+	margin:60px auto;
+	height:100%;
+	width: 960px;
+}
+#maintainer
+{
+	display: block;
+	width: 960px;
+	margin:0 auto;
+}
+#tagtainer
+{
+	padding: 5px;
+	width: 180px;
+	box-shadow: 0px 0px 8px 2px #999;
+	background: #666;
+	opacity: 0.1;
+}
+#tagtainer a
+{
+	display: block;
+	width: 160px;
+	margin: 5px auto;
+	height: 20px;
+	background: #FFF;
+	padding: 8px;
+	overflow: hidden;
+	box-shadow: 0px 0px 13px 3px #CCC inset;
+	border: 1px solid #999;
+}
+
+#tagtainer .tagname
+{
+	width: 140px;
+	overflow: hidden;
+	white-space:nowrap; 
+	text-overflow: ellipsis;
+}
+
+#container
+{
+	width: 760px;
+	overflow: hidden;
+}
+
 .clearfix:before,.clearfix:after{content:"\0020";display:block;height:0;overflow:hidden}
 .clearfix:after{clear:both}
 .clearfix{zoom:1}
-#content{margin:60px 2%;height:100%;}
-#container{padding:5px;margin:5px auto;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;-ms-box-sizing:content-box;box-sizing:content-box}
+
+/*ISOTOPE ELEMENT PROPERTIES*/
 .isotope-item{z-index:2;}
-.isotope-item:hover{cursor: pointer}
+.isotope-item:hover{cursor: pointer; text-decoration: underline}
 .isotope-hidden.isotope-item{pointer-events:none;z-index:1}
 .isotope,.isotope .isotope-item{-webkit-transition-duration:.8s;-moz-transition-duration:.8s;-ms-transition-duration:.8s;-o-transition-duration:.8s;transition-duration:.8s}
 .isotope{-webkit-transition-property:height,width;-moz-transition-property:height,width;-ms-transition-property:height,width;-o-transition-property:height,width;transition-property:height,width}
@@ -22,6 +69,7 @@
 }
 .isotope.no-transition,.isotope.no-transition .isotope-item,.isotope .isotope-item.no-transition{-webkit-transition-duration:0s;-moz-transition-duration:0s;-ms-transition-duration:0s;-o-transition-duration:0s;transition-duration:0s}
 .isotope.infinite-scrolling{-webkit-transition:none;-moz-transition:none;-ms-transition:none;-o-transition:none;transition:none}
+
 .leader{ display: none; /*width: 100%; height: 30px; */ padding: 5px; letter-spacing: 0.2em; color: #fff; -moz-box-shadow:
 		0px 1px 3px rgba(000,000,000,0.5),
 		inset 0px 9px 15px rgba(255,255,255,0.5);
@@ -49,10 +97,14 @@
 .option-def dl.header dt,.option-def dl.header dd{background:#444}
 .option-def dl .option-type{font-size:13px;color:#AAA;font-style:italic}
 .option-def dl dd{border-left:1px solid #222}
-.loader{margin:5px auto; text-align: center;}
+.loader{margin:5px auto; text-align: center;} 
+
+/*PRIMARY SOURCE*/
 .primary{margin:5px;float:left;overflow:hidden;position:relative; /* background: url(../images/bg_legal.png); */ color:#444;height:360px;width:360px;border:2px solid #ff908e; box-shadow: 0px 0px 7px #999;}
 .primary .leader{background: #ff4f4c;}
 .primary .title{font-weight:300;font-size:30px;line-height: 36px; margin:10px 10px 0; font-family: 'Lato', serif; -ms-word-break: break-word;word-break: break-word;}
+
+/*SECONDARY SOURCE*/
 .secondary{margin:5px;float:left;overflow:hidden;position:relative; /* background: url(../images/bg_legal.png); */ color:#444;height:360px;width:360px;border:2px solid #f7af6c; box-shadow: 0px 0px 7px #999;}
 .secondary .leader{
 background: -moz-linear-gradient(
@@ -65,9 +117,10 @@ background: -webkit-gradient(
 		to(#f38620));
 }
 .secondary .title{font-weight:300;font-size:30px;line-height: 36px; margin:10px 10px 0; font-family: 'Lato', serif; -ms-word-break: break-word;word-break: break-word;}
+
+/*NEWS SOURCE*/
 .news{margin:5px;float:left;overflow:hidden;position:relative;color:#333;height:360px;width:360px;border: 2px dashed #CCC;background-repeat:repeat;background-image:url(../images/bg_news.png);}
 .news .rating{color: #333}
-
 .news .title{
 	font-size:30px;
 	line-height: 36px;
@@ -79,9 +132,12 @@ background: -webkit-gradient(
 	margin: 10px 10px 0;
 }
 
+/*IMAGE SOURCE*/
 .photo{margin:5px;float:left;overflow:hidden;position:relative;color:#333;height:360px;width:360px;border: 1px solid #CCC;background-repeat:repeat;}
 .photo img{width:100%;height:auto}
 .photo .title { text-align: center; }
+
+/*SIZE MANIPULATORS*/
 .height2{height: 170px;}
 .height2 .title{font-size: 24px; line-height: 30px;}
 .width2{width: 170px;}
@@ -90,11 +146,12 @@ background: -webkit-gradient(
 .size2 .title{font-size: 18px; line-height: 24px;}
 .supersize{width: 360px; height: 550px;}
 .supersize .title{font-size: 36px; line-height: 48px;}
+
+/*ICONS*/
 .icon{float: left; height: 20px; width: 20px; margin-right: 8px;}
 #icon_primary{ background: url(../images/icon_court.png);}
 #icon_secondary{ background: url(../images/icon_sprites.png);}
 #icon_news{ background: url(../images/icon_news.png);}
-
 
 /* YOUNG EDITS 07/24/2012 */
 a.photo {

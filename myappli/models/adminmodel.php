@@ -99,7 +99,7 @@ class Adminmodel extends CI_Model {
 		}
 	}
 	
-	public function tag_slugs()
+	private function tag_slugs()
 	{
 		$this->load->helper('url');
 	
@@ -133,7 +133,7 @@ class Adminmodel extends CI_Model {
         return $categories_array;
 	}
 	
-	public function build_tags()
+	private function build_tags()
 	{
 		$query = $this->db->query('SELECT id, tags FROM links');
 		

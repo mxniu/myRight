@@ -12,7 +12,6 @@ class Layout extends CI_Controller {
 		{
 			$this->load->model('Layoutmodel');
 			$category_data = $this->Layoutmodel->get_category_data($method);
-			$data['title'] = $category_data->name;
 			$data['method'] = $method;
 			$data['urlstem'] = '';
 			$data['categories'] = $this->Layoutmodel->get_categories();
@@ -22,9 +21,11 @@ class Layout extends CI_Controller {
 				$data['urlstem'] = '../';
 				$data['elements'] = $this->Layoutmodel->get_tag_elements($category_data->id, $params[0]);
 				$data['tags'] = $this->Layoutmodel->get_related_tags($category_data->id, $params[0]);
+				$data['title'] = $this->Layoutmodel->get_tag_name($params[0]);
 			}
 			else if(sizeof($params) == 0)
 			{
+				$data['title'] = $category_data->name;
 				$data['elements'] = $this->Layoutmodel->get_elements($category_data->id);
 				$data['tags'] = $this->Layoutmodel->get_tags($category_data->id);
 			}

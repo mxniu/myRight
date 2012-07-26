@@ -19,7 +19,7 @@ class Layoutmodel extends CI_Model {
 	
 	public function get_tag_elements($category, $slug)
 	{
-		$query = $this->db->query('SELECT l1.* FROM links l1 JOIN tagrel t2 on l1.id = t2.lid JOIN tags t1 on t2.tid = t1.id WHERE t1.slug = \''.$slug.'\'');
+		$query = $this->db->query('SELECT l1.* FROM links l1 JOIN tagrel t2 on l1.id = t2.lid JOIN tags t1 on t2.tid = t1.id WHERE t1.slug = \''.$slug.'\' ORDER BY l1.votes DESC');
         return $query->result();
 	}
 	
@@ -31,6 +31,13 @@ class Layoutmodel extends CI_Model {
 		$query = $this->db->get('categories');
 		$temp = $query->row(); 
         return $temp;
+	}
+	
+	public function get_tag_name($tagslug)
+	{
+		$query = $this->db->query('SELECT tagname from tags where slug = \''.$tagslug.'\'');
+		
+		return $query->row()->tagname;
 	}
 	
 	public function get_categories()

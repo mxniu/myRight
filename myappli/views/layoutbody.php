@@ -1,55 +1,57 @@
-<div class="tagtainer">
-	<?php foreach ($tags as $tag): ?>
-		<div><a href="<?=$urlstem?><?=$method?>/<?=$tag->slug?>"><?=$tag->tagname?> x<?=$tag->num_tag?></a></div>
-	<?php endforeach; ?>
-</div>
-<div id="container" class="clickable clearfix">
-
-	<div class="loader">
-		<img src="loading.gif" alt="ajax-loader"/>
+<div id="maintainer">
+	<div class="left" id="tagtainer">
+		<?php if(sizeof($tags) > 0): ?>
+			<?php foreach ($tags as $tag): ?>
+				<a href="<?=$urlstem?><?=$method?>/<?=$tag->slug?>"><div class="tagname left"><?=$tag->tagname?></div><div class="right"><?=$tag->num_tag?></div></a>
+			<?php endforeach; ?>
+		<?php else: ?>
+			<a href="#">[No Tags Exist Yet]</a>
+		<?php endif; ?>
 	</div>
-	
-	<?php $counter = 0; ?>
-	<?php foreach ($elements as $element): ?>
-	
-	<?php $counter++; ?>
-	
+	<div id="container" class="clickable clearfix right">
 
-	<a href="../view/<?php echo $element->slug?>" class="<?php echo strtolower($element->type); ?> isotope-item hidden<?php 
-	if($counter > 3 && $counter < 10)
-	{
-		echo ' width2';
-	}
-	else if($counter >= 10)
-	{
-		echo ' size2';
-	}
-	?>" id="<?=$element->slug?>">
-		<?php if(strtolower($element->type) === 'photo') echo '<img src="'.$element->url.'"/>'; ?>
-		
-		<div class="leader">
-			<div class="icon" id="icon_<?php echo strtolower($element->type);?>"></div>
-			<div class="rating" style="float: right"><?=$element->votes?></div>
+		<div class="loader">
+			<img src="../../loading.gif" alt="ajax-loader"/>
 		</div>
-		<h3 class="title"><?=$element->title?></h3>
 		
-		<div class="details">
-			<?=$element->summary?>
-		</div>
-	</a>
+		<?php $counter = 0; ?>
+		<?php foreach ($elements as $element): ?>
+		
+		<?php $counter++; ?>
 
-	<?php endforeach; ?>
-	
-	
-	
-</div> <!-- end #container -->
+		<a href="../view/<?php echo $element->slug?>" class="<?php echo strtolower($element->type); ?> isotope-item hidden<?php 
+		if($counter > 3 && $counter < 10)
+		{
+			echo ' width2';
+		}
+		else if($counter >= 10)
+		{
+			echo ' size2';
+		}
+		?>" id="<?=$element->slug?>">
+			<?php if(strtolower($element->type) === 'photo') echo '<img src="'.$element->url.'"/>'; ?>
+			
+			<div class="leader">
+				<div class="icon" id="icon_<?php echo strtolower($element->type);?>"></div>
+				<div class="rating" style="float: right"><?=$element->votes?></div>
+			</div>
+			<h3 class="title"><?=$element->title?></h3>
+			
+			<div class="details">
+				<?=$element->summary?>
+			</div>
+		</a>
+
+		<?php endforeach; ?>
+
+	</div> <!-- end #container -->
+</div><!-- end #maintainer -->
 <!-- jquery -->
 <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
 <script src="/js/jquery.isotope.min.js"></script>
-<!-- feed reader -->
 <script type="text/javascript">
 
-$.Isotope.prototype._getCenteredMasonryColumns = function() {
+/*$.Isotope.prototype._getCenteredMasonryColumns = function() {
     this.width = this.element.width();
     
     var parentWidth = this.element.parent().width();
@@ -105,7 +107,7 @@ $.Isotope.prototype._getCenteredMasonryColumns = function() {
           // fit container to columns that have been used;
           width : (this.masonry.cols - unusedCols) * this.masonry.columnWidth
         };
-  };
+  };*/
 
 var $container = $('#container');
 
@@ -179,11 +181,11 @@ $(function() {
 			}, 1000);
 		}*/
 		
-		$('.isotope-item').hover(function(){
+		/*$('.isotope-item').hover(function(){
 			$('[id=' + $(this).attr('id') + ']').children('.details').stop(true).animate({opacity: 1.0}, 150);
 		}, function(){
 			$('[id=' + $(this).attr('id') + ']').children('.details').stop(true).animate({opacity: 0.0}, 150);
-		});
+		});*/
 		
       /*$container.delegate( '.isotope-item', 'click', function(){
 		$('.supersize').toggleClass('supersize');
@@ -192,6 +194,8 @@ $(function() {
 		$('.details').hide();
 		$('[id=' + $(this).attr('id') + ']').children('.details').show();
       });*/
+	  
+	  $('#tagtainer').animate({opacity: 1.0}, 200);
 });
 
 </script>

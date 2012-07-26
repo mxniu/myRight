@@ -106,7 +106,7 @@ line-height: 40px;
 }
 
 .link-submit-form form div.collapse {
-	display: block;
+	display: none;
 	clear: both;
 	font-size: 14px;
 }

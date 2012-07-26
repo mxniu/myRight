@@ -15,7 +15,7 @@ input[type="submit"]:hover,input[type="button"]:hover,input[type="reset"]:hover,
 .right{float:right}
 .clear{clear:both}
 .hidden{display:none}
-#topbar{width:100%;height:60px;background:#000;color:#FFF;position:absolute;top:0;}
+#topbar{width:100%;height:60px;background:#000;color:#FFF;position:fixed;top:0;z-index:99999!important}
 #category_nav{list-style: none}
 #category_nav li {float: left; margin-left: 10px}
 #category_nav li a {color: #FFF}
