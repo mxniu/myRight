@@ -12,8 +12,8 @@
 #comments{margin-top: 30px;}
 
 .link-submit-form {
-margin-top: 100px;
-height: 100px;
+margin-top: 140px;
+height: 140px;
 text-align: center;
 width: 100%;
 }
@@ -36,7 +36,7 @@ background: -moz-linear-gradient(left, #151515, #444, #151515);
 background: -o-linear-gradient(left, #151515, #444, #151515);
 background: -ms-linear-gradient(left, #151515, #444, #151515);
 background: linear-gradient(left, #151515, #444, #151515);
-top: 179px;
+top: 220px;
 }
 
 .link-submit-form:after {
@@ -46,7 +46,7 @@ background: -moz-linear-gradient(left, #151515, #000, #151515);
 background: -o-linear-gradient(left, #151515, #000, #151515);	
 background: -ms-linear-gradient(left, #151515, #000, #151515);	
 background: linear-gradient(left, #151515, #000, #151515);	
-top: 182px;
+top: 222px;
 }
 
 .link-submit-form form {
