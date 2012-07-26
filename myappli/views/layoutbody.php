@@ -1,3 +1,8 @@
+<div class="tagtainer">
+	<?php foreach ($tags as $tag): ?>
+		<div><a href="<?=$urlstem?><?=$method?>/<?=$tag->slug?>"><?=$tag->tagname?> x<?=$tag->num_tag?></a></div>
+	<?php endforeach; ?>
+</div>
 <div id="container" class="clickable clearfix">
 
 	<div class="loader">
@@ -9,7 +14,8 @@
 	
 	<?php $counter++; ?>
 	
-	<a href="view/<?=$element->slug?>" class="<?php echo strtolower($element->type); ?> isotope-item hidden<?php 
+
+	<a href="../view/<?php echo $element->slug?>" class="<?php echo strtolower($element->type); ?> isotope-item hidden<?php 
 	if($counter > 3 && $counter < 10)
 	{
 		echo ' width2';

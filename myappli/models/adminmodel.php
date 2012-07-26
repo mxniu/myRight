@@ -99,6 +99,26 @@ class Adminmodel extends CI_Model {
 		}
 	}
 	
+	public function tag_slugs()
+	{
+		$this->load->helper('url');
+	
+		$this->db->select('id, tagname');
+	
+		$query = $this->db->get('tags');
+        foreach ($query->result() as $row)
+		{
+			$slug = url_title($row->tagname, 'dash', TRUE);
+			$id = $row->id;
+			$data = array(
+               'slug' => $slug
+            );
+
+			$this->db->where('id', $id);
+			$this->db->update('tags', $data); 
+		}
+	}
+	
 	public function get_categories()
 	{
 		$this->db->select('id, name');
@@ -111,6 +131,37 @@ class Adminmodel extends CI_Model {
 		}
 		
         return $categories_array;
+	}
+	
+	public function build_tags()
+	{
+		$query = $this->db->query('SELECT id, tags FROM links');
+		
+		foreach ($query->result() as $row)
+		{
+			$tags = explode(",", $row->tags);
+			foreach($tags as $tag)
+			{
+				//Check for whitespace
+				if(ctype_space($tag) || $tag === '')
+					continue;
+					
+				$match_tag = $this->db->query('SELECT id FROM tags where tagname=\''.html_escape(trim($tag)).'\'');
+				$this_tid = 0;
+				if ($match_tag->num_rows() > 0)
+				{
+					$tid = $match_tag->row();
+					$this_tid = $tid->id;
+				}
+				else
+				{
+					$this->db->query('INSERT INTO tags (`tagname`) VALUES (\''.html_escape(trim($tag)).'\')');
+					$this_tid = $this->db->insert_id();
+				}
+				if($this_tid != 0)
+					$this->db->query('INSERT INTO tagrel (`lid`, `tid`) VALUES ('.$row->id.' ,'.$this_tid.')');
+			}
+		}
 	}
 }
 ?>

@@ -43,6 +43,7 @@ $route['login'] = 'login';
 $route['view/(:any)'] = 'viewscreen/$1';
 $route['fullview/(:any)'] = 'fullview/$1';
 $route['(:any)'] = 'layout/$1';
+$route['(:any)/(:any)'] = 'layout/$1/$2';
 $route['default_controller'] = '';
 $route['404_override'] = '';
 
