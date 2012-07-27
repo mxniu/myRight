@@ -80,27 +80,5 @@ class Layoutmodel extends CI_Model {
 		$query = $this->db->query('SELECT count(id) AS link_count FROM links');
 		return $query->row()->link_count;
 	}
-	
-	/*public function get_related($slug)
-	{
-		$this->db->select('*');
-		$this->db->where('slug', $slug);
-	
-		$query = $this->db->get('links');
-		$orig = $query->row();
-        $tags = explode(",", $orig->tags);
-		
-		$this->db->select('*');
-		foreach($tags as $tag)
-		{
-			$this->db->or_where('tags LIKE', '%'.$tag.'%'); 
-		}
-		$this->db->order_by('votes desc');
-	
-		$query = $this->db->get('links');
-		$return_value = $query->result();
-		array_unshift($return_value, $orig);
-        return $return_value;
-	}*/
 }
 ?>
