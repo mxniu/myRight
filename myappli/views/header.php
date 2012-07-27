@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="../css/viewport.css" />
   <link rel="stylesheet" href="../css/grid.css" />
   <link rel="stylesheet" href="../css/isotope.css" />
+  <link rel="stylesheet" href="../css/bootstrap-modal.css" />
   <link href='http://fonts.googleapis.com/css?family=Quattrocento:400,700|Quattrocento+Sans:400,700|Lato:700,400,300|Cabin:600' rel='stylesheet' type='text/css'>
 </head>
 <body>

@@ -20,15 +20,15 @@
 		<?php $counter++; ?>
 
 		<a href="../view/<?php echo $element->slug?>" class="<?php echo strtolower($element->type); ?> isotope-item hidden<?php 
-		if($counter > 3 && $counter < 10)
+		if($counter > 2 && $counter < 7)
 		{
 			echo ' width2';
 		}
-		else if($counter >= 10)
+		else if($counter >= 6)
 		{
 			echo ' size2';
 		}
-		?>" id="<?=$element->slug?>">
+		?>" id="<?=$element->slug?>" data-toggle="modal">
 			<?php if(strtolower($element->type) === 'photo') echo '<img src="'.$element->url.'"/>'; ?>
 			
 			<div class="leader">
@@ -47,7 +47,7 @@
 	</div> <!-- end #container -->
 </div><!-- end #maintainer -->
 <!-- jquery -->
-<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script src="/js/jquery.isotope.min.js"></script>
 <script type="text/javascript">
 
@@ -172,14 +172,6 @@ $(function() {
 		$('.isotope-item').removeClass('hidden');
 		$('.loader').addClass('hidden');
 		$container.isotope('insert', $('.isotope-item') );
-		/*var current = 0;
-		var max_div = ($container.children('.isotope-item').size()-1);
-		for(current=0;current<=max_div;current++)
-		{
-			setTimeout(function () { 
-				$container.isotope('insert', $('.isotope-item').eq(current) );
-			}, 1000);
-		}*/
 		
 		/*$('.isotope-item').hover(function(){
 			$('[id=' + $(this).attr('id') + ']').children('.details').stop(true).animate({opacity: 1.0}, 150);
@@ -187,7 +179,7 @@ $(function() {
 			$('[id=' + $(this).attr('id') + ']').children('.details').stop(true).animate({opacity: 0.0}, 150);
 		});*/
 		
-      /*$container.delegate( '.isotope-item', 'click', function(){
+      /*container.delegate( '.isotope-item', 'click', function(){
 		$('.supersize').toggleClass('supersize');
         $(this).toggleClass('supersize');
         $container.isotope('reLayout');
@@ -195,7 +187,34 @@ $(function() {
 		$('[id=' + $(this).attr('id') + ']').children('.details').show();
       });*/
 	  
-	  $('#tagtainer').animate({opacity: 1.0}, 200);
+	function populateModal(id)
+	{
+		/*$.post("view/"+id, function(data) {
+			$('.modal-body').html(data);
+		});*/
+	}
+	  
+	$('.isotope-item').click(function(e){
+		var this_id = $(this).attr('id');
+		$('#myModal').modal('show');
+		history.pushState({ id: this_id }, null, $('[id=' + this_id + ']').attr('href'));
+		populateModal(this_id);
+		return false;
+	});
+	
+	window.onpopstate = function (event) {
+		if(event.state)
+		{
+			populateModal(event.state.id);
+			$('#myModal').modal('show');
+		}
+		else
+		{
+			$('#myModal').modal('hide');
+		}
+	}
+	
+	$('#tagtainer').animate({opacity: 1.0}, 200);
 });
 
 </script>
@@ -205,5 +224,23 @@ $(function() {
 <script src="/js/jquery.expand.js"></script>
 <script src="/js/expand.and.embed.js"></script>
 <!-- End Young -->
+
+<!-- More JS Twitter Bootstrap 07/26/2012-->
+<script src="/js/bootstrap-transition.js"></script>
+<script src="/js/bootstrap-modal.js"></script>
+<!-- End More JS -->
+
+<div class="modal hidden fade" id="myModal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">x</button>
+    <h3>Modal header</h3>
+  </div>
+  <div class="modal-body">
+  </div>
+  <div class="modal-footer">
+    <a href="#" data-dismiss="modal">Close</a>
+    <a href="#">Save changes</a>
+  </div>
+</div>
 
 </section> <!-- #content -->

@@ -8,7 +8,11 @@ class Layout extends CI_Controller {
 	
 	public function _remap($method, $params=array())
 	{
-		if($method === 'election2012' || $method === 'startups'|| $method === 'tickets'|| $method === 'dui'|| $method === 'drugs'|| $method === 'smallclaims')
+		if($method === "ajax")
+		{
+			echo "PENIS";
+		}
+		else if($method === 'election2012' || $method === 'startups'|| $method === 'tickets'|| $method === 'dui'|| $method === 'drugs'|| $method === 'smallclaims')
 		{
 			$this->load->model('Layoutmodel');
 			$category_data = $this->Layoutmodel->get_category_data($method);
