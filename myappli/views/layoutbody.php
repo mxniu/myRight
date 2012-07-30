@@ -1,8 +1,16 @@
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=265179353583781";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <div id="maintainer">
 	<div class="left" id="tagtainer">
 		<?php if(sizeof($tags) > 0): ?>
 			<?php foreach ($tags as $tag): ?>
-				<a href="<?=$urlstem?><?=$method?>/<?=$tag->slug?>"><div class="tagname left"><?=$tag->tagname?></div><div class="right"><?=$tag->num_tag?></div></a>
+				<a href="<?=$urlstem?><?=$method?>/<?=$tag->slug?>"><div class="tagname left"><?=$tag->tagname?></div></a>
 			<?php endforeach; ?>
 		<?php else: ?>
 			<a href="#">[No Tags Exist Yet]</a>
@@ -19,16 +27,24 @@
 		
 		<?php $counter++; ?>
 
-		<a href="../view/<?php echo $element->slug?>" class="<?php echo strtolower($element->type); ?> isotope-item hidden<?php 
-		if($counter > 2 && $counter < 7)
+		<a href="../view/<?php echo $element->slug?>" class="<?php echo strtolower($element->type); ?> isotope-item<?php 
+		if(!$offset)
 		{
-			echo ' width2';
+			echo ' hidden';
+			if($counter > 2 && $counter < 7)
+			{
+				echo ' width2';
+			}
+			else if($counter >= 6)
+			{
+				echo ' size2';
+			}
 		}
-		else if($counter >= 6)
+		else
 		{
 			echo ' size2';
 		}
-		?>" id="<?=$element->slug?>" data-toggle="modal">
+		?> location-<?php echo preg_replace( '/\s+/', '-', $element->location ); ?>" id="<?=$element->slug?>" data-toggle="modal">
 			<?php if(strtolower($element->type) === 'photo') echo '<img src="'.$element->url.'"/>'; ?>
 			
 			<div class="leader">
@@ -43,71 +59,14 @@
 		</a>
 
 		<?php endforeach; ?>
-
 	</div> <!-- end #container -->
 </div><!-- end #maintainer -->
+<nav id="page_nav">
+	<a href="<?php echo $_SERVER["REQUEST_URI"]; if(strpos($_SERVER["REQUEST_URI"], "?") === false) echo "?"; else echo "&";?>page=2"></a>
+</nav>
 <!-- jquery -->
-<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script src="/js/jquery.isotope.min.js"></script>
 <script type="text/javascript">
-
-/*$.Isotope.prototype._getCenteredMasonryColumns = function() {
-    this.width = this.element.width();
-    
-    var parentWidth = this.element.parent().width();
-    
-                  // i.e. options.masonry && options.masonry.columnWidth
-    var colW = this.options.masonry && this.options.masonry.columnWidth ||
-                  // or use the size of the first item
-                  this.$filteredAtoms.outerWidth(true) ||
-                  // if there's no items, use size of container
-                  parentWidth;
-    
-    var cols = Math.floor( parentWidth / colW );
-    cols = Math.max( cols, 1 );
-
-    // i.e. this.masonry.cols = ....
-    this.masonry.cols = cols;
-    // i.e. this.masonry.columnWidth = ...
-    this.masonry.columnWidth = colW;
-  };
-  
-  $.Isotope.prototype._masonryReset = function() {
-    // layout-specific props
-    this.masonry = {};
-    // FIXME shouldn't have to call this again
-    this._getCenteredMasonryColumns();
-    var i = this.masonry.cols;
-    this.masonry.colYs = [];
-    while (i--) {
-      this.masonry.colYs.push( 0 );
-    }
-  };
-
-  $.Isotope.prototype._masonryResizeChanged = function() {
-    var prevColCount = this.masonry.cols;
-    // get updated colCount
-    this._getCenteredMasonryColumns();
-    return ( this.masonry.cols !== prevColCount );
-  };
-  
-  $.Isotope.prototype._masonryGetContainerSize = function() {
-    var unusedCols = 0,
-        i = this.masonry.cols;
-    // count unused columns
-    while ( --i ) {
-      if ( this.masonry.colYs[i] !== 0 ) {
-        break;
-      }
-      unusedCols++;
-    }
-    
-    return {
-          height : Math.max.apply( Math, this.masonry.colYs ),
-          // fit container to columns that have been used;
-          width : (this.masonry.cols - unusedCols) * this.masonry.columnWidth
-        };
-  };*/
 
 var $container = $('#container');
 
@@ -171,41 +130,25 @@ $(function() {
 
 		$('.isotope-item').removeClass('hidden');
 		$('.loader').addClass('hidden');
-		$container.isotope('insert', $('.isotope-item') );
-		
-		/*$('.isotope-item').hover(function(){
-			$('[id=' + $(this).attr('id') + ']').children('.details').stop(true).animate({opacity: 1.0}, 150);
-		}, function(){
-			$('[id=' + $(this).attr('id') + ']').children('.details').stop(true).animate({opacity: 0.0}, 150);
-		});*/
-		
-      /*container.delegate( '.isotope-item', 'click', function(){
-		$('.supersize').toggleClass('supersize');
-        $(this).toggleClass('supersize');
-        $container.isotope('reLayout');
-		$('.details').hide();
-		$('[id=' + $(this).attr('id') + ']').children('.details').show();
-      });*/
+		$container.isotope('insert', $('.isotope-item'));
 	  
-	function populateModal(id)
+	function populateModal(slug)
 	{
-		/*$.post("view/"+id, function(data) {
-			$('.modal-body').html(data);
-		});*/
+		$('#modalslug').html(slug);
 	}
 	  
 	$('.isotope-item').click(function(e){
-		var this_id = $(this).attr('id');
+		var this_slug = $(this).attr('id');
 		$('#myModal').modal('show');
-		history.pushState({ id: this_id }, null, $('[id=' + this_id + ']').attr('href'));
-		populateModal(this_id);
+		history.pushState({ slug: this_slug }, null, $('[id=' + this_slug + ']').attr('href'));
+		populateModal(this_slug);
 		return false;
 	});
 	
 	window.onpopstate = function (event) {
 		if(event.state)
 		{
-			populateModal(event.state.id);
+			populateModal(event.state.slug);
 			$('#myModal').modal('show');
 		}
 		else
@@ -215,6 +158,121 @@ $(function() {
 	}
 	
 	$('#tagtainer').animate({opacity: 1.0}, 200);
+	
+	function location_filter(){
+		var options = {};
+		var val = $('#location_box option:selected').attr('value');
+		
+		if(val)
+		{
+			//options['filter'] = '.location-' + val;
+			//history.replaceState(null, null, '?location=' + val);
+			window.location.href = '?location=' + val;
+		}
+		else
+		{
+			//options['filter'] = '';
+			//history.replaceState(null, null, window.location.pathname.split("?")[0]);
+			window.location.href = window.location.pathname.split("?")[0];
+		}
+		
+		$container.isotope(options);
+	}
+	
+	$('#location_box').change(location_filter);
+	
+	$container.infinitescroll({
+        navSelector  : '#page_nav',    // selector for the paged navigation 
+        nextSelector : '#page_nav a:first',  // selector for the NEXT link (to page 2)
+        itemSelector : '.isotope-item',     // selector for all items you'll retrieve
+        loading: {
+            finishedMsg: 'No more articles to load.',
+            img: 'http://i.imgur.com/qkKy8.gif'
+          }
+        },
+        // call Isotope as a callback
+        function( newElements ) {
+			$container.isotope( 'appended', $( newElements ) ); 
+			$('.isotope-item').click(function(e){
+				var this_slug = $(this).attr('id');
+				$('#myModal').modal('show');
+				history.pushState({ slug: this_slug }, null, $('[id=' + this_slug + ']').attr('href'));
+				populateModal(this_slug);
+				return false;
+			});
+        }
+    );
+	  
+	$('#myModal').on('shown', function () {
+		$.ajax({
+		  type: "POST",
+		  url: "../viewajax/"+$('#modalslug').html(),
+		  dataType: "html"
+		}).done(function( data ) {
+			$(".modal-body").html(data);
+			FB.XFBML.parse();
+		});
+	});
+	
+	$('#myModal').on('hidden', function () {
+		$(".modal-body").html('<img src="loading.gif"/>');
+	});
+	
+	var availableTags = [<?php
+		if ($alltags) {
+			$first_time = 1;
+			foreach ($alltags as $tag) {
+				if($first_time == 1)
+				{
+					$first_time = 0;
+				}
+				else
+				{
+					echo ",";
+				}
+				echo "'".$tag->tagname."'";
+			}
+		}
+		?>];
+		function split( val ) {
+			return val.split( /,\s*/ );
+		}
+		function extractLast( term ) {
+			return split( term ).pop();
+		}
+
+		$( "#top-search-input" )
+			// don't navigate away from the field on tab when selecting an item
+			.bind( "keydown", function( event ) {
+				if ( event.keyCode === $.ui.keyCode.TAB &&
+						$( this ).data( "autocomplete" ).menu.active) {
+					event.preventDefault();
+				}
+			})
+			.autocomplete({
+				minLength: 0,
+				source: function( request, response ) {
+					// delegate back to autocomplete, but extract the last term
+					var results = $.ui.autocomplete.filter(
+						availableTags, extractLast( request.term ) );
+					response(results.slice(0, 10));
+				},
+				focus: function() {
+					// prevent value inserted on focus
+					return false;
+				},
+				select: function( event, ui ) {
+					var terms = split( this.value );
+					// remove the current input
+					terms.pop();
+					// add the selected item
+					terms.push( ui.item.value );
+					// add placeholder to get the comma-and-space at the end
+					//terms.push( "" );
+					this.value = terms[0];
+					return false;
+				}
+			});
 });
 
 </script>
@@ -230,16 +288,18 @@ $(function() {
 <script src="/js/bootstrap-modal.js"></script>
 <!-- End More JS -->
 
+<script src="/js/jquery.infinitescroll.min.js"></script>
+
 <div class="modal hidden fade" id="myModal">
+	<div id="modalslug" class="hidden"></div>
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">x</button>
-    <h3>Modal header</h3>
   </div>
   <div class="modal-body">
+	<img src="loading.gif"/>
   </div>
   <div class="modal-footer">
     <a href="#" data-dismiss="modal">Close</a>
-    <a href="#">Save changes</a>
   </div>
 </div>
 

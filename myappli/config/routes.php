@@ -40,6 +40,7 @@
 
 $route['admin204'] = 'admin';
 $route['login'] = 'login';
+$route['viewajax/(:any)'] = 'viewajax/$1';
 $route['view/(:any)'] = 'viewscreen/$1';
 $route['fullview/(:any)'] = 'fullview/$1';
 $route['(:any)'] = 'layout/$1';
