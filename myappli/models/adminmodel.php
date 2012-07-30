@@ -86,7 +86,6 @@ class Adminmodel extends CI_Model {
 		$this->db->select('id, title');
 	
 		$query = $this->db->get('links');
-		
         foreach ($query->result() as $row)
 		{
 			$slug = url_title($row->title, 'dash', TRUE);

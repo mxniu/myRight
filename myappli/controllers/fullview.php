@@ -11,7 +11,6 @@ class Fullview extends CI_Controller {
 		$this->load->database();
 		$this->load->model('Fullviewmodel');
 		$data['element'] = $this->Fullviewmodel->get_element($method);
-		$data['method'] = $method;
 		
 		$this->load->view('fullviewheader', $data);
 		$this->load->view('fullviewport', $data);

@@ -9,7 +9,6 @@
 	display: block;
 	width: 960px;
 	margin:0 auto;
-	overflow: hidden;
 }
 #tagtainer
 {
@@ -17,7 +16,7 @@
 	width: 180px;
 	box-shadow: 0px 0px 8px 2px #999;
 	background: #666;
-	opacity: 0.0;
+	opacity: 0.1;
 }
 #tagtainer a
 {
@@ -35,7 +34,7 @@
 
 #tagtainer .tagname
 {
-	width: 160px;
+	width: 140px;
 	overflow: hidden;
 	white-space:nowrap; 
 	text-overflow: ellipsis;
@@ -47,29 +46,9 @@
 	overflow: hidden;
 }
 
-/**** Infinite Scroll ****/
-
-#infscr-loading {
-  position: fixed;
-  text-align: center;
-  bottom: 30px;
-  left: 42%;
-  z-index: 100;
-  background: white;
-  background: hsla( 0, 0%, 100%, 0.9 );
-  padding: 20px;
-  color: #222;
-  font-size: 15px;
-  font-weight: bold;
-  -webkit-border-radius: 10px;
-     -moz-border-radius: 10px;
-          border-radius: 10px;
-}
-
-/* The Magnificent Clearfix: nicolasgallagher.com/micro-clearfix-hack/ */
-.clearfix:before, .clearfix:after { content: ""; display: table; }
-.clearfix:after { clear: both; }
-.clearfix { zoom: 1; }
+.clearfix:before,.clearfix:after{content:"\0020";display:block;height:0;overflow:hidden}
+.clearfix:after{clear:both}
+.clearfix{zoom:1}
 
 /*ISOTOPE ELEMENT PROPERTIES*/
 .isotope-item{z-index:2;}

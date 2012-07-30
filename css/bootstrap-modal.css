@@ -79,8 +79,8 @@ button.close {
   top: 50%;
   left: 50%;
   z-index: 1050;
-  width: 706px;
-  margin: -250px 0 0 -353px;
+  width: 960px;
+  margin: -250px 0 0 -480px;
   overflow: auto;
   background-color: #ffffff;
   border: 1px solid #999;
@@ -123,8 +123,6 @@ button.close {
   max-height: 400px;
   padding: 15px;
   overflow-y: auto;
-  text-align: center;
-  overflow-x: hidden;
 }
 
 .modal-form {

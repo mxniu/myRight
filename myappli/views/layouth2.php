@@ -1,9 +1,12 @@
 <section id="content">
 <section class="link-submit-form">
+	<h2 class="counting"><?=$count?> articles and counting.</h2>
 	<form action="#" method="post">
 		<input id="link-input" name="link-input" type="search" placeholder="Add Link" />
 		<span id="link-publish">Publish</span>
+		
 		<div class="collapse">
+			
 			<div class="form-input">
 				<label for="link-type">Type</label>
 				<input type="radio" name="link-type" value="resource" />Resource
@@ -33,25 +36,13 @@
 			
 			<input type="submit" id="submit" name="submit" value="Submit" />
 		</div>
+		
+		
 	</form>
 </section>
-<div class="fb-like" data-href="<?php echo $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"]; ?>" data-send="false" data-layout="box_count" data-width="450" data-show-faces="true" data-font="segoe ui"></div>
 <section id="options" class="clearfix">
 	<div class="option-logo">
 		<h1><?=$title?></h1>
-	</div>
-	<div class="right">
-		<?php 
-			if(isset($locations))
-			{
-				$options = array("" => "-----");
-				foreach($locations as $location)
-				{
-					$options[preg_replace( '/\s+/', '-', $location->location )] = $location->location;
-				}
-				echo form_dropdown('location', $options, $locget, 'id="location_box"');
-			}
-		?>
 	</div>
 	<div class="option-combo">
 	  <ul id="sort" class="option-set clearfix" data-option-key="sortBy">

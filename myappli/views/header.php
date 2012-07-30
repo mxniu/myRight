@@ -1,22 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
-	<title>myRight | <?=$title?></title>
-	<meta property="og:title" content="myRight | <?=$title?>"/>
-	<meta property="og:type" content="website"/>   
-	<meta property="og:image" content="http://sphotos-b.xx.fbcdn.net/hphotos-ash4/487770_263685067078332_570461548_n.jpg"/>   
-	<meta property="og:site_name" content="myRight"/> 
-	<meta property="fb:app_id" content="265179353583781"/>
-	<link rel="stylesheet" href="../css/common.css" />
-	<link rel="stylesheet" href="../css/viewport.css" />
-	<link rel="stylesheet" href="../css/grid.css" />
-	<link rel="stylesheet" href="../css/isotope.css" />
-	<link rel="stylesheet" href="../css/bootstrap-modal.css" />
-	<link href='http://fonts.googleapis.com/css?family=Quattrocento:400,700|Quattrocento+Sans:400,700|Lato:700,400,300|Cabin:600' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="../css/jquery-ui-1.8.21.custom.css" />
-	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-	<script type='text/javascript' src='../js/jquery-ui-1.8.21.custom.min.js'></script>
+  <meta charset="utf-8" />
+  <title>myRight | <?=$title?></title>
+  <link rel="stylesheet" href="../css/common.css" />
+  <link rel="stylesheet" href="../css/viewport.css" />
+  <link rel="stylesheet" href="../css/grid.css" />
+  <link rel="stylesheet" href="../css/isotope.css" />
+  <link rel="stylesheet" href="../css/bootstrap-modal.css" />
+  <link href='http://fonts.googleapis.com/css?family=Quattrocento:400,700|Quattrocento+Sans:400,700|Lato:700,400,300|Cabin:600' rel='stylesheet' type='text/css'>
 </head>
 <body>
 <div id="topbar">
