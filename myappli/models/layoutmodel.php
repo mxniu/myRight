@@ -6,20 +6,32 @@ class Layoutmodel extends CI_Model {
         parent::__construct();
     }
 
-	public function get_elements($category)
+	public function get_elements($category, $offset)
 	{
 		$this->db->select('*');
 		$this->db->where('category', $category);
-		//$this->db->limit(30, 0);
+		$this->db->limit(20, $offset * 20);
 		$this->db->order_by('votes desc');
 	
 		$query = $this->db->get('links');
         return $query->result();
 	}
 	
-	public function get_tag_elements($category, $slug)
+	public function get_elements_loc($category, $location, $offset)
 	{
-		$query = $this->db->query('SELECT l1.* FROM links l1 JOIN tagrel t2 on l1.id = t2.lid JOIN tags t1 on t2.tid = t1.id WHERE t1.slug = \''.$slug.'\' ORDER BY l1.votes DESC');
+		$query = $this->db->query('SELECT * FROM links WHERE category = \''.$category.'\' AND location = \''.preg_replace( '/\-/', ' ', $location ).'\' ORDER BY votes DESC LIMIT '.($offset * 20).', 20');
+		return $query->result();
+	}
+	
+	public function get_tag_elements($category, $slug, $offset)
+	{
+		$query = $this->db->query('SELECT l1.* FROM links l1 JOIN tagrel t2 on l1.id = t2.lid JOIN tags t1 on t2.tid = t1.id WHERE l1.category = \''.$category.'\' AND t1.slug = \''.$slug.'\' ORDER BY l1.votes DESC LIMIT '.($offset * 20).', 20');
+        return $query->result();
+	}
+	
+	public function get_tag_loc_elements($category, $slug, $location, $offset)
+	{
+		$query = $this->db->query('SELECT l1.* FROM links l1 JOIN tagrel t2 on l1.id = t2.lid JOIN tags t1 on t2.tid = t1.id WHERE l1.category = \''.$category.'\' AND t1.slug = \''.$slug.'\' AND l1.location = \''.$location.'\' ORDER BY l1.votes DESC LIMIT '.($offset * 20).', 20');
         return $query->result();
 	}
 	
@@ -33,11 +45,11 @@ class Layoutmodel extends CI_Model {
         return $temp;
 	}
 	
-	public function get_tag_name($tagslug)
+	public function get_tag_info($tagslug)
 	{
-		$query = $this->db->query('SELECT tagname from tags where slug = \''.$tagslug.'\'');
+		$query = $this->db->query('SELECT id, tagname from tags where slug = \''.$tagslug.'\'');
 		
-		return $query->row()->tagname;
+		return $query->row();
 	}
 	
 	public function get_categories()
@@ -55,8 +67,7 @@ class Layoutmodel extends CI_Model {
 									JOIN links l1 ON t2.lid = l1.id 
 									WHERE l1.category = '.$category.'
 									GROUP BY t1.tagname
-									ORDER BY num_tag DESC');
-									
+									ORDER BY num_tag DESC LIMIT 10');
 		return $query->result();
 	}
 	
@@ -70,8 +81,7 @@ class Layoutmodel extends CI_Model {
 									JOIN links l1 ON t3.lid = l1.id 
 									WHERE l1.category = '.$category.' AND t4.slug = \''.$slug.'\'
 									GROUP BY t1.tagname
-									ORDER BY num_tag DESC');
-									
+									ORDER BY num_tag DESC LIMIT 10');		
 		return $query->result();
 	}
 	
@@ -79,6 +89,24 @@ class Layoutmodel extends CI_Model {
 	{
 		$query = $this->db->query('SELECT count(id) AS link_count FROM links');
 		return $query->row()->link_count;
+	}
+	
+	public function get_locations($category)
+	{
+		$query = $this->db->query('SELECT DISTINCT location FROM links WHERE category = \''.$category.'\' AND location <> \'\'');
+		return $query->result();
+	}
+	
+	public function get_tag_locations($category, $id)
+	{
+		$query = $this->db->query('SELECT DISTINCT l1.location FROM links l1 JOIN tagrel t2 on l1.id = t2.lid JOIN tags t1 on t2.tid = t1.id WHERE category = \''.$category.'\' AND t1.id = '.$id.' AND location <> \'\'');
+		return $query->result();
+	}
+	
+	public function get_all_tags()
+	{
+		$query = $this->db->query('SELECT tagname FROM tags');
+		return $query->result();
 	}
 }
 ?>
