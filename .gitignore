@@ -165,3 +165,4 @@ pip-log.txt
 # My Crap
 database.php
 *.orig
+cache

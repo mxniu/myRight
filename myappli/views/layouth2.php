@@ -1,5 +1,5 @@
 <section id="content">
-<section class="link-submit-form">
+<!--<section class="link-submit-form">
 	<form action="#" method="post">
 		<input id="link-input" name="link-input" type="search" placeholder="Add Link" />
 		<span id="link-publish">Publish</span>
@@ -34,11 +34,10 @@
 			<input type="submit" id="submit" name="submit" value="Submit" />
 		</div>
 	</form>
-</section>
-<div class="fb-like" data-href="<?php echo $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"]; ?>" data-send="false" data-layout="box_count" data-width="450" data-show-faces="true" data-font="segoe ui"></div>
+</section>-->
 <section id="options" class="clearfix">
 	<div class="option-logo">
-		<h1><?=$title?></h1>
+		<h1 style="text-transform: capitalize"><?=$title?></h1>
 	</div>
 	<div class="right">
 		<?php 
@@ -53,12 +52,12 @@
 			}
 		?>
 	</div>
-	<div class="option-combo">
+	<!--<div class="option-combo">
 	  <ul id="sort" class="option-set clearfix" data-option-key="sortBy">
       	<li><a href="#rating" data-option-value="rating" class="selected" style="border-left: 1px solid black">rating</a></li>
 	    <li><a href="#date" data-option-value="date">recent</a></li>
 	  </ul>
-	</div>
+	</div>-->
 	<div class="option-combo">
 	  <ul id="filter" class="option-set clearfix" data-option-key="filter">
 	    <li><a href="#show-all" data-option-value="*" class="selected" style="border-left: 1px solid black">all</a></li>
@@ -67,4 +66,5 @@
 	    <li><a href="#resources" data-option-value=".info, .primary, .secondary">resources</a></li>
 	  </ul>
 	</div>
+</section>
 </section>

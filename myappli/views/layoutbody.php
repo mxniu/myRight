@@ -1,13 +1,6 @@
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=265179353583781";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
 <div id="maintainer">
 	<div class="left" id="tagtainer">
+	<?php if(!$offset): ?>
 		<?php if(sizeof($tags) > 0): ?>
 			<?php foreach ($tags as $tag): ?>
 				<a href="<?=$urlstem?><?=$method?>/<?=$tag->slug?>"><div class="tagname left"><?=$tag->tagname?></div></a>
@@ -15,36 +8,56 @@
 		<?php else: ?>
 			<a href="#">[No Tags Exist Yet]</a>
 		<?php endif; ?>
+	<?php endif; ?>
 	</div>
-	<div id="container" class="clickable clearfix right">
-
+	<?php if(!$offset): ?>
 		<div class="loader">
-			<img src="../../loading.gif" alt="ajax-loader"/>
+			<img src="http://i.imgur.com/qkKy8.gif" alt="ajax-loader"/>
 		</div>
-		
+		<?php endif; ?>
+	<div id="container" class="clearfix right">
+
 		<?php $counter = 0; ?>
 		<?php foreach ($elements as $element): ?>
 		
-		<?php $counter++; ?>
+		<?php $counter++; $show_detail = TRUE;?>
 
 		<a href="../view/<?php echo $element->slug?>" class="<?php echo strtolower($element->type); ?> isotope-item<?php 
 		if(!$offset)
 		{
 			echo ' hidden';
-			if($counter > 2 && $counter < 7)
+			if($counter > 1 && $counter <= 3)
+			{
+				echo ' height2';
+			}
+			else if($counter === 5 || $counter === 8 || $counter === 13)
 			{
 				echo ' width2';
 			}
-			else if($counter >= 6)
+			else if(($counter > 5 && $counter <= 7) || ($counter > 8 && $counter <= 12) || ($counter > 13))
 			{
 				echo ' size2';
+				$show_detail = FALSE;
 			}
 		}
 		else
 		{
 			echo ' size2';
+			$show_detail = FALSE;
 		}
-		?> location-<?php echo preg_replace( '/\s+/', '-', $element->location ); ?>" id="<?=$element->slug?>" data-toggle="modal">
+		?> <!--location---><?php //echo preg_replace( '/\s+/', '-', $element->location );?> <?php
+			if(!$offset)
+			{
+				echo "color".(int)(($counter/4) + 1);
+			}
+			else
+			{
+				$color_num = (int)(((($offset * 13) + $counter)/4) + 1);
+				if($color_num > 8)
+					$color_num = 8;
+				echo "color".$color_num;
+			}
+		?>" id="<?=$element->slug?>" data-toggle="modal">
 			<?php if(strtolower($element->type) === 'photo') echo '<img src="'.$element->url.'"/>'; ?>
 			
 			<div class="leader">
@@ -53,17 +66,25 @@
 			</div>
 			<h3 class="title"><?=$element->title?></h3>
 			
-			<div class="details">
+			<div class="details <?php if($show_detail) echo "visible"; ?>">
 				<?=$element->summary?>
 			</div>
+			
+			<?php if($show_detail && $element->type !== 'photo'): ?>
+				<div class="gradient-mask"></div>
+			<?php endif; ?>
 		</a>
 
+		<?php if(!$offset && $counter === 7): ?>
+			<nav id="page_nav" style="margin-top: -40px">
+				<a href="<?php echo $_SERVER["REQUEST_URI"]; if(strpos($_SERVER["REQUEST_URI"], "?") === false) echo "?"; else echo "&";?>page=2"></a>
+			</nav>
+		<?php endif; ?>
+		
 		<?php endforeach; ?>
 	</div> <!-- end #container -->
 </div><!-- end #maintainer -->
-<nav id="page_nav">
-	<a href="<?php echo $_SERVER["REQUEST_URI"]; if(strpos($_SERVER["REQUEST_URI"], "?") === false) echo "?"; else echo "&";?>page=2"></a>
-</nav>
+<?php if(!$offset): ?>
 <!-- jquery -->
 <script src="/js/jquery.isotope.min.js"></script>
 <script type="text/javascript">
@@ -79,18 +100,6 @@ $(function() {
 		  rating: function( $elem ) {
 			var name = $elem.find('.rating');
 			return -1*Number(name.text());
-		  },
-		  date: function( $elem ) {		
-			if ($elem.find('.date').length != 0) {
-			  return -1*Date.parse($elem.find('.date').text());
-			} else {
-			  return Number.NEGATIVE_INFINITY;
-			}
-		  },
-		  alphabetical: function( $elem ) {
-			var name = $elem.find('.title'),
-				itemText = name.length ? name : $elem;
-			return itemText.text();
 		  }
 		},
 		sortBy: 'rating'
@@ -127,10 +136,6 @@ $(function() {
 			
 			return false;
 	  });
-
-		$('.isotope-item').removeClass('hidden');
-		$('.loader').addClass('hidden');
-		$container.isotope('insert', $('.isotope-item'));
 	  
 	function populateModal(slug)
 	{
@@ -142,6 +147,12 @@ $(function() {
 		$('#myModal').modal('show');
 		history.pushState({ slug: this_slug }, null, $('[id=' + this_slug + ']').attr('href'));
 		populateModal(this_slug);
+		if(e.preventDefault){  
+			e.preventDefault();  
+		}else{  
+			e.returnValue = false;  
+			e.cancelBubble=true; 
+		}
 		return false;
 	});
 	
@@ -193,11 +204,18 @@ $(function() {
         // call Isotope as a callback
         function( newElements ) {
 			$container.isotope( 'appended', $( newElements ) ); 
+			$('.isotope-item').unbind('click');
 			$('.isotope-item').click(function(e){
 				var this_slug = $(this).attr('id');
 				$('#myModal').modal('show');
 				history.pushState({ slug: this_slug }, null, $('[id=' + this_slug + ']').attr('href'));
 				populateModal(this_slug);
+				if(e.preventDefault){  
+					e.preventDefault();  
+				}else{  
+					e.returnValue = false;  
+					e.cancelBubble=true;  
+				}
 				return false;
 			});
         }
@@ -215,7 +233,7 @@ $(function() {
 	});
 	
 	$('#myModal').on('hidden', function () {
-		$(".modal-body").html('<img src="loading.gif"/>');
+		$(".modal-body").html('<img src="http://i.imgur.com/qkKy8.gif"/>');
 	});
 	
 	var availableTags = [<?php
@@ -273,14 +291,40 @@ $(function() {
 					return false;
 				}
 			});
+			
+		$(window).scroll(function(){
+			if ($(window).scrollTop() >= 70) {
+				//$('.back_button').css("opacity", "1.0");
+				$('#tagtainer').css({
+					position: 'fixed',
+					top: '120px',
+					//left: '50%',
+					//marginLeft: '-495px',
+					//background: '#FFF'
+				});
+			}
+			else 
+			{
+				//$('.back_button').css("opacity", "0.4");
+				$('#tagtainer').css({
+					position: 'static'
+				});
+			}
+		});
+		
+		setTimeout(function(){
+			$('.isotope-item').removeClass('hidden');
+			$('.loader').addClass('hidden');
+			$container.isotope('insert', $('.isotope-item'));
+		},500);
 });
 
 </script>
 
 <!-- Young 07/25/2012 -->
-<script src="http://scripts.embed.ly/jquery.embedly.min.js"></script> 
+<!--<script src="http://scripts.embed.ly/jquery.embedly.min.js"></script>
 <script src="/js/jquery.expand.js"></script>
-<script src="/js/expand.and.embed.js"></script>
+<script src="/js/expand.and.embed.js"></script>-->
 <!-- End Young -->
 
 <!-- More JS Twitter Bootstrap 07/26/2012-->
@@ -302,5 +346,5 @@ $(function() {
     <a href="#" data-dismiss="modal">Close</a>
   </div>
 </div>
-
-</section> <!-- #content -->
+<div id="fb-root"></div>
+<?php endif; ?>

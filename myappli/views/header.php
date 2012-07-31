@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="../css/grid.css" />
 	<link rel="stylesheet" href="../css/isotope.css" />
 	<link rel="stylesheet" href="../css/bootstrap-modal.css" />
-	<link href='http://fonts.googleapis.com/css?family=Quattrocento:400,700|Quattrocento+Sans:400,700|Lato:700,400,300|Cabin:600' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Quattrocento:400,700|Lato:700,400,300|Open+Sans: 400|Merriweather:400,700|PT+Sans:400|PT+Serif:400|Old+Standard+TT:700,400|Karla:700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="../css/jquery-ui-1.8.21.custom.css" />
 	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<script type='text/javascript' src='../js/jquery-ui-1.8.21.custom.min.js'></script>
@@ -28,11 +28,11 @@
 		<input type="text" id="top-search-input" name="top-search-input" placeholder="What are you looking for?" />
 	</form>
 	
-	<ul id="main_nav">
+	<!--<ul id="main_nav">
 		<li><a href="#">Home</a></li>
 		<li><a href="#">About</a></li>
 		<li><a href="#">Contact</a></li>			
-	</ul>
+	</ul>-->
 	
 	<div id="top-right">
 		<div id="sns">
@@ -45,20 +45,26 @@
 	</div>
 	
 	<ul id="category_nav">
-	<?php foreach ($categories as $cat_link): ?>
-		<li>
-			<a href="../<?=$cat_link->slug?>"><?=$cat_link->name?></a>
-			
+	<?php //foreach ($categories as $cat_link): ?>
+		<!--<li>
+			<a href="../<?//=$cat_link->slug?>"><?//=$cat_link->name?></a>
 			<!-- drop-down -->
-			<ul class="level1">
+			<!--<ul class="level1">
 				<li><h4>Most Talked About</h4></li>
 				<li><a href="#">Item 1</a></li>
 				<li><a href="#">Item 2</a></li>
 				<li><a href="#">Item 3</a></li>
-			</ul>
+			</ul>-->
 			<!-- end drop down -->
-			
-		</li>
-	<?php endforeach; ?>
+		<!--</li>-->
+	<?php //endforeach; ?>
+		<li><a href="#" class="unlinked">Election 2012</a></li>
+		<li><a href="../national">National Debates</a></li>
+		<li><a href="#" class="unlinked">Privacy</a></li>
+		<li><a href="../startup">Startup Law</a></li>
+		<li><a href="../tickets?location=Los-Angeles">Tickets</a></li>
+		<li><a href="#" class="unlinked">Landlord-Tenant</a></li>
+		<li><a href="#" class="unlinked">Discrimination</a></li>
+		<li><a href="#" class="unlinked">More >></a></li>
 	</ul>
 </div>

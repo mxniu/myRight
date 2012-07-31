@@ -6,6 +6,19 @@ class Adminmodel extends CI_Model {
         parent::__construct();
     }
 	
+	public function get_category_data($id)
+	{
+		$this->db->cache_on();
+		$this->db->select('slug');
+		$this->db->where('id', $id);
+	
+		$query = $this->db->get('categories');
+		$temp = $query->row();
+		$this->db->cache_off();
+		
+        return $temp;
+	}
+	
 	public function get_element($id)
 	{
 		$this->db->select('*');
@@ -81,6 +94,7 @@ class Adminmodel extends CI_Model {
 	
 	private function slug_script()
 	{
+		$this->db->cache_delete_all();
 		$this->load->helper('url');
 	
 		$this->db->select('id, title');
@@ -100,8 +114,9 @@ class Adminmodel extends CI_Model {
 		}
 	}
 	
-	private function tag_slugs()
+	public function tag_slugs()
 	{
+		$this->db->cache_delete_all();
 		$this->load->helper('url');
 	
 		$this->db->select('id, tagname');
@@ -134,8 +149,16 @@ class Adminmodel extends CI_Model {
         return $categories_array;
 	}
 	
-	private function build_tags()
+	public function flush_cache()
 	{
+		$this->db->cache_delete_all();
+	}
+	
+	public function build_tags()
+	{
+		$this->db->cache_delete_all();
+		$this->db->query('DELETE FROM tags');
+		$this->db->query('DELETE FROM tagrel');
 		$query = $this->db->query('SELECT id, tags FROM links');
 		
 		foreach ($query->result() as $row)
@@ -148,6 +171,7 @@ class Adminmodel extends CI_Model {
 					continue;
 					
 				$match_tag = $this->db->query('SELECT id FROM tags where tagname=\''.html_escape(trim($tag)).'\'');
+				echo 'SELECT id FROM tags where tagname=\''.html_escape(trim($tag)).'\'<br/>';
 				$this_tid = 0;
 				if ($match_tag->num_rows() > 0)
 				{
@@ -156,6 +180,7 @@ class Adminmodel extends CI_Model {
 				}
 				else
 				{
+					echo 'INSERT INTO tags (`tagname`) VALUES (\''.html_escape(trim($tag)).'\')<br/>';
 					$this->db->query('INSERT INTO tags (`tagname`) VALUES (\''.html_escape(trim($tag)).'\')');
 					$this_tid = $this->db->insert_id();
 				}

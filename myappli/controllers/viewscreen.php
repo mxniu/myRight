@@ -12,7 +12,6 @@ class Viewscreen extends CI_Controller {
 		$data['method'] = $method;
 		$data['element'] = $this->Viewmodel->get_element($method);
 		$data['title'] = $data['element']->title;
-		$data['categories'] = $this->Viewmodel->get_categories();
 		$data['comments'] = $this->Viewmodel->get_comments($data['element']->id);
 		
 		$this->load->view('header', $data);

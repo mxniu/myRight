@@ -18,7 +18,7 @@ text-align: center;
 width: 100%;
 }
 
-.link-submit-form:before,
+/*.link-submit-form:before,
 .link-submit-form:after {
 content: '';
 display: block;	
@@ -47,7 +47,7 @@ background: -o-linear-gradient(left, #151515, #000, #151515);
 background: -ms-linear-gradient(left, #151515, #000, #151515);	
 background: linear-gradient(left, #151515, #000, #151515);	
 top: 172px;
-}
+}*/
 
 .link-submit-form form {
 background: #FFF;
@@ -125,7 +125,6 @@ line-height: 40px;
 		width: 284px;
 		padding: 3px;
 	}
-	
 
 div.form-input {
 	text-align: left;

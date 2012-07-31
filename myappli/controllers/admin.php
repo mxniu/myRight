@@ -17,7 +17,12 @@ class Admin extends CI_Controller {
 		{
 			$this->load->view('adminview', $data);
 		}
-		if($this_action === "Load Category")
+		else if($this_action === "Clear DB Cache")
+		{
+			$this->Adminmodel->flush_cache();
+			$this->load->view('adminview', $data);
+		}
+		else if($this_action === "Load Category")
 		{
 			$data['category'] = $this->input->post('category');
 			$data['elements'] = $this->Adminmodel->get_elements($this->input->post('category'));
@@ -31,7 +36,7 @@ class Admin extends CI_Controller {
 			$this->load->view('adminview', $data);
 		}
 		else if($this_action === "Add" || $this_action === "Edit" || $this_action === "Delete")
-		{
+		{	
 			$this->form_validation->set_rules('title', 'Title', 'required');
 			$this->form_validation->set_rules('summary', 'Summary', 'required');
 			$this->form_validation->set_rules('url', 'URL', 'required');
@@ -63,6 +68,10 @@ class Admin extends CI_Controller {
 				{
 					$data['heading'] = ''.$this_action.' is not yet supported.';				
 				}
+				
+				$cache_to_delete = $this->Adminmodel->get_category_data($this->input->post('category'));
+				$this->db->cache_delete($cache_to_delete->slug, 'index');
+				
 				$this->load->view('adminview', $data);
 			}
 		

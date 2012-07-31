@@ -16,7 +16,8 @@
 		echo form_dropdown('category', $categories);
 	?><br/>
 	
-	<input type="submit" name="submit" value="Load Category" /> 
+	<input type="submit" name="submit" value="Load Category" />
+	<input type="submit" name="submit" value="Clear DB Cache" />
 </form>
 
 <?php if(isset($elements) || isset($element_data)): ?>
@@ -64,7 +65,7 @@
 	<input type="input" name="location" style="width: 300px" maxlength="50" <?php if(isset($element_data)) echo 'value="'.$element_data->location.'"'; ?>/><br />
 	
 	<label for="votes">Votes</label>
-	<input type="number" name="votes" min="-10" max="100" <?php if(isset($element_data)) echo 'value="'.$element_data->votes.'"'; else echo 'value="0"' ?>/><br />
+	<input type="number" name="votes" min="-10" max="200" <?php if(isset($element_data)) echo 'value="'.$element_data->votes.'"'; else echo 'value="0"' ?>/><br />
 	
 	<input type="submit" name="submit" value="Add" /> 
 	<input type="submit" name="submit" value="Edit" /> 
