@@ -22,6 +22,12 @@ class Admin extends CI_Controller {
 			$this->Adminmodel->flush_cache();
 			$this->load->view('adminview', $data);
 		}
+		else if($this_action === "Update Tags")
+		{
+			$this->Adminmodel->build_tags();
+			$this->Adminmodel->tag_slugs();
+			$this->load->view('adminview', $data);
+		}
 		else if($this_action === "Load Category")
 		{
 			$data['category'] = $this->input->post('category');

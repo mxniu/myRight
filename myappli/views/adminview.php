@@ -18,6 +18,7 @@
 	
 	<input type="submit" name="submit" value="Load Category" />
 	<input type="submit" name="submit" value="Clear DB Cache" />
+	<input type="submit" name="submit" value="Update Tags" />
 </form>
 
 <?php if(isset($elements) || isset($element_data)): ?>

@@ -74,17 +74,13 @@
 				<div class="gradient-mask"></div>
 			<?php endif; ?>
 		</a>
-
-		<?php if(!$offset && $counter === 7): ?>
-			<nav id="page_nav" style="margin-top: -40px">
-				<a href="<?php echo $_SERVER["REQUEST_URI"]; if(strpos($_SERVER["REQUEST_URI"], "?") === false) echo "?"; else echo "&";?>page=2"></a>
-			</nav>
-		<?php endif; ?>
-		
 		<?php endforeach; ?>
 	</div> <!-- end #container -->
 </div><!-- end #maintainer -->
 <?php if(!$offset): ?>
+<nav id="page_nav" style="position: relative; top: -100px">
+	<a href="<?php echo $_SERVER["REQUEST_URI"]; if(strpos($_SERVER["REQUEST_URI"], "?") === false) echo "?"; else echo "&";?>page=2"></a>
+</nav>
 <!-- jquery -->
 <script src="/js/jquery.isotope.min.js"></script>
 <script type="text/javascript">
