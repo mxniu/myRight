@@ -123,13 +123,5 @@ class Layoutmodel extends CI_Model {
 		$this->db->cache_off();
 		return $query->result();
 	}
-	
-	public function get_all_tags()
-	{
-		$this->db->cache_on();
-		$query = $this->db->query('SELECT tagname FROM tags');
-		$this->db->cache_off();
-		return $query->result();
-	}
 }
 ?>

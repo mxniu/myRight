@@ -29,7 +29,7 @@
   var Modal = function (content, options) {
     this.options = options
     this.$element = $(content)
-      //.delegate('[data-dismiss="modal"]', 'click.dismiss.modal', $.proxy(this.hide, this))
+      .delegate('[data-dismiss="disclaimer"]', 'click.dismiss.modal', $.proxy(this.hide, this))
 	  .delegate('[data-dismiss="modal"]', 'click.dismiss.modal', function(){$(this).unbind('click'); window.history.back(); return false;})
   }
 

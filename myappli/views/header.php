@@ -8,6 +8,9 @@
 	<meta property="og:image" content="http://sphotos-b.xx.fbcdn.net/hphotos-ash4/487770_263685067078332_570461548_n.jpg"/>   
 	<meta property="og:site_name" content="myRight"/> 
 	<meta property="fb:app_id" content="265179353583781"/>
+	<meta property="og:description" content="<?=$description?>"/>
+	<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+	<link rel="icon" href="../favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" href="../css/common.css" />
 	<link rel="stylesheet" href="../css/viewport.css" />
 	<link rel="stylesheet" href="../css/grid.css" />
@@ -23,46 +26,32 @@
 
 	<h1 class="logo"><a href="/">myRight</a></h1>
 	
-	<!-- Search Form -->
-	<form method="post" action="" id="top-search">
-		<input type="text" id="top-search-input" name="top-search-input" placeholder="What are you looking for?" />
-	</form>
+	<div id="top-search">
+		<input type="text" id="top-search-input" name="top-search-input" placeholder="What are you looking for?" autocomplete="off"/>
+	</div>
 	
-	<!--<ul id="main_nav">
-		<li><a href="#">Home</a></li>
-		<li><a href="#">About</a></li>
-		<li><a href="#">Contact</a></li>			
-	</ul>-->
+	<ul id="main_nav">
+		<li><a data-toggle="modal" href="#disclaimerModal" data-backdrop="static">Disclaimer</a></li>
+		<li><a href="#" class="unlinked">Privacy</a></li>
+		<li><a href="#" class="unlinked">Terms of Use</a></li>
+		<li><a href="mailto:info@myright.me">Contact</a></li>	
+		<li><a href="http://myright.me/blog" target="_blank">Blog</a></li>
+	</ul>
 	
 	<div id="top-right">
+		<a href="http://signup.myright.me" class="top-login" target="_blank">Get Invited</a>
 		<div id="sns">
-			<a class="facebook" href="#">Facebook</a>
-			<a class="twitter" href="#">Twitter</a>
-			<a class="linkedin" href="#">LinkedIn</a>
+			<a class="facebook" href="http://facebook.com/myrightinc" target="_blank">Facebook</a>
+			<a class="twitter" href="https://twitter.com/myrightinc" target="_blank">Twitter</a>
 		</div>
-		
-		<a href="#" class="top-login">Login</a>
 	</div>
 	
 	<ul id="category_nav">
-	<?php //foreach ($categories as $cat_link): ?>
-		<!--<li>
-			<a href="../<?//=$cat_link->slug?>"><?//=$cat_link->name?></a>
-			<!-- drop-down -->
-			<!--<ul class="level1">
-				<li><h4>Most Talked About</h4></li>
-				<li><a href="#">Item 1</a></li>
-				<li><a href="#">Item 2</a></li>
-				<li><a href="#">Item 3</a></li>
-			</ul>-->
-			<!-- end drop down -->
-		<!--</li>-->
-	<?php //endforeach; ?>
 		<li><a href="#" class="unlinked">Election 2012</a></li>
 		<li><a href="../national">National Debates</a></li>
 		<li><a href="#" class="unlinked">Privacy</a></li>
 		<li><a href="../startup">Startup Law</a></li>
-		<li><a href="../tickets?location=Los-Angeles">Tickets</a></li>
+		<li><a href="../tickets?location=Los-Angeles">Parking Tickets</a></li>
 		<li><a href="#" class="unlinked">Landlord-Tenant</a></li>
 		<li><a href="#" class="unlinked">Discrimination</a></li>
 		<li><a href="#" class="unlinked">More >></a></li>

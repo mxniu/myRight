@@ -8,7 +8,7 @@ class Fullviewmodel extends CI_Model {
 	
 	public function get_element($slug)
 	{
-		$this->db->select('id, title, url');
+		$this->db->select('id, title, url, summary');
 		$this->db->where('slug', $slug);
 	
 		$query = $this->db->get('links');

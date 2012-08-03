@@ -16,6 +16,7 @@ class Viewajax extends CI_Controller {
 		$data['comments'] = $this->Viewmodel->get_comments($data['element']->id);
 		
 		$this->load->view('viewport_ajax', $data);
+		$this->load->view('viewscripts', $data);
 	}
 }
 ?>

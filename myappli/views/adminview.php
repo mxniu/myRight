@@ -10,7 +10,7 @@
 
 <?php echo validation_errors(); ?>
 
-<form method="post" accept-charset="utf-8" action="admin204" />
+<form method="post" accept-charset="utf-8" action="admin808" />
 	<label for="category">Category</label> 
 	<?php
 		echo form_dropdown('category', $categories);
@@ -23,7 +23,7 @@
 
 <?php if(isset($elements) || isset($element_data)): ?>
 
-<form method="post" accept-charset="utf-8" action="admin204" />
+<form method="post" accept-charset="utf-8" action="admin808" />
 	<label for="element">Element</label> 
 	<?php
 		echo form_dropdown('element', $elements);
@@ -34,7 +34,7 @@
 	<input type="submit" name="submit" value="Load Element" /> 
 </form>
 
-<form method="post" accept-charset="utf-8" action="admin204" />
+<form method="post" accept-charset="utf-8" action="admin808" />
 
 	<label for="id">ID:</label>
 	<input type="input" name="id" readonly="readonly" style="width: 50px; border: none;" <?php if(isset($element_data)) echo 'value="'.$element_data->id.'"'; ?>/><br/>

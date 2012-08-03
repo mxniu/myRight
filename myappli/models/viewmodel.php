@@ -31,5 +31,18 @@ class Viewmodel extends CI_Model {
 		$query = $this->db->get('comments');
 		return $query->result();
 	}
+	
+	public function get_category_data($id)
+	{
+		$this->db->cache_on();
+		$this->db->select('slug');
+		$this->db->where('id', $id);
+	
+		$query = $this->db->get('categories');
+		$temp = $query->row();
+		$this->db->cache_off();
+		
+        return $temp;
+	}
 }
 ?>

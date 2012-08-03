@@ -4,48 +4,52 @@
 	width: 920px;
 	padding: 5px 25px 10px 25px;
 	background: #FFF;
-	border-left: 2px solid #DDD;
-	border-right: 2px solid #DDD;
+	border-left: 2px solid #CCC;
+	border-right: 2px solid #CCC;
 }
 #maintainer
 {
 	display: block;
-	width: 950px;
-	padding: 0 0 0 20px;
+	width: 960px;
+	padding: 20px 0 0 10px;
 	margin:0 auto;
 	overflow: hidden;
 	background: #FFF;
-	border-left: 2px solid #DDD;
-	border-right: 2px solid #DDD;
+	border-left: 2px solid #CCC;
+	border-right: 2px solid #CCC;
+	border-top: 1px solid #CCC;
 }
 #tagtainer
 {
 	position: static;
-	padding: 5px;
-	width: 170px;
+	padding: 0px 5px;
+	width: 158px;
 	/*box-shadow: 0px 0px 8px 2px #999;*/
-	background: #666;
+	/*background: rgba(0,0,0,0.5);*/
 	opacity: 0.0;
+	border-radius: 4px;
 }
 #tagtainer a
 {
 	display: block;
-	width: 150px;
-	margin: 5px auto;
-	height: 20px;
+	width: 144px;
+	margin: 0 auto 5px auto;
+	height: 14px;
 	background: url(../images/bg_tag.png);
-	padding: 8px;
+	padding: 11px;
 	overflow: hidden;
-	/*box-shadow: 0px 0px 13px 3px #BBB inset;*/
+	box-shadow: 0px 0px 3px 2px #CCC inset;
 	border: 1px solid #999;
-	font-family: "Merriweather";
-	font-weight: 700;
+	color: #333;
 }
-#tagtainer a:hover{background: #AAA; color: #FFF}
+#tagtainer a:hover{background: #666; color: #FFF; box-shadow: 0px 0px 13px 3px #444 inset;}
 
 #tagtainer .tagname
 {
-	width: 150px;
+	font-family: "Merriweather";
+	font-weight: 700;
+	font-size: 14px;
+	width: 100%;
 	overflow: hidden;
 	white-space:nowrap; 
 	text-overflow: ellipsis;
@@ -55,6 +59,8 @@
 {
 	width: 760px;
 	overflow: hidden;
+	padding-left: 12px;
+	border-left: 1px solid #CCC;
 }
 
 /**** Infinite Scroll ****/
@@ -82,8 +88,8 @@
 .clearfix { zoom: 1; }
 
 /*ISOTOPE ELEMENT PROPERTIES*/
-.isotope-item{z-index:2; margin:0 0 10px 0;}
-.isotope-item:hover{cursor: pointer; text-decoration: underline;}
+.isotope-item{z-index:2; margin:0 0 16px 0;}
+.isotope-item:hover{cursor: pointer;}
 .isotope-hidden.isotope-item{pointer-events:none;z-index:1}
 .isotope,.isotope .isotope-item{-webkit-transition-duration:.8s;-moz-transition-duration:.8s;-ms-transition-duration:.8s;-o-transition-duration:.8s;transition-duration:.8s}
 .isotope{-webkit-transition-property:height,width;-moz-transition-property:height,width;-ms-transition-property:height,width;-o-transition-property:height,width;transition-property:height,width}
@@ -97,7 +103,6 @@
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
-	margin-bottom: 1em;
 }
 .isotope.no-transition,.isotope.no-transition .isotope-item,.isotope .isotope-item.no-transition{-webkit-transition-duration:0s;-moz-transition-duration:0s;-ms-transition-duration:0s;-o-transition-duration:0s;transition-duration:0s}
 .isotope.infinite-scrolling{-webkit-transition:none;-moz-transition:none;-ms-transition:none;-o-transition:none;transition:none}
@@ -205,14 +210,14 @@ background: -webkit-gradient(
 .photo .title { text-align: center; }
 
 /*SIZE MANIPULATORS*/
-.height2{height: 168px; margin:0 0 10px 0;}
+.height2{height: 168px; margin:0 0 16px 0;}
 .height2 .title{font-size: 24px; line-height: 30px; text-transform: none;}
 .news.height2 .title{font-style: italic; font-weight: bold}
 .secondary.height2 .details{font-family: "Lato", sans-serif; font-weight: 300}
 .width2{width: 166px;}
 .width2 .title{font-size: 22px; line-height: 28px; text-transform: none;}
 .news.width2 .title{font-family: 'Merriweather', serif; font-style: normal}
-.size2{width: 166px; height: 168px; margin:0 0 10px 0;}
+.size2{width: 166px; height: 168px; margin:0 0 16px 0;}
 .size2 .title{font-size: 20px; line-height: 26px; text-transform: none;}
 .news.size2 .title{font-style: italic}
 .primary.size2 .title{font-size: 19px; line-height: 25px}
@@ -285,6 +290,14 @@ a.primary, a.secondary {
 .color6{border: 2px solid rgba(41, 94, 82, .3);}
 .color7{border: 2px solid rgba(2, 59, 71, .3);}
 .color8{border: 2px solid rgba(114, 126, 130, .2);}
+.color1:hover{border: 2px solid rgba(255, 81, 76, 1);}
+.color2:hover{border: 2px solid rgba(255, 82, 89, 1);}
+.color3:hover{border: 2px solid rgba(232, 102, 56, 1);}
+.color4:hover{border: 2px solid rgba(252, 152, 69, 1);}
+.color5:hover{border: 2px solid rgba(242, 190, 85, 1);}
+.color6:hover{border: 2px solid rgba(41, 94, 82, 1);}
+.color7:hover{border: 2px solid rgba(2, 59, 71, 1);}
+.color8:hover{border: 2px solid rgba(114, 126, 130, 1);}
 
 .news.color1{border: 2px dashed rgba(255, 81, 76, .5);}
 .news.color2{border: 2px dashed rgba(255, 82, 89, .5);}
@@ -294,6 +307,14 @@ a.primary, a.secondary {
 .news.color6{border: 2px dashed rgba(41, 94, 82, .3);}
 .news.color7{border: 2px dashed rgba(2, 59, 71, .3);}
 .news.color8{border: 2px dashed rgba(114, 126, 130, .2);}
+.news.color1:hover{border: 2px dashed rgba(255, 81, 76, 1);}
+.news.color2:hover{border: 2px dashed rgba(255, 82, 89, 1);}
+.news.color3:hover{border: 2px dashed rgba(232, 102, 56, 1);}
+.news.color4:hover{border: 2px dashed rgba(252, 152, 69, 1);}
+.news.color5:hover{border: 2px dashed rgba(242, 190, 85, 1);}
+.news.color6:hover{border: 2px dashed rgba(41, 94, 82, 1);}
+.news.color7:hover{border: 2px dashed rgba(2, 59, 71, 1);}
+.news.color8:hover{border: 2px dashed rgba(114, 126, 130, 1);}
 
 .primary.color1{border: 2px ridge rgba(255, 81, 76, .5);}
 .primary.color2{border: 2px ridge rgba(255, 82, 89, .5);}
@@ -303,3 +324,11 @@ a.primary, a.secondary {
 .primary.color6{border: 2px ridge rgba(41, 94, 82, .3);}
 .primary.color7{border: 2px ridge rgba(2, 59, 71, .3);}
 .primary.color8{border: 2px ridge rgba(114, 126, 130, .2);}
+.primary.color1:hover{border: 2px ridge rgba(255, 81, 76, 1);}
+.primary.color2:hover{border: 2px ridge rgba(255, 82, 89, 1);}
+.primary.color3:hover{border: 2px ridge rgba(232, 102, 56, 1);}
+.primary.color4:hover{border: 2px ridge rgba(252, 152, 69, 1);}
+.primary.color5:hover{border: 2px ridge rgba(242, 190, 85, 1);}
+.primary.color6:hover{border: 2px ridge rgba(41, 94, 82, 1);}
+.primary.color7:hover{border: 2px ridge rgba(2, 59, 71, 1);}
+.primary.color8:hover{border: 2px ridge rgba(114, 126, 130, 1);}

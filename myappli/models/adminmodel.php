@@ -92,7 +92,7 @@ class Adminmodel extends CI_Model {
 		return $this->db->delete('links');
 	}
 	
-	private function slug_script()
+	public function slug_script()
 	{
 		$this->db->cache_delete_all();
 		$this->load->helper('url');
@@ -104,6 +104,25 @@ class Adminmodel extends CI_Model {
         foreach ($query->result() as $row)
 		{
 			$slug = url_title($row->title, 'dash', TRUE);
+			$sweep_test = $this->db->query('SELECT id FROM links WHERE slug = \''.$slug.'\'');
+			if($sweep_test->num_rows() > 0)
+			{
+				$counter = 1;
+				while($counter++)
+				{	
+					$test_slug = $slug.$counter;
+					$sweep_test = $this->db->query('SELECT id FROM links WHERE slug = \''.$test_slug.'\'');
+					if($sweep_test->num_rows() > 0)
+						continue;
+					else
+					{
+						echo $slug." changed to ".$test_slug;
+						$slug = $test_slug;
+						break;
+					}
+				}
+			}
+			
 			$id = $row->id;
 			$data = array(
                'slug' => $slug

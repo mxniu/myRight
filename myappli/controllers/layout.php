@@ -10,6 +10,7 @@ class Layout extends CI_Controller {
 	{
 		if($method === 'national' || $method === 'startup' || $method === 'tickets'|| $method === 'dui'|| $method === 'drugs'|| $method === 'smallclaims')
 		{
+			$this->load->model('Commonmodel');
 			$this->load->model('Layoutmodel');
 			$this->load->helper('form');
 			
@@ -23,9 +24,10 @@ class Layout extends CI_Controller {
 			$category_data = $this->Layoutmodel->get_category_data($method);
 			$data['method'] = $method;
 			$data['urlstem'] = '';
+			$data['description'] = 'myRight is a new startup that wants to help everyone learn their rights and know more about the law. Check out the beta release of the site!';
 			if(!$data['offset'])
 			{
-				$data['alltags'] = $this->Layoutmodel->get_all_tags();
+				$data['alltags'] = $this->Commonmodel->get_all_tags();
 			}
 			if(sizeof($params) == 1)
 			{
@@ -81,6 +83,7 @@ class Layout extends CI_Controller {
 				$this->load->view('layouth2', $data);
 			}
 			$this->load->view('layoutbody', $data);
+			$this->load->view('commonscripts', $data);
 			if(!$data['offset'])
 				$this->load->view('layoutfooter', $data);
 		}
