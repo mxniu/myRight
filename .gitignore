@@ -166,3 +166,4 @@ pip-log.txt
 database.php
 *.orig
 cache
+routes.php
