@@ -1,11 +1,23 @@
-<section id="content">
+<section class="content">
 <div id="beta_box">
-	<div class="left" style="width: 420px; padding: 0 20px">
-		<h2 style="margin-top: 25px; line-height: 20px">Request an Invite to be a beta tester</h2>
-		<p>We are giving a select group exclusive first access to curate the best legal information available online</p>
-	</div> 
-	<div class="right" style="width: 140px; padding-top: 25px">
-		<a href="http://signup.myright.me" id="view_source" target="_blank">Get Invited</a>
+	<div id="test_interface">
+	<?php if(!isset($test_id)): ?>
+		<div class="left" style="width: 390px; padding: 0 20px 0 30px; text-align: left;">
+			<h2 style="margin-top: 30px; line-height: 20px">Think something is missing?</h2>
+			<p>We are giving a select group exclusive first access to curate the best legal information available online</p>
+		</div> 
+		<div class="left" style="width: 150px; padding-top: 30px; text-align: left">
+			<a href="http://signup.myright.me" class="button_orange_thin" target="_blank" style="color: #FFF; margin: 0">Get Invited</a>
+		</div>
+	<?php else: ?>
+		<div class="left" style="width: 390px; padding: 0 20px 0 30px; text-align: left;">
+			<h2 style="margin-top: 25px; line-height: 20px">Not sure where to start?</h2>
+			<?=$top_desc?>
+		</div> 
+		<div class="left" style="width: 150px; padding-top: 25px; text-align: left">
+			<a href="#" id="start_guide" class="button_orange_thin" style="color: #FFF; margin: 0">Start Guide</a>
+		</div>
+	<?php endif; ?>
 	</div>
 </div>
 <!--<section class="link-submit-form">
@@ -44,28 +56,13 @@
 		</div>
 	</form>
 </section>-->
-<section id="options" class="clearfix">
-	<div class="option-logo">
-		<h1 style="text-transform: capitalize"><?=$title?></h1>
-	</div>
-	<!--<div class="option-combo">
-	  <ul id="sort" class="option-set clearfix" data-option-key="sortBy">
-      	<li><a href="#rating" data-option-value="rating" class="selected" style="border-left: 1px solid black">rating</a></li>
-	    <li><a href="#date" data-option-value="date">recent</a></li>
-	  </ul>
-	</div>
-	<div class="option-combo">
-	  <ul id="filter" class="option-set clearfix" data-option-key="filter">
-	    <li><a href="#show-all" data-option-value="*" class="selected" style="border-left: 1px solid black">all</a></li>
-	    <li><a href="#news" data-option-value=".news">news</a></li>
-		<li><a href="#images" data-option-value=".photo">images</a></li>
-	    <li><a href="#resources" data-option-value=".info, .primary, .secondary">resources</a></li>
-	  </ul>
-	</div>-->
-	<div class="right" style="margin-top: 18px">
+<section class="clearfix">
+	<h2 class="left" style="text-transform: capitalize; font-size: 28px; line-height: 30px; color: #378daf;"><?=$title?></h2>
+	<div class="right" style="margin-top: 28px">
 		<?php 
 			if(isset($locations))
 			{
+				echo "Location: ";
 				$options = array("" => "-----");
 				foreach($locations as $location)
 				{

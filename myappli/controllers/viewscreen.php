@@ -18,6 +18,8 @@ class Viewscreen extends CI_Controller {
 		$data['alltags'] = $this->Commonmodel->get_all_tags();
 		//$data['category'] = $this->Viewmodel->get_category_data($data['element']->id);
 		
+		$this->Viewmodel->add_view($data['element']->id, $data['element']->views);
+		
 		$this->load->view('header', $data);
 		$this->load->view('viewport', $data);
 		$this->load->view('viewscripts', $data);

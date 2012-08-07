@@ -5,13 +5,15 @@ class Admin extends CI_Controller {
 	{
 		$this->load->helper('form');
 		$this->load->library('form_validation');
-		$this->load->database();
 		$this->load->model('Adminmodel');
 	
 		$data['heading'] = 'ADMIN CONSOLE';
 		$data['categories'] = $this->Adminmodel->get_categories();
+		$data['tags'] = $this->Adminmodel->get_tags();
 		
 		$this_action = $this->input->post('submit');
+		
+		//$this->Adminmodel->seed_views();
 		
 		if(!$this_action)
 		{
@@ -32,6 +34,19 @@ class Admin extends CI_Controller {
 		{
 			$data['category'] = $this->input->post('category');
 			$data['elements'] = $this->Adminmodel->get_elements($this->input->post('category'));
+			$this->load->view('adminview', $data);
+		}
+		else if($this_action === "Load Tag")
+		{
+			$data['tag'] = $this->Adminmodel->get_tag($this->input->post('tag'));
+			
+			$this->load->view('adminview', $data);
+		}
+		else if($this_action === "Edit Tag")
+		{
+			$this->Adminmodel->edit_tag();
+			$data['tag'] = $this->Adminmodel->get_tag($this->input->post('id'));
+			
 			$this->load->view('adminview', $data);
 		}
 		else if($this_action === "Load Element")
@@ -81,6 +96,63 @@ class Admin extends CI_Controller {
 				$this->load->view('adminview', $data);
 			}
 		
+		}
+	}
+	
+	public function test_editor()
+	{
+		$this->load->helper('form');
+		$this->load->model('Adminmodel');
+
+		$data['heading'] = 'TEST EDITOR';
+		$data['tests'] = $this->Adminmodel->get_tests();
+		
+		$this_action = $this->input->post('submit');
+		
+		if(!$this_action)
+		{
+			$this->load->view('test_editor', $data);
+		}
+		else if($this_action === "Load Test")
+		{
+			$data['test'] = $this->Adminmodel->get_test($this->input->post('test_id'));
+		
+			$this->load->view('test_editor', $data);
+		}
+		else if($this_action === "Create Test")
+		{
+			$this->Adminmodel->create_test($this->input->post('test_id'));
+			$data['tests'] = $this->Adminmodel->get_tests();
+		
+			$this->load->view('test_editor', $data);
+		}
+		else if($this_action === "Load Question")
+		{
+			$data['test'] = $this->Adminmodel->get_test($this->input->post('test_id'));
+			$data['question'] = $this->Adminmodel->get_question($this->input->post('id'));
+			
+			$this->load->view('test_editor', $data);
+		}
+		else if($this_action === "Add")
+		{
+			$this->Adminmodel->create_question();
+			$data['test'] = $this->Adminmodel->get_test($this->input->post('test_id'));
+			
+			$this->load->view('test_editor', $data);
+		}
+		else if($this_action === "Edit")
+		{
+			$this->Adminmodel->edit_question();
+			$data['test'] = $this->Adminmodel->get_test($this->input->post('test_id'));
+			
+			$this->load->view('test_editor', $data);
+		}
+		else if($this_action === "Delete")
+		{
+			$this->Adminmodel->delete_question();
+			$data['test'] = $this->Adminmodel->get_test($this->input->post('test_id'));
+			
+			$this->load->view('test_editor', $data);
 		}
 	}
 }

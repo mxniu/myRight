@@ -1,6 +1,6 @@
 body {
 	margin:0;
-	background: url('../images/bg_all.png');
+	background: url('../images/bg_all.png') fixed;
 	color:#333;
 	font-family: 'Lato', sans-serif;
 	font-size:16px/1.4;
@@ -28,11 +28,13 @@ h1 a:hover{text-decoration: underline}
 .hidden{display:none}
 
 #topbar {
-	width:100%;
+	width:960px;
 	height:60px;
 	color:#FFF;
 	position: fixed;
 	top:0;
+	left: 50%;
+	margin-left: -480px;
 	z-index:100 !important;
 	background: #333;
 	background: -webkit-linear-gradient(#333, #666);
@@ -40,6 +42,7 @@ h1 a:hover{text-decoration: underline}
 	background: -o-linear-gradient(#333, #666);
 	background: -ms-linear-gradient(#333, #666);
 	background: linear-gradient(#333, #666);
+	box-shadow: 0px 0px 2px 1px #DDD;
 }
 	h1.logo {
 		display: inline-block;
@@ -93,7 +96,19 @@ h1 a:hover{text-decoration: underline}
 		form#top-search #top-search-input:-moz-placeholder {
 			color: #CCC;
 		}
-		
+
+#bottom-right
+{
+	position: fixed;
+	bottom:0px; right:0;
+	overflow: hidden;
+	background: rgba(255,255,255,0.8);
+	padding: 1px 0 3px 0;
+	z-index:100 !important;
+	display: block;
+	opacity: 1;
+}
+
 #main_nav {
 	list-style: none;
 	margin: 17px 0 0;
@@ -135,7 +150,7 @@ h1 a:hover{text-decoration: underline}
 #top-right {
 	float: right;
 	z-index: 100 !important;
-	margin: 15px 30px 0 0;
+	margin: 15px 10px 0 0;
 }
 	#sns {
 		float: right;
@@ -248,11 +263,12 @@ h1 a:hover{text-decoration: underline}
 	margin: 2px auto 0.5em;
 	padding: 0 5px 0 5px;
 	text-align: center;
-	border-bottom: 2px #CCC solid;
-	width: 960px;
+	border-bottom: 1px #CCC solid;
+	width: 948px;
 	background: #FFF;
-	border-left: 2px solid #CCC;
-	border-right: 2px solid #CCC;
+	border-left: 1px solid #CCC;
+	border-right: 1px solid #CCC;
+	box-shadow: 0px 0px 2px 1px #DDD;
 }
 	#category_nav li {
 		display: inline-block;
@@ -337,7 +353,190 @@ h1 a:hover{text-decoration: underline}
 	width: 600px;
 	margin: 0 auto;
 	overflow: hidden;
-	background: #EEE;
-	border: 2px solid #DDD;
+	border: 1px solid #BBB;
 	border-radius: 0 0 4px 4px;
+	box-shadow: 0px 0px 2px 1px #DDD, 0px 0px 15px #CCC inset;
+	text-align: center;
+}
+
+.logo_med
+{
+	display: block;
+	height: 72px;
+	width: 127px;
+	background: url(../images/logo_med.png);
+}
+.logo_med:before,
+.logo_med:after {
+content: '';
+display: block;	
+height: 1px;
+left: 50%;
+margin: 0 0 0 -400px;
+position: absolute;
+width: 800px;
+}
+.logo_med:before {
+background: #444;
+background: -webkit-linear-gradient(left, #151515, #444, #151515);
+background: -moz-linear-gradient(left, #151515, #444, #151515);
+background: -o-linear-gradient(left, #151515, #444, #151515);
+background: -ms-linear-gradient(left, #151515, #444, #151515);
+background: linear-gradient(left, #151515, #444, #151515);
+top: 320px;
+}
+
+.logo_med:after {
+background: #000;
+background: -webkit-linear-gradient(left, #151515, #000, #151515);	
+background: -moz-linear-gradient(left, #151515, #000, #151515);	
+background: -o-linear-gradient(left, #151515, #000, #151515);	
+background: -ms-linear-gradient(left, #151515, #000, #151515);	
+background: linear-gradient(left, #151515, #000, #151515);	
+top: 322px;
+}
+
+.center
+{
+	margin: 0 auto;
+	text-align: center;
+}
+
+.big_search
+{
+	margin: 0;
+	float: left;
+	width:300px; 
+	height:8px; 
+	padding: 14px;
+	font-size:18px;
+	border-radius:6px 0 0 6px;
+	background: #fbfbfb;
+	border:1px solid #999;
+	box-shadow:2px 2px 6px #CCC inset;
+	-moz-box-shadow:2px 2px 6px #CCC inset;
+	-webkit-box-shadow:2px 2px 6px #CCC inset;
+	outline: none;
+	color: #666;
+}
+.big_search:focus
+{
+	background: #fff;
+	box-shadow:2px 2px 8px #BBB inset;
+	-moz-box-shadow:2px 2px 8px #BBB inset;
+	-webkit-box-shadow:2px 2px 8px #BBB inset;
+}
+.big_search_button
+{
+	float: left;
+	margin: 0;
+	display: inline-block;
+	width: 80px;
+	height: 31px;
+	padding: 5px 0 0 0;
+	background: #faba3c;
+	box-shadow:0px 0px 2px 1px #DDD, 0px 6px 10px #fcd382 inset, 0px -6px 14px #f3af28 inset;
+	-moz-box-shadow:0px 0px 2px 1px #DDD, 0px 6px 10px #fcd382 inset, 0px -6px 14px #f3af28 inset;
+	-webkit-box-shadow:0px 0px 2px 1px #DDD, 0px 6px 10px #fcd382 inset, 0px -6px 14px #f3af28 inset;
+	border: 1px solid #faba3c;
+	border-radius:0 6px 6px 0;
+	color: #FFF;
+	font-size: 20px;
+}
+.big_search_button:hover
+{
+	background: #f2a012;
+	box-shadow:0px 0px 2px 1px #DDD, 0px 6px 10px #fcd382 inset, 0px -6px 14px #f3af28 inset;
+	-moz-box-shadow:0px 0px 2px 1px #DDD, 0px 6px 10px #fcd382 inset, 0px -6px 14px #f3af28 inset;
+	-webkit-box-shadow:0px 0px 2px 1px #DDD, 0px 6px 10px #fcd382 inset, 0px -6px 14px #f3af28 inset;
+	cursor: pointer;
+}
+.big_search_button:active
+{
+	background: #faba3c;
+	box-shadow:0px 0px 2px 1px #DDD, 0px 6px 10px #f3af28 inset, 0px -6px 18px #fcd382 inset;
+	-moz-box-shadow:0px 0px 2px 1px #DDD, 0px 6px 10px #f3af28 inset, 0px -6px 18px #fcd382 inset;
+	-webkit-box-shadow:0px 0px 2px 1px #DDD, 0px 6px 10px #f3af28 inset, 0px -6px 18px #fcd382 inset;
+}
+
+.home_category
+{
+	width: 165px;
+	margin: 0 62px 0 0;
+}
+
+.home_category h3
+{
+	margin-top: 10px;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 600;
+	font-size: 18px;
+	width: 100%;
+	color: #19B5EF;
+	border-bottom: 1px dotted #888;
+	padding-bottom: 6px;
+	padding-left: 5px;
+}
+
+.home_category a
+{
+	padding-left: 5px;
+	display: block;
+	width: 100%;
+	font-family: "Lato", sans-serif;
+	font-weight: 400;
+	margin: 15px 0;
+	color: #777;
+}
+.home_category a:hover
+{
+	color: #faba3c;
+}
+
+.footer
+{
+	margin:0px auto 0 auto;
+	width: 908px;
+	padding: 20px 25px 40px 25px;
+	background: #333;
+	background: -webkit-linear-gradient(#666, #333);
+	background: -moz-linear-gradient(#666, #333);
+	background: -o-linear-gradient(#666, #333);
+	background: -ms-linear-gradient(#666, #333);
+	background: linear-gradient(#666, #333);
+	border-left: 1px solid #CCC;
+	border-right: 1px solid #CCC;
+	box-shadow: 0px 0px 2px 1px #DDD;
+	color: #FFF;
+}
+
+.footer .home_category h3
+{
+	color: #CCC;
+	font-size: 14px;
+	font-weight: bold;
+	border: none;
+}
+
+.footer .home_category a
+{
+	font-size: 14px;
+	color: #CCC;
+	margin: 10px 0;
+}
+.footer .home_category a:hover{color: #FFF; text-decoration: underline}
+
+.footer .home_category .unlinked
+{
+	cursor: default;
+	text-decoration: none;
+	color: #666;
+}
+.footer .home_category .unlinked:hover{color: #666}
+
+.footer .home_category p
+{
+	padding-left: 5px;
+	color: #CCC;
+	font-size: 14px;
 }

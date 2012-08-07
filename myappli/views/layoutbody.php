@@ -1,6 +1,7 @@
+<?php if(!$offset): ?>
 <div id="maintainer">
 	<div class="left" id="tagtainer">
-	<?php if(!$offset): ?>
+		<div style="text-align: center; font-style: italic; font-weight: bold; padding: 5px 7px; border-bottom: 1px solid #CCC; border-left: 1px solid #CCC;border-right: 1px solid #CCC;color: #666; font-size: 14px; background: url(../images/bg_square.png)">Related Tags</div>
 		<?php if(sizeof($tags) > 0): ?>
 			<?php foreach ($tags as $tag): ?>
 				<a href="<?=$urlstem?><?=$method?>/<?=$tag->slug?>"><div class="tagname left"><?=$tag->tagname?></div></a>
@@ -8,19 +9,15 @@
 		<?php else: ?>
 			<a href="#">[No Tags Exist Yet]</a>
 		<?php endif; ?>
-	<?php endif; ?>
 	</div>
-	<?php if(!$offset): ?>
 		<div class="loader">
 			<img src="http://i.imgur.com/qkKy8.gif" alt="ajax-loader"/>
 		</div>
-		<?php endif; ?>
 	<div id="container" class="clearfix right">
 
-		<?php $counter = 0; ?>
-		<?php foreach ($elements as $element): ?>
+		<?php for ($counter = 1; $counter < 8; $counter++): ?>
 		
-		<?php $counter++; $show_detail = TRUE;?>
+		<?php if(!isset($elements[$counter-1])) break; $element = $elements[$counter-1]; $show_detail = TRUE;?>
 
 		<a href="../view/<?php echo $element->slug?>" class="<?php echo strtolower($element->type); ?> isotope-item<?php 
 		if(!$offset)
@@ -45,42 +42,99 @@
 			echo ' size2';
 			$show_detail = FALSE;
 		}
-		?> <!--location---><?php //echo preg_replace( '/\s+/', '-', $element->location );?> <?php
-			if(!$offset)
-			{
-				echo "color".(int)(($counter/4) + 1);
-			}
-			else
-			{
-				$color_num = (int)(((($offset * 13) + $counter)/4) + 1);
-				if($color_num > 8)
-					$color_num = 8;
-				echo "color".$color_num;
-			}
 		?>" id="<?=$element->slug?>" data-toggle="modal">
 			<?php if(strtolower($element->type) === 'photo') echo '<img src="'.$element->url.'"/>'; ?>
-			
-			<div class="leader">
-				<div class="icon" id="icon_<?php echo strtolower($element->type);?>"></div>
-				<div class="rating" style="float: right"><?=$element->votes?></div>
-			</div>
+		
 			<h3 class="title"><?=$element->title?></h3>
 			
 			<div class="details <?php if($show_detail) echo "visible"; ?>">
 				<?=$element->summary?>
 			</div>
 			
-			<?php if($show_detail && $element->type !== 'photo'): ?>
-				<div class="gradient-mask"></div>
-			<?php endif; ?>
+			<div class="comments_box"></div>
+			
+			<div class="isotope-hover">
+				<div class="view-this">View this</div>
+				<div class="type-string"><?php
+				if($element->type === "primary")
+				{
+					echo "Law";
+				}
+				else if($element->type === "secondary")
+				{
+					echo "Legal Resource";
+				}
+				else if($element->type === "news")
+				{
+					echo "News Article";
+				}
+				?></div>
+			</div>
+			
+			<div class="lowliner">
+				<div class="lowcount"><?=$element->views?></div><div class="lowicon icon_views"></div>
+				<div class="lowcount">0</div><div class="lowicon icon_comments"></div>
+				<div class="lowcount"><?=$element->votes?></div><div class="lowicon icon_rating"></div>
+			</div>
 		</a>
-		<?php endforeach; ?>
+		<?php endfor; ?>
 	</div> <!-- end #container -->
 </div><!-- end #maintainer -->
-<?php if(!$offset): ?>
-<nav id="page_nav" style="position: relative; top: -100px">
+<?php endif; ?>
+<!-- BEGIN LIST MODE -->
+<section id="list-elements">
+<div style="text-align: center; font-style: italic; font-weight: bold; padding: 5px 7px; border-bottom: 1px solid #CCC; border-left: 1px solid #CCC;border-right: 1px solid #CCC;color: #666; font-size: 14px;  background: url(../images/bg_square.png); width: 150px; margin-left: 10px;"><?php if(sizeof($elements) > 7) echo "More Articles"; else echo "No More Articles"; ?></div>
+<?php if(!$offset): /*List the remainder if not n-page*/ ?>
+
+<?php for ($i = 7; $i < 20; $i++):
+	if(!isset($elements[$i])) break; $element = $elements[$i];
+	$element = $elements[$i]; ?>
+	<div class="list-element" <?php if($i === 7) echo 'style="border-top: none;"'; ?>>
+		<div class="title-wrapper"><a class="title" href="../view/<?php echo $element->slug?>" id="<?=$element->slug?>" data-toggle="modal"><?=$element->title?><div class="list_source"><?php echo preg_replace("/^www\./", "", parse_url($element->url, PHP_URL_HOST));?></div></a></div>
+		<div class="list_type"><?php
+			if($element->type === "primary"):
+				echo "The Law";
+			elseif($element->type === "secondary"):
+				echo "Legal Resource";
+			elseif($element->type === "news"):
+				echo "News Article";
+			endif;
+		?></div>
+		<div class="lowcount"><?=$element->views?></div><div class="lowicon icon_views"></div>
+		<div class="lowcount">0</div><div class="lowicon icon_comments"></div>
+		<div class="lowcount"><?=$element->votes?></div><div class="lowicon icon_rating"></div>
+		<div class="icon_share">Share</div>
+	</div>
+<?php endfor; ?>
+
+<?php else: /*Else list all that shit*/ ?>
+
+<?php foreach ($elements as $element): ?>
+	<div class="list-element">
+		<div class="title-wrapper"><a class="title" href="../view/<?php echo $element->slug?>" id="<?=$element->slug?>" data-toggle="modal"><?=$element->title?><div class="list_source"><?php echo preg_replace("/^www\./", "", parse_url($element->url, PHP_URL_HOST));?></div></a></div>
+		<div class="list_type"><?php
+			if($element->type === "primary"):
+				echo "The Law";
+			elseif($element->type === "secondary"):
+				echo "Legal Resource";
+			elseif($element->type === "news"):
+				echo "News Article";
+			endif;
+		?></div>
+		<div class="lowcount"><?=$element->views?></div><div class="lowicon icon_views"></div>
+		<div class="lowcount">0</div><div class="lowicon icon_comments"></div>
+		<div class="lowcount"><?=$element->votes?></div><div class="lowicon icon_rating"></div>
+		<div class="icon_share">Share</div>
+	</div>
+<?php endforeach; ?>
+
+<?php endif; ?>
+<!-- END LIST MODE -->
+<nav id="page_nav" style="position: relative; top: -150px">
 	<a href="<?php echo $_SERVER["REQUEST_URI"]; if(strpos($_SERVER["REQUEST_URI"], "?") === false) echo "?"; else echo "&";?>page=2"></a>
 </nav>
+</section>
+<?php if(!$offset): ?>
 <!-- jquery -->
 <script src="/js/jquery.isotope.min.js"></script>
 <script type="text/javascript">
@@ -98,7 +152,7 @@ $(function() {
 			return -1*Number(name.text());
 		  }
 		},
-		sortBy: 'rating'
+		sortBy: 'original-order'
 	  });
 
 	  var $optionSets = $('#options .option-set'),
@@ -151,6 +205,19 @@ $(function() {
 		}
 		return false;
 	});
+	$('.list-element').children('.title-wrapper').children('.title').click(function(e){
+		var this_slug = $(this).attr('id');
+		$('#myModal').modal('show');
+		history.pushState({ slug: this_slug }, null, $('[id=' + this_slug + ']').attr('href'));
+		populateModal(this_slug);
+		if(e.preventDefault){  
+			e.preventDefault();  
+		}else{  
+			e.returnValue = false;  
+			e.cancelBubble=true; 
+		}
+		return false;
+	});
 	
 	window.onpopstate = function (event) {
 		if(event.state)
@@ -163,8 +230,6 @@ $(function() {
 			$('#myModal').modal('hide');
 		}
 	}
-	
-	$('#tagtainer').animate({opacity: 1.0}, 200);
 	
 	function location_filter(){
 		var options = {};
@@ -191,7 +256,7 @@ $(function() {
 	$container.infinitescroll({
         navSelector  : '#page_nav',    // selector for the paged navigation 
         nextSelector : '#page_nav a:first',  // selector for the NEXT link (to page 2)
-        itemSelector : '.isotope-item',     // selector for all items you'll retrieve
+        itemSelector : '.list-element',     // selector for all items you'll retrieve
         loading: {
             finishedMsg: 'No more articles to load.',
             img: 'http://i.imgur.com/qkKy8.gif'
@@ -199,9 +264,10 @@ $(function() {
         },
         // call Isotope as a callback
         function( newElements ) {
-			$container.isotope( 'appended', $( newElements ) ); 
-			$('.isotope-item').unbind('click');
-			$('.isotope-item').click(function(e){
+			//$container.isotope( 'appended', $( newElements ) ); 
+			$('#list-elements').append(newElements);
+			$('.list-element').children('.title-wrapper').children('.title').unbind('click');
+			$('.list-element').children('.title-wrapper').children('.title').click(function(e){
 				var this_slug = $(this).attr('id');
 				$('#myModal').modal('show');
 				history.pushState({ slug: this_slug }, null, $('[id=' + this_slug + ']').attr('href'));
@@ -231,27 +297,32 @@ $(function() {
 	$('#myModal').on('hidden', function () {
 		$('#myModal').children(".modal-body").html('<img src="http://i.imgur.com/qkKy8.gif"/>');
 	});
-			
-		$(window).scroll(function(){
-			if ($(window).scrollTop() >= 190) {
-				$('#tagtainer').css({
-					position: 'fixed',
-					top: '125px',
-				});
-			}
-			else 
-			{
-				$('#tagtainer').css({
-					position: 'static'
-				});
-			}
-		});
 		
-		/*setTimeout(function(){*/
-			$('.isotope-item').removeClass('hidden');
-			$('.loader').addClass('hidden');
-			$container.isotope('insert', $('.isotope-item'));
-		/*},500);*/
+	$('.isotope-item').removeClass('hidden');
+	$('.loader').addClass('hidden');
+	$container.isotope('insert', $('.isotope-item'));
+	
+	//Test interface TEST
+	<?php if(isset($test_id)): ?>
+		$('#start_guide').click(function(){
+			$.getScript('../js/testengine.js', function(){
+				firstPage(<?=$test_id?>);
+			});
+		});
+	<?php endif; ?>
+		
+		
+	$('.isotope-item').hover(function(){
+		$(this).children('.isotope-hover').stop(true).animate({opacity: 1.0}, 200);
+	},function(){
+		$(this).children('.isotope-hover').stop(true).animate({opacity: 0.0}, 200);
+	});
+	
+	/*$('.list-element').hover(function(){
+		$(this).children('.icon_share').stop(true).animate({opacity: 1.0}, 200);
+	},function(){
+		$(this).children('.icon_share').stop(true).animate({opacity: 0.0}, 200);
+	});*/
 });
 
 </script>
@@ -261,11 +332,6 @@ $(function() {
 <script src="/js/jquery.expand.js"></script>
 <script src="/js/expand.and.embed.js"></script>-->
 <!-- End Young -->
-
-<!-- More JS Twitter Bootstrap 07/26/2012-->
-<script src="/js/bootstrap-transition.js"></script>
-<script src="/js/bootstrap-modal.js"></script>
-<!-- End More JS -->
 
 <script src="/js/jquery.infinitescroll.min.js"></script>
 

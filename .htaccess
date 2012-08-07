@@ -2,7 +2,7 @@ RewriteEngine on
 RewriteBase /
 RewriteCond %{HTTP_HOST} ^myright\.me$ [OR]
 RewriteCond %{HTTP_HOST} ^www\.myright\.me$
-RewriteRule ^/?$ "http\:\/\/myright\.me\/startup" [R=301,L]
+RewriteRule ^/?$ theengine.php/ [PT,L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule .* theengine.php/$0 [PT,L]

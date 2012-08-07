@@ -167,4 +167,6 @@ database.php
 *.orig
 cache
 phpSitemapNG
+BingSiteAuth.xml
 sitemap.*
+admin909

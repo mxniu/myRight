@@ -168,6 +168,175 @@ class Adminmodel extends CI_Model {
         return $categories_array;
 	}
 	
+	public function get_tags()
+	{
+		$query = $this->db->query('SELECT id, tagname FROM tags ORDER BY tagname ASC');
+		$arr = array();
+		foreach ($query->result() as $row)
+		{
+			$arr[$row->id] = $row->tagname; 
+		}
+		
+		return $arr;
+	}
+	
+	public function get_tag($tag_id)
+	{
+		$query = $this->db->query('SELECT * FROM tags WHERE id = '.$tag_id);
+		
+		return $query->row();
+	}
+	
+	public function edit_tag()
+	{
+		$data = array(
+			'test_id' => $this->input->post('test_id'),
+			'description' => $this->input->post('description')
+		);
+		
+		$this->db->where('id', $this->input->post('id'));
+		return $this->db->update('tags', $data);
+	}
+	
+	public function get_tests()
+	{
+		$query = $this->db->query('SELECT DISTINCT test_id FROM questions ORDER BY test_id ASC');
+		$arr = array();
+		foreach ($query->result() as $row)
+		{
+			$arr[$row->test_id] = $row->test_id; 
+		}
+		
+		return $arr;
+	}
+	
+	public function get_test($test_id)
+	{
+		$query = $this->db->query('SELECT id, seq, question FROM questions WHERE test_id = '.$test_id.' ORDER BY seq ASC');
+		$arr = array();
+		foreach ($query->result() as $row)
+		{
+			$arr[$row->id] = '['.$row->seq.'] '.$row->question; 
+		}
+		
+		return $arr;
+	}
+	
+	public function get_question($id)
+	{
+		$query = $this->db->query('SELECT * FROM questions WHERE id = '.$id);
+		
+		return $query->row();
+	}
+	
+	public function create_test()
+	{
+		$test_id = 1;
+		$query = $this->db->query('SELECT MAX(test_id) AS max FROM questions');
+		if($query->num_rows() > 0)
+			$test_id = (int) $query->row()->max + 1;
+	
+		$data = array(
+			'test_id' => $test_id,
+			'type' => 'MB',
+			'question' => 'PLACEHOLDER',
+			'seq' => 1,
+			'answers' => 'TEST,,'
+		);
+		
+		return $this->db->insert('questions', $data);
+	}
+	
+	public function create_question()
+	{
+		//Calculate the seq, if necessary
+		$seq = $this->input->post('seq');	
+		if($seq == "0" || $seq == "")
+		{
+			$query = $this->db->query("SELECT MAX(seq) AS qcount FROM questions where test_id=".$this->input->post('test_id'));
+			$seq = (int) $query->row()->qcount + 1;
+		}
+		
+		//Construct the answer string
+		$answers = '';
+		for($i = 1; $i <= 5; $i++)
+		{
+			if($this->input->post('answer'.$i) === "")
+				break;
+			$to_append = html_escape($this->input->post('answer'.$i));
+			$answers .= $to_append.",".$this->input->post('link'.$i).",".$this->input->post('tag'.$i)."|";  
+		}
+		$answers = substr($answers, 0, strlen($answers) - 1);
+		
+		$data = array(
+			'test_id' => $this->input->post('test_id'),
+			'type' => $this->input->post('type'),
+			'cluster' => $this->input->post('cluster'),
+			'question' => $this->input->post('question'),
+			'seq' => $seq,
+			'answers' => $answers
+		);
+		
+		return $this->db->insert('questions', $data);
+	}
+	
+	public function edit_question()
+	{
+		//Recalculate seqs if necessary
+		if($this->input->post('seq') != 0 && $this->input->post('seq') != "")
+		{ 
+			$query = $this->db->query("SELECT id FROM questions where test_id=".$this->input->post('test_id')." AND seq=".$this->input->post('seq')." AND id<>".$this->input->post('id'));
+			if($query->num_rows() > 0)
+			{
+				$query = $this->db->query("SELECT id FROM questions where test_id=".$this->input->post('test_id')." AND seq>=".$this->input->post('seq')." AND id<>".$this->input->post('id')." ORDER BY seq ASC");
+				
+				$new_seq = (int) $this->input->post('seq');
+				foreach($query->result() as $row) {
+					$new_seq++;
+					$query2 = $this->db->query("UPDATE questions SET seq=".$new_seq." WHERE id=".$row->id);
+				}
+			}
+		}
+		
+		//Construct the answer string
+		$answers = '';
+		for($i = 1; $i <= 5; $i++)
+		{
+			if($this->input->post('answer'.$i) === "")
+				break;
+			$to_append = html_escape($this->input->post('answer'.$i));
+			$answers .= $to_append.",".$this->input->post('link'.$i).",".$this->input->post('tag'.$i)."|";  
+		}
+		$answers = substr($answers, 0, strlen($answers) - 1);
+		
+		$data = array(
+			'test_id' => $this->input->post('test_id'),
+			'type' => $this->input->post('type'),
+			'cluster' => $this->input->post('cluster'),
+			'question' => $this->input->post('question'),
+			'seq' => $this->input->post('seq'),
+			'answers' => $answers
+		);
+		$this->db->where('id', $this->input->post('id'));
+		
+		return $this->db->update('questions', $data);
+	}
+	
+	public function delete_question()
+	{
+		$this->db->where('id', $this->input->post('id'));
+		$this->db->delete('questions');
+		
+		//Recalculate seqs
+		$query = $this->db->query("SELECT id FROM questions where test_id=".$this->input->post('test_id')." AND seq>=".$this->input->post('seq')." ORDER BY seq ASC");
+		$new_seq = (int) $this->input->post('seq');
+		
+		foreach($query->result() as $row) {
+			$query2 = $this->db->query("UPDATE questions SET seq=".$new_seq." WHERE id=".$row->id);
+			$new_seq++;
+		}
+	}
+	
 	public function flush_cache()
 	{
 		$this->db->cache_delete_all();
@@ -206,6 +375,16 @@ class Adminmodel extends CI_Model {
 				if($this_tid != 0)
 					$this->db->query('INSERT INTO tagrel (`lid`, `tid`) VALUES ('.$row->id.' ,'.$this_tid.')');
 			}
+		}
+	}
+	
+	public function seed_views()
+	{
+		$query = $this->db->query('SELECT id, votes, views FROM links');
+		foreach ($query->result() as $row)
+		{
+			$new_views = $row->votes * 2 + rand(0,200);
+			$this->db->query('UPDATE links SET views = '.$new_views.' WHERE id = '.$row->id);
 		}
 	}
 }

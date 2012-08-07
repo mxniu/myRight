@@ -53,7 +53,11 @@ class Layout extends CI_Controller {
 			}
 			else if(sizeof($params) == 0)
 			{
-				
+				if($category_data->test_id > 0)
+				{
+					$data['test_id'] = $category_data->test_id;
+					$data['top_desc'] = $category_data->description;
+				}
 				if($data['locget'])
 					$data['elements'] = $this->Layoutmodel->get_elements_loc($category_data->id, $data['locget'], $data['offset']);
 				else
@@ -83,9 +87,11 @@ class Layout extends CI_Controller {
 				$this->load->view('layouth2', $data);
 			}
 			$this->load->view('layoutbody', $data);
-			$this->load->view('commonscripts', $data);
 			if(!$data['offset'])
+			{
+				$this->load->view('commonscripts', $data);
 				$this->load->view('layoutfooter', $data);
+			}
 		}
 		else
 		{

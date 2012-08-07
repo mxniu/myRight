@@ -8,50 +8,51 @@ class Layoutmodel extends CI_Model {
 
 	public function get_elements($category, $offset)
 	{
-		$this->db->cache_on();
+		//$this->db->cache_on();
 		$this->db->select('*');
 		$this->db->where('category', $category);
-		$this->db->limit(13, $offset * 13);
+		$this->db->where('type !=', 'photo');
+		$this->db->limit(20, $offset * 20);
 		$this->db->order_by('votes desc');
 	
 		$query = $this->db->get('links');
-		$this->db->cache_off();
+		//$this->db->cache_off();
         return $query->result();
 	}
 	
 	public function get_elements_loc($category, $location, $offset)
 	{
-		$this->db->cache_on();
-		$query = $this->db->query('SELECT * FROM links WHERE category = \''.$category.'\' AND (location = \''.preg_replace( '/\-/', ' ', $location ).'\' OR location = \'\') ORDER BY votes DESC LIMIT '.($offset * 13).', 13');
-		$this->db->cache_off();
+		//$this->db->cache_on();
+		$query = $this->db->query('SELECT * FROM links WHERE category = \''.$category.'\' AND (location = \''.preg_replace( '/\-/', ' ', $location ).'\' OR location = \'\') AND type != \'photo\' ORDER BY votes DESC LIMIT '.($offset * 20).', 20');
+		//$this->db->cache_off();
 		return $query->result();
 	}
 	
 	public function get_tag_elements($category, $slug, $offset)
 	{
-		$this->db->cache_on();
-		$query = $this->db->query('SELECT l1.* FROM links l1 JOIN tagrel t2 on l1.id = t2.lid JOIN tags t1 on t2.tid = t1.id WHERE l1.category = \''.$category.'\' AND t1.slug = \''.$slug.'\' ORDER BY l1.votes DESC LIMIT '.($offset * 13).', 13');
-        $this->db->cache_off();
+		//$this->db->cache_on();
+		$query = $this->db->query('SELECT l1.* FROM links l1 JOIN tagrel t2 on l1.id = t2.lid JOIN tags t1 on t2.tid = t1.id WHERE l1.category = \''.$category.'\' AND t1.slug = \''.$slug.'\' AND l1.type != \'photo\' ORDER BY l1.votes DESC LIMIT '.($offset * 20).', 20');
+        //$this->db->cache_off();
 		return $query->result();
 	}
 	
 	public function get_tag_loc_elements($category, $slug, $location, $offset)
 	{
-		$this->db->cache_on();
-		$query = $this->db->query('SELECT l1.* FROM links l1 JOIN tagrel t2 on l1.id = t2.lid JOIN tags t1 on t2.tid = t1.id WHERE l1.category = \''.$category.'\' AND t1.slug = \''.$slug.'\' AND (l1.location = \''.preg_replace( '/\-/', ' ', $location ).'\' OR l1.location = \'\') ORDER BY l1.votes DESC LIMIT '.($offset * 13).', 13');
-        $this->db->cache_off();
+		//$this->db->cache_on();
+		$query = $this->db->query('SELECT l1.* FROM links l1 JOIN tagrel t2 on l1.id = t2.lid JOIN tags t1 on t2.tid = t1.id WHERE l1.category = \''.$category.'\' AND t1.slug = \''.$slug.'\' AND (l1.location = \''.preg_replace( '/\-/', ' ', $location ).'\' OR l1.location = \'\') AND l1.type != \'photo\' ORDER BY l1.votes DESC LIMIT '.($offset * 20).', 20');
+        //$this->db->cache_off();
 		return $query->result();
 	}
 	
 	public function get_category_data($slug)
 	{
-		$this->db->cache_on();
-		$this->db->select('id, name');
+		//$this->db->cache_on();
+		$this->db->select('id, name, test_id, description');
 		$this->db->where('slug', $slug);
 	
 		$query = $this->db->get('categories');
 		$temp = $query->row();
-		$this->db->cache_off();
+		//$this->db->cache_off();
 		
         return $temp;
 	}

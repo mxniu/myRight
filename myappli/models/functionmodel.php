@@ -53,5 +53,21 @@ class Functionmodel extends CI_Model {
 			echo 'http://myright.me/'.$return_cat.'/'.$return_tag;
 		return;
 	}
+	
+	public function get_test_questions($test_id)
+	{
+		//$this->db->cache_on();
+		$query = $this->db->query('SELECT * FROM questions WHERE test_id = '.$test_id.' ORDER BY seq DESC');
+		if($query->num_rows() <= 0)
+			return;
+		
+		$arr = array();
+		foreach ($query->result() as $row)
+		{
+			$arr[] = $row;
+		}
+		echo json_encode($arr);
+		//$this->db->cache_off();
+	}
 }
 ?>

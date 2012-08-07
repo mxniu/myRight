@@ -18,10 +18,37 @@
 	
 	<input type="submit" name="submit" value="Load Category" />
 	<input type="submit" name="submit" value="Clear DB Cache" />
-	<input type="submit" name="submit" value="Update Tags" />
 </form>
 
-<?php if(isset($elements) || isset($element_data)): ?>
+<form method="post" accept-charset="utf-8" action="admin808" />
+	<label for="tag">Tag</label> 
+	<?php
+		if(isset($tag)):
+			echo form_dropdown('tag', $tags, $tag->id);
+		else:
+			echo form_dropdown('tag', $tags);
+		endif;
+	?><br/>
+	
+	<input type="submit" name="submit" value="Load Tag" />
+</form>
+
+<?php if(isset($tag)): ?>
+
+<form method="post" accept-charset="utf-8" action="admin808" />
+	<label for="id">ID:</label>
+	<input type="input" name="id" readonly="readonly" style="width: 50px; border: none;" <?php echo 'value="'.$tag->id.'"'; ?>/><br/>
+	
+	<label for="description">Description</label>
+	<textarea name="description" rows="10" cols="50" maxlength="500"><?php echo $tag->description; ?></textarea><br />
+	
+	<label for="test_id">Test ID</label> 
+	<input type="input" name="test_id" style="width: 100px" <?php echo 'value="'.$tag->test_id.'"'; ?>/><br />
+	
+	<input type="submit" name="submit" value="Edit Tag" /> 
+</form>
+
+<?php elseif(isset($elements) || isset($element_data)): ?>
 
 <form method="post" accept-charset="utf-8" action="admin808" />
 	<label for="element">Element</label> 

@@ -23,5 +23,28 @@ class Functioning extends CI_Controller {
 		
 		return $this->Functionmodel->slug_from_tag($tag);
 	}
+	
+	public function show_terms()
+	{
+		$this->load->view('termsofuse');
+	}
+	
+	public function show_disclaimer() 
+	{
+		$this->load->view('disclaimer'); 
+	}
+	
+	public function show_privacy() 
+	{
+		$this->load->view('privacy'); 
+	}
+	
+	public function get_issue()
+	{
+		$this->load->model('Functionmodel');
+		$test_id = $this->input->post('test_id');
+		
+		return $this->Functionmodel->get_test_questions($test_id);
+	}
 }
 ?>

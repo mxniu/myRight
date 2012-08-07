@@ -39,14 +39,15 @@
 */
 
 $route['admin808'] = 'admin';
-$route['login'] = 'login';
+$route['admin808/(:any)'] = 'admin/$1';
+//$route['login'] = 'login';
 $route['function/(:any)'] = 'functioning/$1';
 $route['viewajax/(:any)'] = 'viewajax/$1';
 $route['view/(:any)'] = 'viewscreen/$1';
 $route['fullview/(:any)'] = 'fullview/$1';
 $route['(:any)'] = 'layout/$1';
 $route['(:any)/(:any)'] = 'layout/$1/$2';
-$route['default_controller'] = '';
+$route['default_controller'] = 'home';
 $route['404_override'] = '';
 
 

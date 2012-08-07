@@ -15,6 +15,8 @@ class Viewajax extends CI_Controller {
 		$data['categories'] = $this->Viewmodel->get_categories();
 		$data['comments'] = $this->Viewmodel->get_comments($data['element']->id);
 		
+		$this->Viewmodel->add_view($data['element']->id, $data['element']->views);
+		
 		$this->load->view('viewport_ajax', $data);
 		$this->load->view('viewscripts', $data);
 	}

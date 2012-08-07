@@ -44,5 +44,18 @@ class Viewmodel extends CI_Model {
 		
         return $temp;
 	}
+	
+	public function add_view($id, $views)
+	{
+		$my_ip = (string)$_SERVER["REMOTE_ADDR"];
+		/*$sweep_check = $this->db->query('SELECT id FROM votes WHERE lid = '.$id.' AND voter = \''.$my_ip.'\'');
+		if($sweep_check->num_rows() > 0)
+		{
+			return false;
+		}*/
+		
+		$this->db->query('INSERT INTO views (`viewer`,`lid`) VALUES (\''.$my_ip.'\','.$id.')');
+		$this->db->query('UPDATE links SET views = '.((int)$views + 1).' WHERE id = '.$id);
+	}
 }
 ?>
