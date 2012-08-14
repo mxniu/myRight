@@ -6,6 +6,18 @@ class Adminmodel extends CI_Model {
         parent::__construct();
     }
 	
+	private function escape_html($input)
+	{
+		$input = str_replace(",", "&#44;", $input);
+		$input = str_replace("'", "&#39;", $input);
+		$input = str_replace('"', "&quot;", $input);
+		$input = str_replace("§", "&sect;", $input);
+		$input = str_replace("—", "&mdash;", $input);
+		$input = str_replace("--", "&mdash;", $input);
+		$input = str_replace("-", "&ndash;", $input);
+		return $input;
+	}
+	
 	public function get_category_data($id)
 	{
 		$this->db->cache_on();
@@ -247,6 +259,34 @@ class Adminmodel extends CI_Model {
 		return $this->db->insert('questions', $data);
 	}
 	
+	public function clone_test($test_id)
+	{
+		if($test_id <= 0)
+			return false;
+	
+		$new_test_id = 1;
+		$query = $this->db->query('SELECT MAX(test_id) AS max FROM questions');
+		if($query->num_rows() > 0)
+			$new_test_id = (int) $query->row()->max + 1;
+	
+		//Load the questions
+		$query = $this->db->query("SELECT * FROM questions where test_id='".$test_id."' ORDER BY seq ASC");
+				
+		foreach ($query->result() as $row)
+		{
+			$data = array(
+			'test_id' => $new_test_id,
+			'type' => $row->type,
+			'cluster' => $row->cluster,
+			'question' => $row->question,
+			'seq' => $row->seq,
+			'answers' => $row->answers
+			);
+			
+			$this->db->insert('questions', $data);
+		}
+	}
+	
 	public function create_question()
 	{
 		//Calculate the seq, if necessary
@@ -263,7 +303,7 @@ class Adminmodel extends CI_Model {
 		{
 			if($this->input->post('answer'.$i) === "")
 				break;
-			$to_append = html_escape($this->input->post('answer'.$i));
+			$to_append = $this->escape_html($this->input->post('answer'.$i));
 			$answers .= $to_append.",".$this->input->post('link'.$i).",".$this->input->post('tag'.$i)."|";  
 		}
 		$answers = substr($answers, 0, strlen($answers) - 1);
@@ -272,7 +312,7 @@ class Adminmodel extends CI_Model {
 			'test_id' => $this->input->post('test_id'),
 			'type' => $this->input->post('type'),
 			'cluster' => $this->input->post('cluster'),
-			'question' => $this->input->post('question'),
+			'question' => $this->escape_html($this->input->post('question')),
 			'seq' => $seq,
 			'answers' => $answers
 		);
@@ -304,7 +344,7 @@ class Adminmodel extends CI_Model {
 		{
 			if($this->input->post('answer'.$i) === "")
 				break;
-			$to_append = html_escape($this->input->post('answer'.$i));
+			$to_append = $this->escape_html($this->input->post('answer'.$i));
 			$answers .= $to_append.",".$this->input->post('link'.$i).",".$this->input->post('tag'.$i)."|";  
 		}
 		$answers = substr($answers, 0, strlen($answers) - 1);
@@ -313,7 +353,7 @@ class Adminmodel extends CI_Model {
 			'test_id' => $this->input->post('test_id'),
 			'type' => $this->input->post('type'),
 			'cluster' => $this->input->post('cluster'),
-			'question' => $this->input->post('question'),
+			'question' => $this->escape_html($this->input->post('question')),
 			'seq' => $this->input->post('seq'),
 			'answers' => $answers
 		);
@@ -345,7 +385,6 @@ class Adminmodel extends CI_Model {
 	public function build_tags()
 	{
 		$this->db->cache_delete_all();
-		$this->db->query('DELETE FROM tags');
 		$this->db->query('DELETE FROM tagrel');
 		$query = $this->db->query('SELECT id, tags FROM links');
 		
@@ -380,12 +419,17 @@ class Adminmodel extends CI_Model {
 	
 	public function seed_views()
 	{
-		$query = $this->db->query('SELECT id, votes, views FROM links');
+		$query = $this->db->query('SELECT id FROM links');
 		foreach ($query->result() as $row)
-		{
-			$new_views = $row->votes * 2 + rand(0,200);
-			$this->db->query('UPDATE links SET views = '.$new_views.' WHERE id = '.$row->id);
+		{	
+			$sub_query = $this->db->query('SELECT COUNT(id) as counter FROM views WHERE lid = '.$row->id);
+			$this->db->query('UPDATE links SET views = '.$sub_query->row()->counter.' WHERE id = '.$row->id);
 		}
+	}
+	
+	public function seed_ratings()
+	{
+		
 	}
 }
 ?>

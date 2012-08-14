@@ -1,11 +1,12 @@
 .content
 {
-	margin:56px auto 0 auto;
+	margin:52px auto 0 auto;
 	width: 920px;
 	padding: 5px 19px 0px 19px;
 	background: #FFF;
 	border-left: 1px solid #CCC;
 	border-right: 1px solid #CCC;
+	border-bottom: 1px solid #CCC;
 }
 #maintainer
 {
@@ -49,11 +50,21 @@
 
 #container
 {
-	width: 760px;
+	width: 100%;
 	padding-top: 25px;
 	padding-bottom: 10px;
 	padding-left: 12px;
-	border-left: 1px solid #CCC;
+}
+
+#beta_box
+{
+	width: 600px;
+	margin: 0 auto;
+	overflow: hidden;
+	border: 1px solid #BBB;
+	border-radius: 0 0 4px 4px;
+	box-shadow: 0px 0px 2px 1px #DDD, 0px 0px 15px #DDD inset;
+	text-align: center;
 }
 
 /**** Infinite Scroll ****/
@@ -316,8 +327,7 @@ background: -webkit-gradient(
 .list-element
 {
 	overflow: hidden;
-	border-top: 1px solid #DDD;
-	border-top: 1px solid #DDD;
+	border-bottom: 1px solid #DDD;
 	padding: 15px 30px;
 }
 .list-element:hover{background: #f4f4f4;}

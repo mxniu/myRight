@@ -10,7 +10,7 @@
 
 <?php echo validation_errors(); ?>
 
-<form method="post" accept-charset="utf-8" action="admin808" />
+<form method="post" accept-charset="utf-8" action="../admin808" />
 	<label for="category">Category</label> 
 	<?php
 		echo form_dropdown('category', $categories);
@@ -18,9 +18,10 @@
 	
 	<input type="submit" name="submit" value="Load Category" />
 	<input type="submit" name="submit" value="Clear DB Cache" />
+	<input type="submit" name="submit" value="Update Tags" />
 </form>
 
-<form method="post" accept-charset="utf-8" action="admin808" />
+<form method="post" accept-charset="utf-8" action="../admin808" />
 	<label for="tag">Tag</label> 
 	<?php
 		if(isset($tag)):
@@ -35,7 +36,7 @@
 
 <?php if(isset($tag)): ?>
 
-<form method="post" accept-charset="utf-8" action="admin808" />
+<form method="post" accept-charset="utf-8" action="../admin808" />
 	<label for="id">ID:</label>
 	<input type="input" name="id" readonly="readonly" style="width: 50px; border: none;" <?php echo 'value="'.$tag->id.'"'; ?>/><br/>
 	
@@ -50,7 +51,7 @@
 
 <?php elseif(isset($elements) || isset($element_data)): ?>
 
-<form method="post" accept-charset="utf-8" action="admin808" />
+<form method="post" accept-charset="utf-8" action="../admin808" />
 	<label for="element">Element</label> 
 	<?php
 		echo form_dropdown('element', $elements);
@@ -61,7 +62,7 @@
 	<input type="submit" name="submit" value="Load Element" /> 
 </form>
 
-<form method="post" accept-charset="utf-8" action="admin808" />
+<form method="post" accept-charset="utf-8" action="../admin808" />
 
 	<label for="id">ID:</label>
 	<input type="input" name="id" readonly="readonly" style="width: 50px; border: none;" <?php if(isset($element_data)) echo 'value="'.$element_data->id.'"'; ?>/><br/>
@@ -72,9 +73,9 @@
 	<label for="type">Type</label>
 	<?php
 		if(isset($element_data)) 
-			echo form_dropdown('type', array('primary'=>'primary', 'secondary'=>'secondary', 'news'=>'news', 'photo'=>'photo'), $element_data->type);
+			echo form_dropdown('type', array('primary'=>'primary', 'secondary'=>'secondary', 'news'=>'news', 'document'=>'document'), $element_data->type);
 		else
-			echo form_dropdown('type', array('primary'=>'primary', 'secondary'=>'secondary', 'news'=>'news', 'photo'=>'photo'));
+			echo form_dropdown('type', array('primary'=>'primary', 'secondary'=>'secondary', 'news'=>'news', 'document'=>'document'));
 	?><br/>
 
 	<label for="url">URL (include http://)</label> 

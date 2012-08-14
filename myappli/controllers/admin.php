@@ -13,8 +13,6 @@ class Admin extends CI_Controller {
 		
 		$this_action = $this->input->post('submit');
 		
-		//$this->Adminmodel->seed_views();
-		
 		if(!$this_action)
 		{
 			$this->load->view('adminview', $data);
@@ -122,6 +120,13 @@ class Admin extends CI_Controller {
 		else if($this_action === "Create Test")
 		{
 			$this->Adminmodel->create_test($this->input->post('test_id'));
+			$data['tests'] = $this->Adminmodel->get_tests();
+		
+			$this->load->view('test_editor', $data);
+		}
+		else if($this_action === "Clone Test")
+		{
+			$this->Adminmodel->clone_test($this->input->post('test_id'));
 			$data['tests'] = $this->Adminmodel->get_tests();
 		
 			$this->load->view('test_editor', $data);

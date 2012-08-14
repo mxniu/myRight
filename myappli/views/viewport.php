@@ -1,11 +1,3 @@
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=265179353583781";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
 <div class="container_12" id="view_container">
 	<div class="grid_7 left">
 		<div class="element" id="element_top">
@@ -54,7 +46,7 @@
 					<?php //endforeach; ?>
 				<?php //endif; ?>
 			</div>-->
-			<div class="fb-comments" data-href="http://myright.me/view/<?=$method?>" data-num-posts="10" data-width="470"></div>
+			<div style="font-size: 0.8em; margin-left: 10px">Comments will soon be available to registered beta testers. <a href="http://signup.myright.me" style="color: #faba3c" target="_blank">Request an invite</a> today!</div>
 			<!--<div class="element" id="post_new">
 				<label for="new_comment">Post a Comment</label><br/>
 				<textarea name="new_comment" rows="5" cols="40"></textarea><br/>
@@ -72,8 +64,8 @@
 			</div>
 		</div>
 
-		<div class="fb-like" data-href="http://myright.me/view/<?=$method?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-font="segoe ui"></div>
-		<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://myright.me/view/<?=$method?>" data-via="myrightinc" style="margin-top: 10px">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+		<a href="http://www.facebook.com/dialog/feed?&app_id=265179353583781&link=http://myright.me/view/<?=$method?>&redirect_uri=http://myright.me/view/<?=$method?>" target="_blank" class="social-button" id="fb_share"><img src="../images/icon_fb.png" style="margin: 0 19px 0 7px"/>Share</a>
+		<a href="https://twitter.com/share?url=http://myright.me/view/<?=$method?>&via=myrightinc" target="_blank" class="social-button" id="twitter_share"><img src="../images/icon_twitter.png" style="margin: 0 6px 0 0"/>Tweet</a>
 	</div>
 	<!--<div class="left grid_3 container_pane">
 		[INSERT TAGS HERE]

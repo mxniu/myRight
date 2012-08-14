@@ -12,7 +12,7 @@ class Layoutmodel extends CI_Model {
 		$this->db->select('*');
 		$this->db->where('category', $category);
 		$this->db->where('type !=', 'photo');
-		$this->db->limit(20, $offset * 20);
+		$this->db->limit(10, $offset * 10);
 		$this->db->order_by('votes desc');
 	
 		$query = $this->db->get('links');
@@ -23,7 +23,7 @@ class Layoutmodel extends CI_Model {
 	public function get_elements_loc($category, $location, $offset)
 	{
 		//$this->db->cache_on();
-		$query = $this->db->query('SELECT * FROM links WHERE category = \''.$category.'\' AND (location = \''.preg_replace( '/\-/', ' ', $location ).'\' OR location = \'\') AND type != \'photo\' ORDER BY votes DESC LIMIT '.($offset * 20).', 20');
+		$query = $this->db->query('SELECT * FROM links WHERE category = \''.$category.'\' AND (location = \''.preg_replace( '/\-/', ' ', $location ).'\' OR location = \'\') AND type != \'photo\' ORDER BY votes DESC LIMIT '.($offset * 10).', 10');
 		//$this->db->cache_off();
 		return $query->result();
 	}
@@ -31,7 +31,7 @@ class Layoutmodel extends CI_Model {
 	public function get_tag_elements($category, $slug, $offset)
 	{
 		//$this->db->cache_on();
-		$query = $this->db->query('SELECT l1.* FROM links l1 JOIN tagrel t2 on l1.id = t2.lid JOIN tags t1 on t2.tid = t1.id WHERE l1.category = \''.$category.'\' AND t1.slug = \''.$slug.'\' AND l1.type != \'photo\' ORDER BY l1.votes DESC LIMIT '.($offset * 20).', 20');
+		$query = $this->db->query('SELECT l1.* FROM links l1 JOIN tagrel t2 on l1.id = t2.lid JOIN tags t1 on t2.tid = t1.id WHERE l1.category = \''.$category.'\' AND t1.slug = \''.$slug.'\' AND l1.type != \'photo\' ORDER BY l1.votes DESC LIMIT '.($offset * 10).', 10');
         //$this->db->cache_off();
 		return $query->result();
 	}
@@ -39,7 +39,7 @@ class Layoutmodel extends CI_Model {
 	public function get_tag_loc_elements($category, $slug, $location, $offset)
 	{
 		//$this->db->cache_on();
-		$query = $this->db->query('SELECT l1.* FROM links l1 JOIN tagrel t2 on l1.id = t2.lid JOIN tags t1 on t2.tid = t1.id WHERE l1.category = \''.$category.'\' AND t1.slug = \''.$slug.'\' AND (l1.location = \''.preg_replace( '/\-/', ' ', $location ).'\' OR l1.location = \'\') AND l1.type != \'photo\' ORDER BY l1.votes DESC LIMIT '.($offset * 20).', 20');
+		$query = $this->db->query('SELECT l1.* FROM links l1 JOIN tagrel t2 on l1.id = t2.lid JOIN tags t1 on t2.tid = t1.id WHERE l1.category = \''.$category.'\' AND t1.slug = \''.$slug.'\' AND (l1.location = \''.preg_replace( '/\-/', ' ', $location ).'\' OR l1.location = \'\') AND l1.type != \'photo\' ORDER BY l1.votes DESC LIMIT '.($offset * 10).', 10');
         //$this->db->cache_off();
 		return $query->result();
 	}
@@ -59,9 +59,9 @@ class Layoutmodel extends CI_Model {
 	
 	public function get_tag_info($tagslug)
 	{
-		$this->db->cache_on();
-		$query = $this->db->query('SELECT id, tagname from tags where slug = \''.$tagslug.'\'');
-		$this->db->cache_off();
+		//$this->db->cache_on();
+		$query = $this->db->query('SELECT id, tagname, description, test_id from tags where slug = \''.$tagslug.'\'');
+		//$this->db->cache_off();
 		
 		return $query->row();
 	}

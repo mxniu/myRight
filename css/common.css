@@ -29,7 +29,6 @@ h1 a:hover{text-decoration: underline}
 
 #topbar {
 	width:960px;
-	height:60px;
 	color:#FFF;
 	position: fixed;
 	top:0;
@@ -260,7 +259,7 @@ h1 a:hover{text-decoration: underline}
 	
 #category_nav { 
 	list-style: none;
-	margin: 2px auto 0.5em;
+	margin: 2px auto 0;
 	padding: 0 5px 0 5px;
 	text-align: center;
 	border-bottom: 1px #CCC solid;
@@ -347,17 +346,6 @@ h1 a:hover{text-decoration: underline}
 		#category_nav li:hover > ul {
 			display: block;
 		}
-
-#beta_box
-{
-	width: 600px;
-	margin: 0 auto;
-	overflow: hidden;
-	border: 1px solid #BBB;
-	border-radius: 0 0 4px 4px;
-	box-shadow: 0px 0px 2px 1px #DDD, 0px 0px 15px #CCC inset;
-	text-align: center;
-}
 
 .logo_med
 {
@@ -459,28 +447,50 @@ top: 322px;
 	-webkit-box-shadow:0px 0px 2px 1px #DDD, 0px 6px 10px #f3af28 inset, 0px -6px 18px #fcd382 inset;
 }
 
+.eye-grabber
+{
+	
+}
+
 .home_category
 {
-	width: 165px;
-	margin: 0 62px 0 0;
+	width: 210px;
+	margin: 0 10px;
 }
 
 .home_category h3
 {
-	margin-top: 10px;
+	text-align: center;
+	margin: 10px auto;
 	font-family: "Open Sans", sans-serif;
 	font-weight: 600;
 	font-size: 18px;
-	width: 100%;
-	color: #19B5EF;
+	width: 80%;
+	color: #649cb2;
 	border-bottom: 1px dotted #888;
 	padding-bottom: 6px;
-	padding-left: 5px;
+}
+
+.home_category .coming_soon
+{
+	display: block;
+	width: 100%;
+	font-family: "Lato", sans-serif;
+	font-weight: 400;
+	margin: 15px 0;
+	color: #777;
+}
+.home_category .coming_soon.secondrow
+{
+	opacity: 0.8;
+}
+.home_category .coming_soon.thirdrow
+{
+	opacity: 0.5;
 }
 
 .home_category a
 {
-	padding-left: 5px;
 	display: block;
 	width: 100%;
 	font-family: "Lato", sans-serif;
@@ -496,8 +506,8 @@ top: 322px;
 .footer
 {
 	margin:0px auto 0 auto;
-	width: 908px;
-	padding: 20px 25px 40px 25px;
+	width: 920px;
+	padding: 20px 19px 40px 19px;
 	background: #333;
 	background: -webkit-linear-gradient(#666, #333);
 	background: -moz-linear-gradient(#666, #333);
@@ -512,10 +522,12 @@ top: 322px;
 
 .footer .home_category h3
 {
+	width: 100%;
 	color: #CCC;
 	font-size: 14px;
 	font-weight: bold;
 	border: none;
+	text-align: left;
 }
 
 .footer .home_category a
@@ -536,7 +548,34 @@ top: 322px;
 
 .footer .home_category p
 {
-	padding-left: 5px;
 	color: #CCC;
 	font-size: 14px;
+}
+
+.features
+{
+	margin-top: 100px;
+	overflow: hidden;
+}
+
+.medallion
+{
+	display: block;
+	height: 90px;
+	width: 90px;
+	margin: 0 auto;
+}
+.medallion#medal_primary{background: url(../images/medallion_primary.png)}
+.medallion#medal_secondary{background: url(../images/medallion_secondary.png)}
+.medallion#medal_document{background: url(../images/medallion_document.png)}
+.medallion#medal_news{background: url(../images/medallion_news.png)}
+
+.features .home_category h3
+{
+	width: 100%;
+	color: #333;
+	font-weight: 600;
+	border: none;
+	padding: 0;
+	margin: 20px 0;
 }

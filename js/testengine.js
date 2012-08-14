@@ -4,6 +4,69 @@ var all_questions;
 var num_of_questions;
 var test_id;
 
+function reorg_list(TAGNAME)
+{
+	var category_slug = $('#category-slug').html();
+	var location_slug = $('#location-slug').html();
+
+	var this_action = "../" + category_slug + "/" + TAGNAME + "?ajax";
+	if(location_slug)
+		this_action += "&location=" + location_slug;
+	
+	$.ajax({
+		type: "POST",
+		url: this_action,
+		dataType: "html"
+	}).done(function( data ) {
+		$('#tag-title').html(TAGNAME);
+		$('#list-elements').infinitescroll('destroy').html(data).infinitescroll({                      
+		  state: {                                              
+			isDestroyed: false,
+			isDone: false                           
+		  }
+		}).infinitescroll({
+			navSelector  : '#page_nav',    // selector for the paged navigation 
+			nextSelector : '#page_nav a:first',  // selector for the NEXT link (to page 2)
+			itemSelector : '.list-element',     // selector for all items you'll retrieve
+			loading: {
+				finishedMsg: 'No more articles to load.',
+				img: 'http://i.imgur.com/qkKy8.gif'
+			  }
+			},
+			function( newElements ) {
+				$('#list-elements').append(newElements);
+				$('.list-element').children('.title-wrapper').children('.title').unbind('click');
+				$('.list-element').children('.title-wrapper').children('.title').click(function(e){
+					var this_slug = $(this).attr('id');
+					$('#myModal').modal('show');
+					history.pushState({ slug: this_slug }, null, $('[id=' + this_slug + ']').attr('href'));
+					$('#modalslug').html(this_slug);
+					if(e.preventDefault){  
+						e.preventDefault();  
+					}else{  
+						e.returnValue = false;  
+						e.cancelBubble=true;  
+					}
+					return false;
+				});
+		});
+		
+		$('.list-element').children('.title-wrapper').children('.title').click(function(e){
+			var this_slug = $(this).attr('id');
+			$('#myModal').modal('show');
+			history.pushState({ slug: this_slug }, null, $('[id=' + this_slug + ']').attr('href'));
+			$('#modalslug').html(this_slug);
+			if(e.preventDefault){
+				e.preventDefault();  
+			}else{  
+				e.returnValue = false;
+				e.cancelBubble=true;
+			}
+			return false;
+		});
+	});
+}
+
 $.fn.disableClicks = function()
 {
 	$("div[id^='a_']").unbind('click');
@@ -53,11 +116,15 @@ function loadChildNode()
 				$(this).disableClicks();
 				var id = $(this).attr("id").split("_")[1];
 				var target = $(this).attr("data-target");
+				var tag = $(this).attr("data-tag");
 				$("div[id='check_" + id + "']").css("background-position", "0px -21px");
 				
+				if(tag)
+				{
+					reorg_list(tag);
+				}
+				
 				hstack.push(astack.pop());
-				
-				
 				
 				for(var x = astack.length - 1; x >= 0; x--)
 				{
@@ -191,13 +258,13 @@ function loadChildNode()
 			});
 		});
 	}
-	else if (qtype == "MB")
+	else if (qtype == "MB" || qtype == "EX")
 	{
 			
 			for(x in answer_array)
 			{
 				answer_array[x] = answer_array[x].split(',');
-				if(answer_array[x][0].length > 20 && answer_array[x][0].indexOf('<br') == -1)
+				/*if(answer_array[x][0].length > 20 && answer_array[x][0].indexOf('<br') == -1)
 				{
 					answer_array[x][0] = String(answer_array[x][0]).replace(" ", "<br />");
 				}
@@ -207,7 +274,7 @@ function loadChildNode()
 				answer_array[x][0] = answer_array[x][0].replace("&sect;", "§");
 				answer_array[x][0] = answer_array[x][0].replace("&mdash;", "—");
 				answer_array[x][0] = answer_array[x][0].replace("&mdash;", "--");
-				answer_array[x][0] = answer_array[x][0].replace("&ndash;", "-");
+				answer_array[x][0] = answer_array[x][0].replace("&ndash;", "-");*/
 				to_append += '<div class="link-outer"><div class="link-inner" id="a_' + x + '" data-target="' + answer_array[x][1] + '" data-tag="' + answer_array[x][2] + '">' + answer_array[x][0] + '</div></div>';
 			}
 		$("#test_interface").fadeOut(500, function(){
@@ -223,15 +290,15 @@ function loadChildNode()
 			{
 				if(answer_array[x][0].length <4)
 				{
-					$('div#a_' + x).css("font-size", "2em");
+					$('div#a_' + x).css("font-size", "1.5em");
 				}
 				else if (answer_array[x][0].length <17)
 				{
-					$('div#a_' + x).css("font-size", (1.2 + (0.06154 *(17 - answer_array[x][0].length)))+"em");
+					$('div#a_' + x).css("font-size", (1 + (0.06154 *(17 - answer_array[x][0].length)))+"em");
 				}
 				else
 				{
-					$('div#a_' + x).css("font-size", "1.2em");
+					$('div#a_' + x).css("font-size", "1em");
 				}
 			}
 
@@ -244,7 +311,7 @@ function loadChildNode()
 				
 				if(tag)
 				{
-					window.location.href=tag;
+					reorg_list(tag);
 				}
 				
 				hstack.push(astack.pop());

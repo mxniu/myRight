@@ -46,5 +46,15 @@ class Functioning extends CI_Controller {
 		
 		return $this->Functionmodel->get_test_questions($test_id);
 	}
+	
+	public function reorg_list()
+	{
+		$this->load->model('Layoutmodel');
+		$this_category = $this->input->post('category');
+		$this_tag = $this->input->post('tagname');
+		$this_location = $this->input->post('location');
+		
+		$this->Layoutmodel->get_tag_elements($this_category, $this_tag);
+	}
 }
 ?>

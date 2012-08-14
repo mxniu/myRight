@@ -1,102 +1,24 @@
-<script type="text/javascript">
+<div class="modal hidden fade" id="disclaimerModal">
+  <div class="modal-body fade" style="text-align: left; padding: 20px">
+		<div class="modal-center">
+			<img src="http://i.imgur.com/qkKy8.gif"/>
+		</div>
+	</div>
+</div>
+<script>
 $(function() {
-	var availableTags = [<?php
-	if ($alltags) {
-		$first_time = 1;
-		foreach ($alltags as $tag) {
-			if($first_time == 1)
-			{
-				$first_time = 0;
-			}
-			else
-			{
-				echo ",";
-			}
-			echo "'".$tag->tagname."'";
-		}
-	}
-	?>];
-	function split( val ) {
-		return val.split( /,\s*/ );
-	}
-	function extractLast( term ) {
-		return split( term ).pop();
-	}
-
-	$( "#top-search-input" )
-		// don't navigate away from the field on tab when selecting an item
-		.bind( "keydown", function( event ) {
-			if ( event.keyCode === $.ui.keyCode.TAB &&
-					$( this ).data( "autocomplete" ).menu.active) {
-				event.preventDefault();
-			}
-		})
-		.autocomplete({
-			minLength: 0,
-			source: function( request, response ) {
-				// delegate back to autocomplete, but extract the last term
-				var results = $.ui.autocomplete.filter(
-					availableTags, extractLast( request.term ) );
-				response(results.slice(0, 10));
-			},
-			focus: function() {
-				// prevent value inserted on focus
-				return false;
-			},
-			select: function( event, ui ) {
-				$.ajax({
-					type: "POST",
-					url: "../function/find_slug",
-					data: {tag: String(ui.item.value)},
-					dataType: "html"
-				}).done(function( data ) {
-					if(data)
-						window.location.href = String(data);
-				});
-				//var terms = split( this.value );
-				// remove the current input
-				//terms.pop();
-				// add the selected item
-				//terms.push( ui.item.value );
-				// add placeholder to get the comma-and-space at the end
-				//terms.push( "" );
-				//this.value = terms[0];
-				return false;
-			}
-		}); 
-	$( ".big_search" )
-		// don't navigate away from the field on tab when selecting an item
-		.bind( "keydown", function( event ) {
-			if ( event.keyCode === $.ui.keyCode.TAB &&
-					$( this ).data( "autocomplete" ).menu.active) {
-				event.preventDefault();
-			}
-		})
-		.autocomplete({
-			minLength: 0,
-			source: function( request, response ) {
-				// delegate back to autocomplete, but extract the last term
-				var results = $.ui.autocomplete.filter(
-					availableTags, extractLast( request.term ) );
-				response(results.slice(0, 10));
-			},
-			focus: function() {
-				// prevent value inserted on focus
-				return false;
-			},
-			select: function( event, ui ) {
-				$.ajax({
-					type: "POST",
-					url: "../function/find_slug",
-					data: {tag: String(ui.item.value)},
-					dataType: "html"
-				}).done(function( data ) {
-					if(data)
-						window.location.href = String(data);
-				});
-				return false;
-			}
-		});
+	$('#disclaimerModal').click(function(){
+		$('#disclaimerModal').modal('hide');
+		return false;
+	});
+	
+	$('#disclaimerModal').on('show', function(){
+		$('body').css('overflow', 'hidden');
+	});
+	$('#disclaimerModal').on('hidden', function () {
+		$('#disclaimerModal').children(".modal-body").children(".modal-center").html('<img src="http://i.imgur.com/qkKy8.gif"/>');
+		$('body').css('overflow', 'auto');
+	});
 	
 	$('.about_disclaimer').click(function(){
 		$.ajax({
@@ -129,4 +51,25 @@ $(function() {
 		})
 	});
 });
+</script>
+<script type="text/javascript">
+  var uvOptions = {};
+  (function() {
+    var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+    uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/bhZYVMlL7tU5y7PR7AE3iw.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+  })();
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30911529-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
 </script>

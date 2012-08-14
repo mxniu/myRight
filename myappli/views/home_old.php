@@ -1,12 +1,14 @@
 <section class="content" style="text-align: center; position: relative">
 	<div style="text-align: left; margin-top: 20px; margin-left: 5px; font-size: 4em; word-spacing: -2px;  font-weight: bold; font-family: 'Helvetica Neue', Arial, 'Liberation Sans', sans-serif;">Learn <span style="letter-spacing: -5px">Y</span>our Rights</div>
-	<div style="margin-top: -8px; margin-left: 5px; text-align: left; font-size: 2em;  word-spacing: -1px; font-family: 'Open Sans', sans-serif; font-weight: 300;">with our interactive guides</div>
+	<div style="margin-top: -8px; margin-left: 5px; text-align: left; font-size: 2.5em;  word-spacing: -1px; font-family: 'Open Sans', sans-serif; font-weight: 300;">Share Your Experience</div>
 	<section class="center" style="margin-top: 105px; width: 415px; overflow: hidden">
-		<div class="eye-grabber">Under Construction - Be back soon!</div>
+		<input class="big_search" placeholder="What are you looking for?" autocomplete="off"></input>
+		<div class="big_search_button"><img src="../images/home_search.png" height="26" width="26"/></div>
 	</section>
-	</div>
+	<div style="text-align: center; margin: 15px auto 0; width:500px; font-size: 1em; font-family: georgia, serif; font-style: italic">myRight helps you learn about the law by keeping it simple.</div>
+	<!--<div class="logo_med center" style="margin-top: 30px;"></div>-->
 	
-	<!--<section class="features">
+	<section class="features">
 		<div class="left home_category">
 			<h3>Legal Info</h3>
 			<div class="medallion" id="medal_secondary"></div>
@@ -27,30 +29,38 @@
 			<div class="medallion" id="medal_document"></div>
 			<div style="margin-top: 20px; font-family: 'Open Sans', sans-serif; font-weight: 300">Customizable templates and examples to fit your needs</div>
 		</div>
-	</section>-->
+	</section>
 	
 	<section style="text-align: left; margin: 105px 0 0 0; padding-bottom: 100px; position: relative">
-		<div style="text-align: left; font-family: 'Open Sans', sans-serif; font-weight: 600; font-size: 20px; margin: 0 auto; padding-left: 5px; color: #666; padding-bottom: 15px">Coming Soon...</div>
+		<div style="text-align: left; font-family: 'Open Sans', sans-serif; font-weight: 600; font-size: 20px; margin: 0 auto; padding-left: 5px; color: #666; padding-bottom: 15px">Learn more about...</div>
 		<section style="overflow: hidden; border-top: 1px solid #BBB; padding-top: 10px;">
 			<div class="left home_category">
-				<div class="coming_soon">Traffic Tickets</div>
-				<div class="coming_soon secondrow">Drug Possession</div>
-				<div class="coming_soon thirdrow">Search & Seizure</div>
+				<h3>Featured</h3>
+				<a href="/startup/advisor">Getting an Advisor</a>
+				<a href="/startup/ip">Intellectual Property</a>
+				<a href="/startup/entity">Choosing an Entity</a>
+				<a href="/tickets/appeal?location=Los-Angeles">Fighting Parking Tickets</a>
 			</div>
 			<div class="left home_category">
-				<div class="coming_soon">Tenants' Rights</div>
-				<div class="coming_soon secondrow">Bankruptcy</div>
-				<div class="coming_soon thirdrow">Child Custody</div>
+				<h3>National Debates</h3>
+				<a href="/national/same-sex-marriage">Same-Sex Marriage</a>
+				<a href="/national/healthcare-reform">Healthcare Reform</a>
+				<a href="/national/immigration">Immigration</a>
+				<a href="/national/sopa">SOPA</a>
 			</div>
 			<div class="left home_category">
-				<div class="coming_soon">Patents</div>
-				<div class="coming_soon secondrow">Trademarks</div>
-				<div class="coming_soon thirdrow">Copyrights</div>
+				<h3>Startup Law</h3>
+				<a href="/startup/ip">Intellectual Property</a>
+				<a href="/startup/corporation">Corporations</a>
+				<a href="/startup/document">Startup Documents</a>
+				<a href="/startup/llc">LLC</a>
 			</div>
 			<div class="left home_category">
-				<div class="coming_soon">Foreclosure</div>
-				<div class="coming_soon secondrow">Wills & Trusts</div>
-				<div class="coming_soon thirdrow">Divorce</div>
+				<h3>Parking Tickets</h3>
+				<a href="/tickets?location=Los-Angeles">Los Angeles</a>
+				<a href="/tickets?location=New-York-City">New York City</a>
+				<a href="/tickets?location=San-Francisco">San Francisco</a>
+				<a href="/tickets?location=San-Jose">San Jose</a>
 			</div>
 		</section>
 	</section>

@@ -5,7 +5,7 @@ class Home extends CI_Controller {
 	{	
 		$this->load->model('Commonmodel');
 	
-		$data['title'] = 'myRight | Bringing the Law back to the People';
+		$data['title'] = 'Bringing the Law back to the People';
 		$data['description'] = 'myRight is a new startup that wants to help everyone learn their rights and know more about the law. Check out the beta release of the site!';
 		$data['alltags'] = $this->Commonmodel->get_all_tags();
 	

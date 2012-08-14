@@ -11,6 +11,7 @@
 	
 	<input type="submit" name="submit" value="Load Test" />
 	<input type="submit" name="submit" value="Create Test" />
+	<input type="submit" name="submit" value="Clone Test" />
 </form>
 
 <?php if(isset($test)): ?>
@@ -40,9 +41,9 @@
 	<label for="type">Type</label>
 	<?php
 		if(isset($question)) 
-			echo form_dropdown('type', array('MB'=>'Multi-button', 'MC'=>'Multiple Choice'), $question->type);
+			echo form_dropdown('type', array('MB'=>'Multi-button', 'MC'=>'Multiple Choice', 'OP'=>'Options', 'EX'=>'Explanation', 'IN'=>'Input'), $question->type);
 		else
-			echo form_dropdown('type', array('MB'=>'Multi-button', 'MC'=>'Multiple Choice'));
+			echo form_dropdown('type', array('MB'=>'Multi-button', 'MC'=>'Multiple Choice', 'OP'=>'Options', 'EX'=>'Explanation', 'IN'=>'Input'));
 	?><br/>
 	
 	<label for="question">Question</label> 

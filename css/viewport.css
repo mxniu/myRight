@@ -183,7 +183,7 @@ div.author_thumbnail {
 
 a#view_source {
 	display: block;
-	width: 85px;
+	width: 92px;
 	font-size: 16px;
 	padding: 8px 14px;
 	margin-left: 10px;
@@ -330,3 +330,147 @@ a.gray-tab {
 		}
 			a.rating-up { background: url('../images/up-arrow.gif') 13px 0 no-repeat; }
 			a.rating-down { background: url('../images/down-arrow.gif') 13px 0 no-repeat; }
+
+.social-button
+{
+	display: block;
+	height: 28px;
+	padding: 12px;
+	width: 87px;
+	margin: 5px 0;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	font-size: 14px;
+	text-transform: uppercase;
+}
+.social-button#fb_share
+{
+	background: -moz-linear-gradient(
+		top,
+		#5f80c2 0%,
+		#3e6fb3 53%,
+		#3e6fb3);
+	background: -webkit-gradient(
+		linear, left top, left bottom, 
+		from(#5f80c2),
+		color-stop(0.53, #3e6fb3),
+		to(#3e6fb3));
+	border: 0px solid #134201;
+	-moz-box-shadow:
+		0px 1px 3px rgba(000,000,000,0),
+		inset 0px 10px 17px rgba(188,194,220,0.8);
+	-webkit-box-shadow:
+		0px 1px 3px rgba(000,000,000,0),
+		inset 0px 10px 17px rgba(188,194,220,0.8);
+	color: #FFF;
+}
+.social-button#fb_share:hover
+{
+	background: -moz-linear-gradient(
+		top,
+		#5f80c2 0%,
+		#345785 75%,
+		#315d96);
+	background: -webkit-gradient(
+		linear, left top, left bottom, 
+		from(#5f80c2),
+		color-stop(0.75, #345785),
+		to(#315d96));
+	border: 0px solid #134201;
+	-moz-box-shadow:
+		0px 1px 3px rgba(000,000,000,0),
+		inset 0px 10px 17px rgba(188,194,220,0.8);
+	-webkit-box-shadow:
+		0px 1px 3px rgba(000,000,000,0),
+		inset 0px 10px 17px rgba(188,194,220,0.8);
+	box-shadow:
+		0px 1px 3px rgba(000,000,000,0),
+		inset 0px 10px 17px rgba(188,194,220,0.8);
+}
+.social-button#fb_share:active
+{
+	background: -moz-linear-gradient(
+		top,
+		#3e6fb3 0%,
+		#3e6fb3 53%,
+		#5f80c2);
+	background: -webkit-gradient(
+		linear, left top, left bottom, 
+		from(#3e6fb3),
+		color-stop(0.53, #3e6fb3),
+		to(#5f80c2));
+	border: 0px solid #134201;
+	-moz-box-shadow:
+		0px 1px 3px rgba(000,000,000,0),
+		inset 0px 10px 17px #315d96;
+	-webkit-box-shadow:
+		0px 1px 3px rgba(000,000,000,0),
+		inset 0px 10px 17px #315d96;
+	color: #FFF;
+}
+.social-button#twitter_share
+{
+	background: -moz-linear-gradient(
+		top,
+		#5fafe1 0%,
+		#257dc0);
+	background: -webkit-gradient(
+		linear, left top, left bottom, 
+		from(#5fafe1),
+		to(#257dc0));
+	border: 0px solid #134201;
+	-moz-box-shadow:
+		0px 1px 3px rgba(000,000,000,0),
+		inset 0px 10px 17px rgba(208,232,246,0.6);
+	-webkit-box-shadow:
+		0px 1px 3px rgba(000,000,000,0),
+		inset 0px 10px 17px rgba(208,232,246,0.6);
+	box-shadow:
+		0px 1px 3px rgba(000,000,000,0),
+		inset 0px 10px 17px rgba(208,232,246,0.6);
+	color: #FFF;
+}
+.social-button#twitter_share:hover
+{
+	background: -moz-linear-gradient(
+		top,
+		#2293d4 0%,
+		#0f588c);
+	background: -webkit-gradient(
+		linear, left top, left bottom, 
+		from(#2293d4),
+		to(#0f588c));
+	border: 0px solid #134201;
+	-moz-box-shadow:
+		0px 1px 3px rgba(000,000,000,0),
+		inset 0px 10px 17px rgba(208,232,246,0.6);
+	-webkit-box-shadow:
+		0px 1px 3px rgba(000,000,000,0),
+		inset 0px 10px 17px rgba(208,232,246,0.6);
+	box-shadow:
+		0px 1px 3px rgba(000,000,000,0),
+		inset 0px 10px 17px rgba(208,232,246,0.6);
+}
+.social-button#twitter_share:active
+{
+	background: -moz-linear-gradient(
+		top,
+		#257dc0 0%,
+		#5fafe1);
+	background: -webkit-gradient(
+		linear, left top, left bottom, 
+		from(#257dc0),
+		to(#5fafe1));
+	border: 0px solid #134201;
+	-moz-box-shadow:
+		0px 1px 3px rgba(000,000,000,0),
+		inset 0px 10px 17px #0f588c;
+	-webkit-box-shadow:
+		0px 1px 3px rgba(000,000,000,0),
+		inset 0px 10px 17px #0f588c;
+	box-shadow:
+		0px 1px 3px rgba(000,000,000,0),
+		inset 0px 10px 17px #0f588c;
+	color: #FFF;
+}

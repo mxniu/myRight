@@ -69,7 +69,11 @@
           }
 
           that.$element.addClass('in')
+		  that.$element.children('.modal-body').addClass('in');
 
+		  that.$element.children('.modal-body').click(function(e){e.stopPropagation()});
+		  $('#myModal').click(function(){$(this).unbind('click'); window.history.back(); return false;})
+		  
           transition ?
             that.$element.one($.support.transition.end, function () { that.$element.trigger('shown') }) :
             that.$element.trigger('shown')
@@ -95,9 +99,11 @@
         escape.call(this)
 
         this.$element.removeClass('in')
+		this.$element.children('.modal-body').removeClass('in');
+		this.$element.children('.modal-body').unbind('click');
 
-        $.support.transition && this.$element.hasClass('fade') ?
-          hideWithTransition.call(this) :
+        $.support.transition && this.$element.hasClass('fade') //?
+          //hideWithTransition.call(this) :
           hideModal.call(this)
       }
 
@@ -196,7 +202,7 @@
   }
 
   $.fn.modal.defaults = {
-      backdrop: true
+      backdrop: false
     , keyboard: true
     , show: true
   }

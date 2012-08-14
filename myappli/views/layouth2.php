@@ -1,17 +1,22 @@
 <section class="content">
 <div id="beta_box">
 	<div id="test_interface">
-	<?php if(!isset($test_id)): ?>
+	<?php if($debug === FALSE || !isset($top_desc)): ?>
 		<div class="left" style="width: 390px; padding: 0 20px 0 30px; text-align: left;">
 			<h2 style="margin-top: 30px; line-height: 20px">Think something is missing?</h2>
-			<p>We are giving a select group exclusive first access to curate the best legal information available online</p>
+			<p>We are giving a select group exclusive first access to beta test our site and help people learn their rights.</p>
 		</div> 
 		<div class="left" style="width: 150px; padding-top: 30px; text-align: left">
 			<a href="http://signup.myright.me" class="button_orange_thin" target="_blank" style="color: #FFF; margin: 0">Get Invited</a>
 		</div>
+	<?php elseif(!isset($test_id)): ?>
+		<div class="left" style="width: 490px; padding: 0 20px 0 30px; text-align: left;">
+			<h2 style="margin-top: 30px; line-height: 20px"><?=$title?></h2>
+			<?=$top_desc?>
+		</div> 
 	<?php else: ?>
 		<div class="left" style="width: 390px; padding: 0 20px 0 30px; text-align: left;">
-			<h2 style="margin-top: 25px; line-height: 20px">Not sure where to start?</h2>
+			<h2 style="margin-top: 25px; line-height: 20px"><?=$title?></h2>
 			<?=$top_desc?>
 		</div> 
 		<div class="left" style="width: 150px; padding-top: 25px; text-align: left">
@@ -57,7 +62,7 @@
 	</form>
 </section>-->
 <section class="clearfix">
-	<h2 class="left" style="text-transform: capitalize; font-size: 28px; line-height: 30px; color: #378daf;"><?=$title?></h2>
+	<h2 class="left" id="tag-title" style="text-transform: capitalize; font-size: 28px; line-height: 30px; color: #378daf;"><?=$title?></h2>
 	<div class="right" style="margin-top: 28px">
 		<?php 
 			if(isset($locations))
