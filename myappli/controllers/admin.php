@@ -52,13 +52,13 @@ class Admin extends CI_Controller {
 			$data['category'] = $this->input->post('category');
 			$data['elements'] = $this->Adminmodel->get_elements($this->input->post('category'));
 			$data['element_data'] = $this->Adminmodel->get_element($this->input->post('element'));
+			$data['posters'] = $this->Adminmodel->get_posters();
 			$this->load->view('adminview', $data);
 		}
 		else if($this_action === "Add" || $this_action === "Edit" || $this_action === "Delete")
 		{	
 			$this->form_validation->set_rules('title', 'Title', 'required');
-			$this->form_validation->set_rules('summary', 'Summary', 'required');
-			$this->form_validation->set_rules('url', 'URL', 'required');
+			//$this->form_validation->set_rules('url', 'URL', 'required');
 			
 			if ($this->form_validation->run() === FALSE)
 			{	
@@ -159,6 +159,36 @@ class Admin extends CI_Controller {
 			
 			$this->load->view('test_editor', $data);
 		}
+	}
+	
+	public function view_stats()
+	{	
+		$this->load->helper('form');
+		$this->load->model('Adminmodel');
+
+		$data['heading'] = 'myRight Analytics';
+		$data['tests'] = $this->Adminmodel->get_tests_by_version(2);
+		
+		$this_action = $this->input->post('submit');
+		
+		if(!$this_action)
+		{
+			//Do nothing
+		}
+		else if($this_action === "Get Test")
+		{
+			$data['test'] = $this->Adminmodel->get_test(91);
+			$data['results'] = $this->Adminmodel->get_stats(91);
+		}
+		
+		$this->load->view('analytics', $data);
+		/*echo "<b>Test 66:</b><br/>";
+		echo "Total visitors: ".$results['total']."<br/>";
+		echo "Bounce Rate: ".$results['bounce_rate']."%<br/>";
+		echo "Average Time per User (non-bounce users): ".$results['time_spent']." minutes<br/>";
+		echo "Average Time per Visit (non-bounce users): ".$results['time_per_visit']." minutes<br/>";
+		echo "Average Engagement Depth (non-bounce users): ".$results['engagement']." clicks per user<br/>";
+		echo "Visits per User (non-bounce users): ".$results['revisits']." visits per user<br/>";*/
 	}
 }
 ?>

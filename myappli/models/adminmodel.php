@@ -14,7 +14,6 @@ class Adminmodel extends CI_Model {
 		$input = str_replace("§", "&sect;", $input);
 		$input = str_replace("—", "&mdash;", $input);
 		$input = str_replace("--", "&mdash;", $input);
-		$input = str_replace("-", "&ndash;", $input);
 		return $input;
 	}
 	
@@ -54,12 +53,30 @@ class Adminmodel extends CI_Model {
 		}
 		return $categories_array;
 	}
+	
+	public function get_posters()
+	{
+		$this->db->select('*');
+		$this->db->order_by('name desc');
+	
+		$query = $this->db->get('posters');
+        $posters_array = array();
+		$posters_array[0] = '[NONE]';
+		foreach ($query->result() as $row)
+		{
+			$posters_array[$row->id] = $row->name; 
+		}
+		return $posters_array;
+	}
 
 	public function create_element()
 	{
 		$this->load->helper('url');
 		
 		$slug = url_title($this->input->post('title'), 'dash', TRUE);
+		
+		$date = new DateTime();
+		$datestamp = $date->getTimestamp();
 		
 		$data = array(
 			'title' => $this->input->post('title'),
@@ -70,7 +87,9 @@ class Adminmodel extends CI_Model {
 			'tags' => $this->input->post('tags'),
 			'location' => $this->input->post('location'),
 			'votes' => $this->input->post('votes'),
-			'type' => $this->input->post('type')
+			'type' => $this->input->post('type'),
+			'poster' => $this->input->post('poster'),
+			'date_created' => $datestamp
 		);
 		
 		return $this->db->insert('links', $data);
@@ -91,7 +110,8 @@ class Adminmodel extends CI_Model {
 			'tags' => $this->input->post('tags'),
 			'location' => $this->input->post('location'),
 			'votes' => $this->input->post('votes'),
-			'type' => $this->input->post('type')
+			'type' => $this->input->post('type'),
+			'poster' => $this->input->post('poster')
 		);
 		
 		$this->db->where('id', $this->input->post('id'));
@@ -212,11 +232,23 @@ class Adminmodel extends CI_Model {
 	
 	public function get_tests()
 	{
-		$query = $this->db->query('SELECT DISTINCT test_id FROM questions ORDER BY test_id ASC');
+		$query = $this->db->query('SELECT DISTINCT q.test_id, c.name FROM questions q LEFT JOIN categories c ON q.test_id = c.test_id ORDER BY test_id ASC');
 		$arr = array();
 		foreach ($query->result() as $row)
 		{
-			$arr[$row->test_id] = $row->test_id; 
+			$arr[$row->test_id] = "[".$row->test_id."] ".$row->name; 
+		}
+		
+		return $arr;
+	}
+	
+	public function get_tests_by_version($version)
+	{
+		$query = $this->db->query('SELECT DISTINCT q.test_id, c.name FROM questions q LEFT JOIN categories c ON q.test_id = c.test_id WHERE c.version = '.$version.' ORDER BY test_id ASC');
+		$arr = array();
+		foreach ($query->result() as $row)
+		{
+			$arr[$row->test_id] = "[".$row->test_id."] ".$row->name; 
 		}
 		
 		return $arr;
@@ -280,7 +312,8 @@ class Adminmodel extends CI_Model {
 			'cluster' => $row->cluster,
 			'question' => $row->question,
 			'seq' => $row->seq,
-			'answers' => $row->answers
+			'answers' => $row->answers,
+			'condition' => $row->condition
 			);
 			
 			$this->db->insert('questions', $data);
@@ -299,12 +332,12 @@ class Adminmodel extends CI_Model {
 		
 		//Construct the answer string
 		$answers = '';
-		for($i = 1; $i <= 5; $i++)
+		for($i = 1; $i <= 10; $i++)
 		{
 			if($this->input->post('answer'.$i) === "")
 				break;
 			$to_append = $this->escape_html($this->input->post('answer'.$i));
-			$answers .= $to_append.",".$this->input->post('link'.$i).",".$this->input->post('tag'.$i)."|";  
+			$answers .= $to_append.",".$this->input->post('link'.$i).",".$this->input->post('tag'.$i).",".$this->escape_html($this->input->post('var'.$i))."|";  
 		}
 		$answers = substr($answers, 0, strlen($answers) - 1);
 		
@@ -314,7 +347,9 @@ class Adminmodel extends CI_Model {
 			'cluster' => $this->input->post('cluster'),
 			'question' => $this->escape_html($this->input->post('question')),
 			'seq' => $seq,
-			'answers' => $answers
+			'answers' => $answers,
+			'condition' => $this->input->post('condition'),
+			'explanation' => $this->input->post('explanation')
 		);
 		
 		return $this->db->insert('questions', $data);
@@ -340,12 +375,12 @@ class Adminmodel extends CI_Model {
 		
 		//Construct the answer string
 		$answers = '';
-		for($i = 1; $i <= 5; $i++)
+		for($i = 1; $i <= 10; $i++)
 		{
 			if($this->input->post('answer'.$i) === "")
 				break;
 			$to_append = $this->escape_html($this->input->post('answer'.$i));
-			$answers .= $to_append.",".$this->input->post('link'.$i).",".$this->input->post('tag'.$i)."|";  
+			$answers .= $to_append.",".$this->input->post('link'.$i).",".$this->input->post('tag'.$i).",".$this->escape_html($this->input->post('var'.$i))."|";  
 		}
 		$answers = substr($answers, 0, strlen($answers) - 1);
 		
@@ -355,7 +390,9 @@ class Adminmodel extends CI_Model {
 			'cluster' => $this->input->post('cluster'),
 			'question' => $this->escape_html($this->input->post('question')),
 			'seq' => $this->input->post('seq'),
-			'answers' => $answers
+			'answers' => $answers,
+			'condition' => $this->input->post('condition'),
+			'explanation' => $this->input->post('explanation')
 		);
 		$this->db->where('id', $this->input->post('id'));
 		
@@ -429,7 +466,145 @@ class Adminmodel extends CI_Model {
 	
 	public function seed_ratings()
 	{
+		$query = $this->db->query('SELECT * FROM links');
+		foreach ($query->result() as $row)
+		{	
+			$this->db->query('UPDATE links SET votes = '.rand(5,15).' WHERE id = '.$row->id);
+		}
+		$query = $this->db->query('SELECT * FROM votes');
+		foreach ($query->result() as $row)
+		{	
+			$sub_query = $this->db->query('SELECT votes FROM links WHERE id = '.$row->lid);
+			$this->db->query('UPDATE links SET votes = '.((int) $sub_query->row()->votes + (int) $row->type * 2).' WHERE id = '.$row->lid);
+		}
+	}
+	
+	public function get_stats($test_id)
+	{
+		$bounce_counts = array();
+	
+		$results = array();
+	
+		$query = $this->db->query("SELECT COUNT(DISTINCT ip) AS total FROM track_entries WHERE test_id = $test_id");
+		$results['total'] = $query->row()->total;
 		
+		$query = $this->db->query("SELECT ip, COUNT(*) as engagements FROM track_entries WHERE test_id = $test_id AND type = 'QLOAD' GROUP BY ip");
+		$participatory_users = 0;
+		$participatory_clicks = 0;
+		$timediff = 0;
+		$revisits = 0;
+		$completes = 0;
+		$skips = 0;
+		foreach ($query->result() as $row)
+		{
+			if($row->engagements > 1)
+			{
+				$participatory_users++;
+				$participatory_clicks += $row->engagements;
+				
+				$entries_query = $this->db->query("SELECT timestamp FROM track_entries WHERE test_id = $test_id AND type = 'BEGIN' AND ip = '".$row->ip."' ORDER BY timestamp ASC");
+				if($entries_query->num_rows() > 1)
+				{
+					$entry_array = array();
+					foreach($entries_query->result() as $entry_row)
+					{
+						$entry_array[] = $entry_row->timestamp;
+					}
+					for($i = 0; $i < count($entry_array); $i++)
+					{
+						if($i === count($entry_array) - 1)
+							$sub_query = $this->db->query("SELECT MAX(timestamp) as closer FROM track_entries WHERE test_id = $test_id AND ip = '".$row->ip."'");
+						else
+							$sub_query = $this->db->query("SELECT MAX(timestamp) as closer FROM track_entries WHERE test_id = $test_id AND ip = '".$row->ip."' AND timestamp < '".$entry_array[$i+1]."'");
+						$timediff += strtotime($sub_query->row()->closer) - strtotime($entry_array[$i]) + 10;
+						//echo "".$row->ip." ".(strtotime($sub_query->row()->closer) - strtotime($entry_array[$i]))."<br/>";
+						
+						$third_query = $this->db->query("SELECT data FROM track_entries WHERE test_id = $test_id AND ip = '".$row->ip."' AND timestamp = '".$sub_query->row()->closer."' AND type = 'QLOAD'");
+						
+						if($third_query->num_rows() <= 0) continue;
+						if(isset($bounce_counts[$third_query->row()->data]))
+							$bounce_counts[$third_query->row()->data] = $bounce_counts[$third_query->row()->data] + 1;
+						else
+							$bounce_counts[$third_query->row()->data] = 1;
+					}
+				}
+				else
+				{
+					$sub_query = $this->db->query("SELECT MIN(timestamp) as opener, MAX(timestamp) as closer FROM track_entries WHERE test_id = $test_id AND ip = '".$row->ip."'");
+					$timediff += strtotime($sub_query->row()->closer) - strtotime($sub_query->row()->opener) + 10; 
+					
+					$third_query = $this->db->query("SELECT data FROM track_entries WHERE test_id = $test_id AND ip = '".$row->ip."' AND timestamp = '".$sub_query->row()->closer."' AND type = 'QLOAD'");
+					
+					if($third_query->num_rows() <= 0) continue;
+					if(isset($bounce_counts[$third_query->row()->data]))
+						$bounce_counts[$third_query->row()->data] = $bounce_counts[$third_query->row()->data] + 1;
+					else
+						$bounce_counts[$third_query->row()->data] = 1;
+				}
+				
+				$sub_query = $this->db->query("SELECT count(*) as revisits FROM track_entries WHERE test_id = $test_id AND type = 'BEGIN' AND ip = '".$row->ip."'");
+				
+				$revisits += $sub_query->row()->revisits;
+				
+				$sub_query = $this->db->query("SELECT count(*) as completes FROM track_entries WHERE test_id = $test_id AND type = 'RLOAD' AND ip = '".$row->ip."'");
+				
+				if($sub_query->row()->completes > 0)
+					$completes++;
+				
+				$sub_query = $this->db->query("SELECT count(*) as skips FROM track_entries WHERE test_id = $test_id AND type = 'RSKIP' AND ip = '".$row->ip."'");
+				
+				if($sub_query->row()->skips > 0)
+					$skips++;
+			}
+		}
+		$results['bounce_rate'] = round(((($results['total'] - $participatory_users)/$results['total']) * 100), 2);
+		$results['engagement'] = round(($participatory_clicks/$participatory_users), 2);
+		$results['time_spent'] = date("i:s", ($timediff/$participatory_users));
+		$results['time_per_visit'] = date("i:s", ($timediff/$revisits));
+		$results['revisits'] = round(($revisits/$participatory_users), 2);
+		$results['pusers'] = $participatory_users;
+		$results['completes'] = $completes-$skips;
+		$results['bounce_counts'] = "";
+		
+		//Fix math operation captures
+		foreach($bounce_counts as $key => $value)
+		{
+			$type = '';
+			$curr_seq = 0;
+			$q_query = $this->db->query("SELECT seq, type, test_id FROM questions WHERE id = ".$key);
+			
+			$type = $q_query->row()->type;
+			$curr_seq = (int) $q_query->row()->seq;
+			
+			while($type === "MO")
+			{
+				$curr_seq += 1;
+				
+				$qq_query = $this->db->query("SELECT id, type FROM questions WHERE test_id = ".$q_query->row()->test_id." AND seq = ".$curr_seq);
+				
+				if($qq_query->row()->type === "MO")
+				{
+					continue;
+				}
+				
+				if(isset($bounce_counts[$qq_query->row()->id]))
+					$bounce_counts[$qq_query->row()->id] += $value;
+				else
+					$bounce_counts[$qq_query->row()->id] = $value;
+				unset($bounce_counts[$key]);
+				
+				break;
+			}
+		}
+		//Format output string
+		foreach($bounce_counts as $key => $value)
+		{
+			$q_query = $this->db->query("SELECT seq, question FROM questions WHERE id = ".$key);
+		
+			$results['bounce_counts'] .= "[".$q_query->row()->seq."] ".strip_tags($q_query->row()->question).": <b>".$value."</b><br/>";
+		}
+		
+		return $results;
 	}
 }
 ?>

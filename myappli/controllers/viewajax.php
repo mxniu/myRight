@@ -11,8 +11,13 @@ class Viewajax extends CI_Controller {
 		$this->load->model('Viewmodel');
 		$data['method'] = $method;
 		$data['element'] = $this->Viewmodel->get_element($method);
+		if($data['element']->poster != "0")
+		{
+			$data['poster'] = $this->Viewmodel->get_poster($data['element']->poster);
+		}
+		else
+			$data['poster'] = 0;
 		$data['title'] = $data['element']->title;
-		$data['categories'] = $this->Viewmodel->get_categories();
 		$data['comments'] = $this->Viewmodel->get_comments($data['element']->id);
 		
 		$this->Viewmodel->add_view($data['element']->id, $data['element']->views);

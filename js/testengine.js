@@ -1,11 +1,18 @@
 var astack = new Array();
 var hstack = new Array();
+var gvar = new Array();
 var all_questions;
 var num_of_questions;
 var test_id;
 
 function reorg_list(TAGNAME)
 {
+	if(TAGNAME.indexOf("http://") >= 0)
+	{
+		window.location.href = TAGNAME;
+		return;
+	}
+
 	var category_slug = $('#category-slug').html();
 	var location_slug = $('#location-slug').html();
 
@@ -18,13 +25,16 @@ function reorg_list(TAGNAME)
 		url: this_action,
 		dataType: "html"
 	}).done(function( data ) {
-		$('#tag-title').html(TAGNAME);
-		$('#list-elements').infinitescroll('destroy').html(data).infinitescroll({                      
-		  state: {                                              
-			isDestroyed: false,
-			isDone: false                           
-		  }
-		}).infinitescroll({
+		$('#tag-title').fadeOut(500, function(){
+			$('#tag-title').html(TAGNAME).fadeIn(500);
+		});
+		$('#list-elements').infinitescroll('destroy').fadeOut(500, function(){
+			$('#list-elements').html(data).fadeIn(500).infinitescroll({                      
+			  state: {                                              
+				isDestroyed: false,
+				isDone: false                           
+			  }
+			}).infinitescroll({
 			navSelector  : '#page_nav',    // selector for the paged navigation 
 			nextSelector : '#page_nav a:first',  // selector for the NEXT link (to page 2)
 			itemSelector : '.list-element',     // selector for all items you'll retrieve
@@ -49,6 +59,7 @@ function reorg_list(TAGNAME)
 					}
 					return false;
 				});
+			});
 		});
 		
 		$('.list-element').children('.title-wrapper').children('.title').click(function(e){
@@ -67,6 +78,18 @@ function reorg_list(TAGNAME)
 	});
 }
 
+$.fn.loadResults = function()
+{	
+	//$.post("../function/tracker", { type: "RLOAD", time: Math.round(new Date().getTime() / 1000), test_id: test_id} );
+	
+	//Display results!
+	$("#test_interface").fadeOut(500, function(){
+		$("#test_interface").empty().append("<img src='http://i.imgur.com/qkKy8.gif' id='loading'/>");
+		$(".result_box").fadeIn(500);
+		$("#beta_box").css('min-height', '380px');
+	});
+}
+
 $.fn.disableClicks = function()
 {
 	$("div[id^='a_']").unbind('click');
@@ -75,41 +98,57 @@ $.fn.disableClicks = function()
 
 function loadChildNode()
 {
-	$("#test_interface").fadeOut(500, function(){
-		$("#test_interface").empty().append("<img src='http://i.imgur.com/qkKy8.gif' id='loading'/>").fadeIn(500);
-	});
-	
 	//Redirect to result if empty
 	if(astack.length <= 0)
 	{
-		$("#test_interface").fadeOut(500, function(){
-			$("#test_interface").empty().append("<h1>This shit is done yo</h1>").fadeIn(500);
-	});
+		$(this).loadResults();
+		return;
 	}
+	$("#test_interface").fadeOut(500, function(){
+		$("#test_interface").empty().append("<img src='http://i.imgur.com/qkKy8.gif' id='loading'/>").fadeIn(500);
+	});
 	
 	QUNIT = astack[astack.length - 1];
 	
 	//Assign some local variables
 	var qtype = $.trim(QUNIT['type']);
+	
+	var preformatted_question = String(QUNIT['question']);
+	if(QUNIT['var_override'])
+	{
+		gvar[String(QUNIT['var_override']).split("=")[0]] = String(QUNIT['var_override']).split("=")[1];
+	}
+	for(key in gvar)
+	{
+		preformatted_question = preformatted_question.replace(new RegExp('{' + key + '}', "gi"), gvar[key]);
+	}
+	preformatted_question = preformatted_question.replace(new RegExp('{.*}', "gi"), '');
+	
 	//Common preconfiguration
-	var to_append = '<h1>' + QUNIT['question'] + '</h1>';
+	var to_append = '<h1>' + preformatted_question + '</h1>';
 	var answer_array = QUNIT['answers'].split('|');
+	
+	//$.post("../function/tracker", { type: "QLOAD", time: Math.round(new Date().getTime() / 1000), test_id: test_id, question: QUNIT['id']} );
+	
 	//Display the new array's question and answers on-screen
 	if (qtype == "RS" || qtype == "MC")
 	{
 			for(x in answer_array)
 			{
 				answer_array[x] = answer_array[x].split(',');
-				to_append += '<div class="option" id="a_' + x + '" data-target="' + answer_array[x][1] + '" data-tag="' + answer_array[x][2] + '"><div class="radiobutton" id="check_' + x + '"></div>&nbsp;<div class="optiontext">' + answer_array[x][0] + '</div></div>';
+				if(answer_array[x][3])
+					to_append += '<div class="option" id="a_' + x + '" data-target="' + answer_array[x][1] + '" data-tag="' + answer_array[x][2] + '" data-var="' + answer_array[x][3] + '"><div class="radiobutton" id="check_' + x + '"></div>&nbsp;<div class="optiontext">' + answer_array[x][0] + '</div></div>';
+				else
+					to_append += '<div class="option" id="a_' + x + '" data-target="' + answer_array[x][1] + '" data-tag="' + answer_array[x][2] + '"><div class="radiobutton" id="check_' + x + '"></div>&nbsp;<div class="optiontext">' + answer_array[x][0] + '</div></div>';
 			}
 		$("#test_interface").fadeOut(500, function(){
-			$("#test_interface").empty().append(to_append).fadeIn(500);
+			$("#test_interface").empty().append(to_append).css('margin', Math.abs((290-$('#test_interface').outerHeight())/2) + "px 0").fadeIn(500);
 			
 			//Show or hide the back button
-			if(hstack.length > 0)
+			/*if(hstack.length > 0)
 				$(".backbutton").fadeIn(500);
 			else
-				$(".backbutton").fadeOut(500);
+				$(".backbutton").fadeOut(500);*/
 			
 			//Set up click event handlers
 			$("div[id^='a_']").click(function() {
@@ -117,11 +156,19 @@ function loadChildNode()
 				var id = $(this).attr("id").split("_")[1];
 				var target = $(this).attr("data-target");
 				var tag = $(this).attr("data-tag");
+				var var_assign = $(this).attr("data-var");
 				$("div[id='check_" + id + "']").css("background-position", "0px -21px");
 				
 				if(tag)
 				{
 					reorg_list(tag);
+					if(tag.indexOf("http://") >= 0)
+					{
+						$("#test_interface").fadeOut(500, function(){
+							$("#test_interface").empty().append("<img src='http://i.imgur.com/qkKy8.gif' id='loading'/>").fadeIn(500);
+						});	
+						return;
+					}
 				}
 				
 				hstack.push(astack.pop());
@@ -132,7 +179,13 @@ function loadChildNode()
 					{
 						if(answer_array[y][1] && astack[x]['cluster'] == answer_array[y][1])
 						{
-							astack.splice(x, 1);
+							if(answer_array[y][3])
+								if(astack[x]['var_override'] === answer_array[y][3])
+									astack.splice(x, 1);
+								else
+									break;
+							else
+								astack.splice(x, 1);
 							break;
 						}
 					}
@@ -145,7 +198,13 @@ function loadChildNode()
 					for(x in all_questions)
 					{
 						if(all_questions[x]['cluster'] == target)
-							astack.push(all_questions[x]);
+						{
+							var temp = $.extend(true, [], all_questions[x]);
+							if(var_assign)
+								temp['var_override'] = String(var_assign);
+							
+							astack.push(temp);
+						}
 					}
 				}
 				
@@ -157,6 +216,7 @@ function loadChildNode()
 	else if (qtype == "OP")
 	{
 		var targets_to_queue = new Array();
+		var vars_to_queue = new Array();
 		for(x in answer_array)
 			{
 				answer_array[x] = answer_array[x].split(',');
@@ -166,49 +226,54 @@ function loadChildNode()
 				}
 				else
 				{
-					to_append += '<div class="option" id="a_' + x + '" data-target="' + answer_array[x][1] + '" data-tag="' + answer_array[x][2] + '"><div class="checkbox" id="check_' + x + '"></div>&nbsp;<div class="optiontext">' + answer_array[x][0] + '</div></div>';
+					if(answer_array[x][3])
+						to_append += '<div class="option" id="a_' + x + '" data-target="' + answer_array[x][1] + '" data-tag="' + answer_array[x][2] + '" data-var="' + answer_array[x][3] + '"><div class="checkbox" id="check_' + x + '"></div>&nbsp;<div class="optiontext">' + answer_array[x][0] + '</div></div>';
+					else
+						to_append += '<div class="option" id="a_' + x + '" data-target="' + answer_array[x][1] + '" data-tag="' + answer_array[x][2] + '"><div class="checkbox" id="check_' + x + '"></div>&nbsp;<div class="optiontext">' + answer_array[x][0] + '</div></div>';
 				}
 			}
 		
 		//to_append += '<div class="option" id="nota"><div class="checkbox" id="nota_check"></div>&nbsp;<div class="optiontext">None of the above</div></div>';
 		to_append += '<div class="button_orange_thin" id="op_continue">Continue</div>';
 		$("#test_interface").fadeOut(500, function(){
-			$("#test_interface").empty().append(to_append).fadeIn(500);
-			
-			if(hstack.length > 0)
-				$(".backbutton").fadeIn(500);
-			else
-				$(".backbutton").fadeOut(500);
+			$("#test_interface").empty().append(to_append).css('margin', Math.abs((290-$('#test_interface').outerHeight())/2) + "px 0").fadeIn(500);
 			
 			//Set up click event handlers
 			$("div[id^='a_']").click(function() {
 				var id = $(this).attr("id").split("_")[1];
 				var target = $(this).attr("data-target");
+				var var_assign = $(this).attr("data-var");
 				if($("div[id='check_" + id + "']").css("background-position") == "0px 0px")
 				{
 					$("div#nota_check").css("background-position", "0px 0px");
 					$("div[id='check_" + id + "']").css("background-position", "0px -23px");
 					targets_to_queue.push(target);
+					vars_to_queue.push(var_assign);
 				}
 				else
 				{
 					$("div[id='check_" + id + "']").css("background-position", "0px 0px");
 					targets_to_queue.splice(targets_to_queue.indexOf(target), 1);
+					vars_to_queue.splice(vars_to_queue.indexOf(var_assign), 1);
 				}
 			});
 			$("div#nota").click(function() {
 				var target = $(this).attr("data-target");
+				var var_assign = $(this).attr("data-var");
 				if($("div#nota_check").css("background-position") == "0px 0px")
 				{
 					$("div#nota_check").css("background-position", "0px -23px");
 					$("div[id^='check_']").css("background-position", "0px 0px");
 					targets_to_queue.length = 0;
+					vars_to_queue.length = 0;
 					targets_to_queue.push(target);
+					vars_to_queue.push(var_assign);
 				}
 				else
 				{
 					$("div#nota_check").css("background-position", "0px 0px");
 					targets_to_queue.splice(targets_to_queue.indexOf(target), 1);
+					vars_to_queue.splice(vars_to_queue.indexOf(var_assign), 1);
 				}
 			});
 			$("div#op_continue").click(function(){
@@ -229,7 +294,13 @@ function loadChildNode()
 					{
 						if(answer_array[x][1] && astack[y]['cluster'] == answer_array[x][1])
 						{
-							astack.splice(y, 1);
+							if(answer_array[x][3])
+								if(astack[y]['var_override'] === answer_array[x][3])
+									astack.splice(y, 1);
+								else
+									continue;
+							else
+								astack.splice(y, 1);
 							continue;
 						}
 					}
@@ -237,6 +308,10 @@ function loadChildNode()
 					{
 						continue;
 					}
+					//ELIMINATE IF VARIABLE SET BUT NOT QUEUED
+					if(answer_array[x][3])
+						if(vars_to_queue.indexOf(answer_array[x][3]) === -1)
+							continue;
 					if(!answer_array[x][1])
 					{
 						user_responses.push(x);
@@ -246,7 +321,13 @@ function loadChildNode()
 					for(y in all_questions)
 					{
 						if(all_questions[y]['cluster'] == answer_array[x][1])
-							astack.push(all_questions[y]);
+						{
+							var temp_q = $.extend(true, [], all_questions[y]);
+							if(answer_array[x][3])
+								temp_q['var_override'] = String(answer_array[x][3]);
+							
+							astack.push(temp_q);
+						}
 					}
 				}
 
@@ -260,6 +341,10 @@ function loadChildNode()
 	}
 	else if (qtype == "MB" || qtype == "EX")
 	{
+			if(qtype === "EX")
+			{
+				to_append = '<h4>' + preformatted_question + '</h4>';
+			}
 			
 			for(x in answer_array)
 			{
@@ -267,38 +352,36 @@ function loadChildNode()
 				/*if(answer_array[x][0].length > 20 && answer_array[x][0].indexOf('<br') == -1)
 				{
 					answer_array[x][0] = String(answer_array[x][0]).replace(" ", "<br />");
-				}
+				}*/
 				answer_array[x][0] = answer_array[x][0].replace("&#44;", ",");
 				answer_array[x][0] = answer_array[x][0].replace("&#39;", "'");
 				answer_array[x][0] = answer_array[x][0].replace("&quot;", '"');
 				answer_array[x][0] = answer_array[x][0].replace("&sect;", "§");
 				answer_array[x][0] = answer_array[x][0].replace("&mdash;", "—");
 				answer_array[x][0] = answer_array[x][0].replace("&mdash;", "--");
-				answer_array[x][0] = answer_array[x][0].replace("&ndash;", "-");*/
-				to_append += '<div class="link-outer"><div class="link-inner" id="a_' + x + '" data-target="' + answer_array[x][1] + '" data-tag="' + answer_array[x][2] + '">' + answer_array[x][0] + '</div></div>';
+				answer_array[x][0] = answer_array[x][0].replace("&ndash;", "-");
+				if(answer_array[x][3])
+					to_append += '<div class="link-outer"><div class="link-inner" id="a_' + x + '" data-target="' + answer_array[x][1] + '" data-tag="' + answer_array[x][2] + '" data-var="' + answer_array[x][3] + '">' + answer_array[x][0] + '</div></div>';
+				else
+					to_append += '<div class="link-outer"><div class="link-inner" id="a_' + x + '" data-target="' + answer_array[x][1] + '" data-tag="' + answer_array[x][2] + '">' + answer_array[x][0] + '</div></div>';
 			}
 		$("#test_interface").fadeOut(500, function(){
-			$("#test_interface").empty().append(to_append).fadeIn(500);
-
-			if(hstack.length > 0)
-				$(".backbutton").fadeIn(500);
-			else
-				$(".backbutton").fadeOut(500);
+			$("#test_interface").html(to_append).css('margin', Math.abs((290-$('#test_interface').outerHeight())/2) + "px 0").fadeIn(500);
 
 			//Resize font if necessary
 			for(x in answer_array) 
 			{
-				if(answer_array[x][0].length <4)
+				if(answer_array[x][0].length <6)
 				{
 					$('div#a_' + x).css("font-size", "1.5em");
 				}
-				else if (answer_array[x][0].length <17)
+				else if (answer_array[x][0].length <21)
 				{
-					$('div#a_' + x).css("font-size", (1 + (0.06154 *(17 - answer_array[x][0].length)))+"em");
+					$('div#a_' + x).css("font-size", (0.5 + (0.067 *( 16 - (answer_array[x][0].length - 5))))+"em");
 				}
 				else
 				{
-					$('div#a_' + x).css("font-size", "1em");
+					$('div#a_' + x).css("font-size", "0.5em");
 				}
 			}
 
@@ -308,10 +391,18 @@ function loadChildNode()
 				var id = $(this).attr("id").split("_")[1];
 				var target = $(this).attr("data-target");
 				var tag = $(this).attr("data-tag");
+				var var_assign = $(this).attr("data-var");
 				
 				if(tag)
 				{
 					reorg_list(tag);
+					if(tag.indexOf("http://") >= 0)
+					{
+						$("#test_interface").fadeOut(500, function(){
+							$("#test_interface").empty().append("<img src='http://i.imgur.com/qkKy8.gif' id='loading'/>").fadeIn(500);
+						});	
+						return;
+					}
 				}
 				
 				hstack.push(astack.pop());
@@ -322,7 +413,13 @@ function loadChildNode()
 					{
 						if(answer_array[y][1] && astack[x]['cluster'] == answer_array[y][1])
 						{
-							astack.splice(x, 1);
+							if(answer_array[y][3])
+								if(astack[x]['var_override'] === answer_array[y][3])
+									astack.splice(x, 1);
+								else
+									break;
+							else
+								astack.splice(x, 1);
 							break;
 						}
 					}
@@ -334,7 +431,13 @@ function loadChildNode()
 					for(x in all_questions)
 					{
 						if(all_questions[x]['cluster'] == target)
-							astack.push(all_questions[x]);
+						{
+							var temp = $.extend(true, [], all_questions[x]);
+							if(var_assign)
+								temp['var_override'] = String(var_assign);
+							
+							astack.push(temp);
+						}
 					}
 				}	
 
@@ -355,11 +458,7 @@ function loadChildNode()
 		to_append += '<div class="link-outer"><div class="link-inner" id="in_continue">Submit</div></div>';
 		
 		$("#test_interface").fadeOut(500, function(){
-			$("#test_interface").empty().append(to_append).fadeIn(500);
-			if(hstack.length > 0)
-				$(".backbutton").fadeIn(500);
-			else
-				$(".backbutton").fadeOut(500);
+			$("#test_interface").empty().append(to_append).css('margin', Math.abs((290-$('#test_interface').outerHeight())/2) + "px 0").fadeIn(500);
 			
 			$("#in_continue").click(function() {
 				var this_input = $('input#a_0').attr("value");
@@ -368,7 +467,6 @@ function loadChildNode()
 					$("#input_warning").empty().append("Please enter a value");
 					return;
 				}
-				
 				
 				$(this).disableClicks();
 				
@@ -381,7 +479,13 @@ function loadChildNode()
 					{
 						if(answer_array[y][1] && astack[x]['cluster'] == answer_array[y][1])
 						{
-							astack.splice(x, 1);
+							if(answer_array[y][3])
+								if(astack[x]['var_override'] === answer_array[y][3])
+									astack.splice(x, 1);
+								else
+									break;
+							else
+								astack.splice(x, 1);
 							break;
 						}
 					}
@@ -399,7 +503,6 @@ function loadChildNode()
 
 				hstack[hstack.length - 1]['user_response'] = this_input;
 				
-
 				//Eat the next item in the stack
 				loadChildNode();
 			
@@ -420,46 +523,69 @@ $.fn.preload = function() {
 
 function firstPage(NUM)
 {	
+	//$.post("../function/tracker", { type: "BEGIN", time: Math.round(new Date().getTime() / 1000), test_id: NUM} );
 	test_id = NUM;
 
 	//Load the test into global var
 	$(this).getIssue(test_id);
 	$(['/images/main_contact_bar.png','/images/factor_sprites.png','/images/factor_body.png','/images/main_radiobutton.png','/images/main_checkbox.png','/images/lawyer_stock.jpg','/images/main_contact_chat.png','/images/main_contact_email.png','/images/main_contact_call.png']).preload();
 	
-	$(".backbutton").click(function() {			
+	$('#find-a-lawyer').click(function(){
+		hstack.push(astack.pop());	
+		$(this).loadResults();
+		return;
+	});
+	
+	$('.lawyer-listing').click(function(){
+		hstack.push(astack.pop());	
+		$(this).loadResults();
+		return;
+	});
+	
+	$(".backbutton").click(function() {		
 		if(hstack.length <= 0)
 			return;
-		
-		var QUNIT = astack[astack.length - 1];
-		var answer_array = QUNIT['answers'].split('|');	
-		for(x in answer_array)
+		else if($('.result_box').css('display') === 'none')
 		{
-			answer_array[x] = answer_array[x].split(',');
-		}
-		
-		for(var x = astack.length - 1; x >= 0; x--)
-		{
-			for(y in answer_array)
+			var QUNIT = astack[astack.length - 1];
+			var answer_array = QUNIT['answers'].split('|');	
+			for(x in answer_array)
 			{
-				if(answer_array[y][1] && astack[x]['cluster'] == answer_array[y][1])
+				answer_array[x] = answer_array[x].split(',');
+			}
+			
+			for(var x = astack.length - 1; x >= 0; x--)
+			{
+				for(y in answer_array)
 				{
-					astack.splice(x, 1);
-					break;
+					if(answer_array[y][1] && astack[x]['cluster'] == answer_array[y][1])
+					{
+						astack.splice(x, 1);
+						break;
+					}
 				}
 			}
-		}	
 			
-		//You are somewhere in the test, go ahead and pop off
-		astack.push(hstack.pop())
-		loadChildNode();	
+			//You are somewhere in the test, go ahead and pop off
+			astack.push(hstack.pop());
+			loadChildNode();
+		}
+		else
+		{
+			$(".result_box").fadeOut(500, function(){
+				$("#test_interface").fadeIn(500);
+				$("#beta_box").css('min-height', '300px');
+				
+				//You are somewhere in the test, go ahead and pop off
+				astack.push(hstack.pop());
+				loadChildNode();
+			});
+		}
 	});
 }
 
 $.fn.getIssue = function(TESTNUM)
 {
-	$("#test_interface").fadeOut(500, function(){
-		$("#test_interface").empty().append("<img src='http://i.imgur.com/qkKy8.gif' id='loading'/>").fadeIn(500);
-	});	
 	$.post("../function/get_issue",{ test_id: TESTNUM },
 		function(data){
 			all_questions = data;

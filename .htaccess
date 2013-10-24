@@ -1,8 +1,23 @@
 RewriteEngine on
 RewriteBase /
-RewriteCond %{HTTP_HOST} ^myright\.me$ [OR]
-RewriteCond %{HTTP_HOST} ^www\.myright\.me$
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+RewriteCond $1 !^(index\.php|resources|images|css|js|robots\.txt|favicon\.ico|admin808|function)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !(.*)/$
+RewriteRule ^(.*)$ $1/ [L,R=301]
+
+RewriteCond %{HTTP_HOST} ^myright\.me$
 RewriteRule ^/?$ theengine.php/ [PT,L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule .* theengine.php/$0 [PT,L]
+
+<Files admin809> # this is the name of your CodeIgniter controller
+AuthName "admin809"
+AuthType Basic
+AuthUserFile /mnt/stor08-wc1-ord1/709119/www.myright.me/web/.htpasswd
+require valid-user
+</Files>

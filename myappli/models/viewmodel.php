@@ -15,6 +15,15 @@ class Viewmodel extends CI_Model {
         return $query->row();
 	}
 	
+	public function get_poster($id)
+	{
+		$this->db->select('*');
+		$this->db->where('id', $id);
+	
+		$query = $this->db->get('posters');
+        return $query->row();
+	}
+	
 	public function get_categories()
 	{
 		$this->db->select('name, slug');
@@ -32,17 +41,10 @@ class Viewmodel extends CI_Model {
 		return $query->result();
 	}
 	
-	public function get_category_data($id)
+	public function get_category_data($category)
 	{
-		$this->db->cache_on();
-		$this->db->select('slug');
-		$this->db->where('id', $id);
-	
-		$query = $this->db->get('categories');
-		$temp = $query->row();
-		$this->db->cache_off();
-		
-        return $temp;
+		$query = $this->db->query("SELECT * FROM categories WHERE id = '".$category."'");
+		return $query->row();
 	}
 	
 	public function add_view($id, $views)

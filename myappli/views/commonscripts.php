@@ -7,6 +7,16 @@
 </div>
 <script>
 $(function() {
+	//Adjust the header based on window size
+	if($(window).width() < 960)
+		$('#topbar').css('width', '960px');
+	$(window).resize(function(){
+		if($(this).width() < 960)
+			$('#topbar').css('width', '960px');
+		else
+			$('#topbar').css('width', '100%');
+	});
+
 	$('#disclaimerModal').click(function(){
 		$('#disclaimerModal').modal('hide');
 		return false;
@@ -23,17 +33,17 @@ $(function() {
 	$('.about_disclaimer').click(function(){
 		$.ajax({
 			type: "POST",
-			url: "../function/show_disclaimer",
+			url: "/function/show_disclaimer",
 			dataType: "html"
 		}).done(function( data ) {
 			if(data)
 				$('#disclaimerModal').children('.modal-body').html(data);
 		})
 	});
-	$('.about_terms').click(function(){
+	$('.about_terms').click(function(e){
 		$.ajax({
 			type: "POST",
-			url: "../function/show_terms",
+			url: "/function/show_terms",
 			dataType: "html"
 		}).done(function( data ) {
 			if(data)
@@ -43,7 +53,17 @@ $(function() {
 	$('.about_privacy').click(function(){
 		$.ajax({
 			type: "POST",
-			url: "../function/show_privacy",
+			url: "/function/show_privacy",
+			dataType: "html"
+		}).done(function( data ) {
+			if(data)
+				$('#disclaimerModal').children('.modal-body').html(data);
+		})
+	});
+	$('.about_us').click(function(){
+		$.ajax({
+			type: "POST",
+			url: "/function/show_about",
 			dataType: "html"
 		}).done(function( data ) {
 			if(data)

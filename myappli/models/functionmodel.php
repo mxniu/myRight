@@ -69,5 +69,48 @@ class Functionmodel extends CI_Model {
 		echo json_encode($arr);
 		//$this->db->cache_off();
 	}
+	
+	public function track_entry()
+	{
+		$mysqldate = date( 'Y-m-d H:i:s', $this->input->post('time') );	
+		
+		$ignore_list = array("98.221.128.100", "98.221.129.106", "98.221.144.253", "::1");
+		
+		if(in_array((string)$_SERVER['REMOTE_ADDR'], $ignore_list))
+		{
+			return;
+		}
+		
+		if($this->input->post('type') === "ENTRY")
+		{
+				$this->db->query("INSERT INTO track_entries (type, ip, timestamp) values ('".$this->input->post('type')."','".(string)$_SERVER['REMOTE_ADDR']."', '$mysqldate')");
+		}
+		else if($this->input->post('type') === "BEGIN" || $this->input->post('type') === "RLOAD" || $this->input->post('type') === "EXIT"  || $this->input->post('type') === "RSKIP" || $this->input->post('type') === "ADCLK" || $this->input->post('type') === "AFCLK")
+		{
+				$this->db->query("INSERT INTO track_entries (type, ip, test_id, timestamp) values ('".$this->input->post('type')."','".(string)$_SERVER['REMOTE_ADDR']."', ".$this->input->post('test_id').", '$mysqldate')");
+		}
+		else if($this->input->post('type') === "QLOAD")
+		{
+				$this->db->query("INSERT INTO track_entries (type, ip, test_id, timestamp, data) values ('".$this->input->post('type')."','".(string)$_SERVER['REMOTE_ADDR']."', ".$this->input->post('test_id').", '$mysqldate', '".$this->input->post('question')."')");
+		}
+		else
+		{
+			return;
+		}
+	}
+	
+	public function test_name_from_id($test_id)
+	{
+		$query = $this->db->query("SELECT name FROM categories WHERE test_id = ".$test_id);
+        return $query->row();
+	}
+	
+	public function insert_lead($name, $email, $phone, $test_id)
+	{
+		$my_ip = (string)$_SERVER["REMOTE_ADDR"];
+		$mysqldate = date( 'Y-m-d H:i:s', $this->input->post('time') );	
+		$this->db->query("INSERT INTO leads (`ip`,`timestamp`,`name`,`email`,`phone`,`test_id`) VALUES ('$my_ip','$mysqldate','$name','$email','$phone',".$test_id.")");
+		echo "Thank you! A legal professional will contact you ASAP.";
+	}
 }
 ?>

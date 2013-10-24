@@ -1,7 +1,30 @@
 <!DOCTYPE html>
 <html>
+<head>
+	<link href='http://fonts.googleapis.com/css?family=Lato:700,400,300|Open+Sans:300, 400,600,700' rel='stylesheet' type='text/css'>
+	<style type="text/css">
+		h1.logo {
+		display: inline-block;
+		margin: -2px 15px 0 30px;
+		font-family: 'Lato', sans-serif;
+		}
+		
+		h1.logo a {
+			background: url("/images/logo45x25.png") no-repeat scroll 0 19px transparent;
+			font-size: 28px;
+			font-weight: 400;
+			height: 30px;
+			padding: 12px 5px 18px 57px;
+			display: inline-block;
+			color: #333;
+			text-decoration: none;
+		}
+	</style>
+</head>
 <body>
-<h2><?=$heading?></h2>
+<h1 class="logo">
+	<a href="#">myRight</a>
+</h1>
 
 <form method="post" accept-charset="utf-8" action="test_editor" />
 	<label for="test_id">Test ID</label> 
@@ -41,25 +64,31 @@
 	<label for="type">Type</label>
 	<?php
 		if(isset($question)) 
-			echo form_dropdown('type', array('MB'=>'Multi-button', 'MC'=>'Multiple Choice', 'OP'=>'Options', 'EX'=>'Explanation', 'IN'=>'Input'), $question->type);
+			echo form_dropdown('type', array('MB'=>'Multi-button', 'MC'=>'Multiple Choice', 'RS'=>'Rating Scale', 'OP'=>'Options', 'EX'=>'Explanation', 'IN'=>'Input', 'MI'=>'Multi-input', 'MO'=>'Math Operation', 'ZZ'=>'Result', 'CS'=>'Custom', 'US'=>'Map'), $question->type);
 		else
-			echo form_dropdown('type', array('MB'=>'Multi-button', 'MC'=>'Multiple Choice', 'OP'=>'Options', 'EX'=>'Explanation', 'IN'=>'Input'));
+			echo form_dropdown('type', array('MB'=>'Multi-button', 'MC'=>'Multiple Choice', 'RS'=>'Rating Scale', 'OP'=>'Options', 'EX'=>'Explanation', 'IN'=>'Input', 'MI'=>'Multi-input', 'MO'=>'Math Operation', 'ZZ'=>'Result', 'CS'=>'Custom', 'US'=>'Map'));
 	?><br/>
 	
 	<label for="question">Question</label> 
-	<input type="input" name="question" style="width: 400px" value="<?php echo (isset($question) ? $question->question : "") ?>"/><br />
+	<textarea name="question" rows="6" cols="46" maxlength="2000"><?php if(isset($question)) echo $question->question; ?></textarea><br />
 	
 	<label for="cluster">Cluster</label> 
 	<input type="input" name="cluster" style="width: 400px" value="<?php echo (isset($question) ? $question->cluster : "") ?>"/><br />
 	
+	<label for="condition">Condition</label> 
+	<input type="input" name="condition" style="width: 400px" value="<?php echo (isset($question) ? $question->condition : "") ?>"/><br />
+	
 	<label for="seq">Seq</label> 
 	<input type="input" name="seq" style="width: 100px" value="<?php echo (isset($question) ? $question->seq : "") ?>"/><br />
+	
+	<label for="explanation">Explanation</label> 
+	<textarea name="explanation" rows="6" cols="46" maxlength="2000"><?php echo (isset($question) ? $question->explanation : "") ?></textarea><br />
 	
 	<?php 
 	if(isset($question)):
 		$answers_array = explode("|",$question->answers);
 			
-		for($i = 1; $i <= 5; $i++)
+		for($i = 1; $i <= 10; $i++)
 		{
 			if(isset($answers_array[$i-1])):
 				//Explode the answer unit into an answer-link pair
@@ -74,16 +103,22 @@
 			
 			echo "Answer ".$i.":&nbsp;<input type=\"text\" name=\"answer".$i."\" maxlength=250 style=\"width:340px;\" value=\"".$formatted_question."\">&nbsp;";
 			echo "Link ".$i.":&nbsp;<input type=\"text\" name=\"link".$i."\" maxlength=20 value=\"".$answer_unit[1]."\">&nbsp;";
-			echo "Tag Link".$i.":&nbsp;<input type=\"text\" name=\"tag".$i."\" value=\"".$answer_unit[2]."\">&nbsp;";
+			echo "Tag Link ".$i.":&nbsp;<input type=\"text\" name=\"tag".$i."\" value=\"".$answer_unit[2]."\">&nbsp;";
+			
+			if(isset($answer_unit[3]))
+				echo "Variable ".$i.":&nbsp;<input type=\"text\" name=\"var".$i."\" value=\"".$answer_unit[3]."\">&nbsp;";
+			else
+				echo "Variable ".$i.":&nbsp;<input type=\"text\" name=\"var".$i."\">&nbsp;";
 			
 			echo "<br />";
 		}
 	else:
-		for($i = 1; $i <= 5; $i++)
+		for($i = 1; $i <= 10; $i++)
 		{
 			echo "Answer ".$i.":&nbsp;<input type=\"text\" name=\"answer".$i."\" maxlength=250 style=\"width:340px;\">&nbsp;";
 			echo "Link ".$i.":&nbsp;<input type=\"text\" name=\"link".$i."\" maxlength=20>&nbsp;";
-			echo "Tag Link".$i.":&nbsp;<input type=\"text\" name=\"tag".$i."\">&nbsp;";
+			echo "Tag Link ".$i.":&nbsp;<input type=\"text\" name=\"tag".$i."\">&nbsp;";
+			echo "Variable ".$i.":&nbsp;<input type=\"text\" name=\"var".$i."\">&nbsp;";
 			
 			echo "<br />";
 		}

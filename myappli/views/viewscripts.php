@@ -4,7 +4,7 @@ $(function() {
 		$('#review_buttons>input').unbind('click');
 		$.ajax({
 			type: "POST",
-			url: "../function/vote",
+			url: "/function/vote",
 			data: {action : 'up', id : <?=$element->id?>, votes: <?=$element->votes?>},
 			dataType: "html"
 		}).done(function( data ) {
@@ -18,7 +18,7 @@ $(function() {
 		$('#review_buttons>input').unbind('click');
 		$.ajax({
 			type: "POST",
-			url: "../function/vote",
+			url: "/function/vote",
 			data: {action : 'up', id : <?=$element->id?>, votes: <?=$element->votes?>},
 			dataType: "html"
 		}).done(function( data ) {
@@ -32,7 +32,7 @@ $(function() {
 		$('#review_buttons>input').unbind('click');
 		$.ajax({
 			type: "POST",
-			url: "../function/vote",
+			url: "/function/vote",
 			data: {action : 'down', id : <?=$element->id?>, votes: <?=$element->votes?>},
 			dataType: "html"
 		}).done(function( data ) {
@@ -46,7 +46,7 @@ $(function() {
 		$('#review_buttons>input').unbind('click');
 		$.ajax({
 			type: "POST",
-			url: "../function/vote",
+			url: "/function/vote",
 			data: {action : 'down', id : <?=$element->id?>, votes: <?=$element->votes?>},
 			dataType: "html"
 		}).done(function( data ) {

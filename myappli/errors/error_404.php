@@ -55,8 +55,9 @@ p {
 </head>
 <body>
 	<div id="container">
-		<h1><?php echo $heading; ?></h1>
-		<?php echo $message; ?>
+		<h1>This Page is Missing!</h1>
+		<p>Uh oh... this page seems to be missing. Our team will be notified immediately.</p>
+		<p><a href="http://myright.me">Back to myRight</a></p>
 	</div>
 </body>
 </html>
