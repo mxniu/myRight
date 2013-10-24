@@ -1,5 +1,0 @@
-# robots.txt generated at http://www.mcanerin.com
-User-agent: *
-Disallow: /*/function/*
-Disallow: /function/
-Sitemap: http://myright.me/sitemap.xml
