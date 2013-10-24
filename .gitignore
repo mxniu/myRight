@@ -170,3 +170,8 @@ phpSitemapNG
 BingSiteAuth.xml
 sitemap.*
 admin909
+robots.*
+.htaccess
+.htpasswd
+questionstable.sql
+*.rar
