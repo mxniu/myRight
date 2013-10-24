@@ -1,0 +1,4 @@
+<h1>About Us</h1>
+<p>myRight's mission is to help people learn their rights by simplifying the law. Everyday, people have their rights compromised or they become the subject of a legal problem and have no idea where to start. We believe that the law can be simple enough for people to understand, and accessible enough that everyone should be able to learn the basics. A single lawyer can only help one person at a time, but a growing network of legal expertise, available online, will be able to help millions. If you are a law student or lawyer, sign up today to become a contributor.</p>
+
+<p>myRight was founded by three business-minded philanthropists who believe in sustainable social enterprise, and we have a great group of advisors and supporters. For more information, please e-mail us via our contact form or at <a href="mailto:info@myright.me">info@myright.me</a></p>

@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en" id="css-europe">
+<head>
+ <meta charset="utf-8" />
+<!--
+
+
+
+
+ *** DON'T COPY ANYTHING FROM THE SOURCE CODE OF THIS DEMO PAGE ! ***
+
+
+ * CSSMap plugin - Europe
+ * version: 4.4
+ * web: http://cssmapsplugin.com/europe
+ * email: support@cssmapsplugin.com
+ * author: Łukasz Popardowski { Winston_Wolf }
+ * license: http://cssmapsplugin.com/license
+
+
+
+
+-->
+  <style> /* THIS IS NOT A PART OF THE MAP! Dont' put it on your site! */ html,body,header,hgroup,article,section,aside,footer,nav,div,p,span,ul,ol,dl,li,dt,dd,abbr,a,h1,h2,h3,hr,form,input{background:transparent;border:0 none;margin:0;outline:0 none;padding:0;vertical-align:baseline} ul{list-style:none} ol{line-height:1.5em;margin-left:2em} small{font-size:1em} hr{display:none} a{color:#000;text-decoration:underline} a:active,a:visited{color:#666} a:hover,a:focus{color:#c00} p{margin:1em 0} h2,h3,h4{font-family:'Lucida Grande',Arial,sans-serif;font-weight:normal;margin:1em 0} h2{color:#666;font-size:2em;text-transform:uppercase} h3{color:#037fbb;font-size:1.5em;margin-top:2em} h3 i{color:#999;font-style:normal} h4{font-size:1em;font-weight:bold;text-transform:uppercase} article,aside,footer,header,hgroup,section,nav{display:block} body{background:#f5f1ee;font:normal .75em 'Lucida Grande',Arial,sans-serif;text-shadow:0 1px 0 #fff;width:100%} header{background:#e2dedb;border-bottom:1px solid rgba(0,0,0,.2);left:0;padding:1em 0;position:fixed;top:0;width:100%;z-index:110;box-shadow:0 1px 10px rgba(0,0,0,.3)} hgroup{margin:-.5em 0 0 -489px;left:50%;position:absolute;top:50%;width:489px} hgroup h1,hgroup h2{display:inline;font:normal bold 1.167em 'Lucida Grande',Arial,sans-serif} hgroup h1 a{color:#037fbb;margin:0 .5em 0 0;text-decoration:none;text-transform:uppercase} hgroup h2{color:#827e79;font-weight:normal} hgroup h2 b{color:#5f5b57} hgroup h1 a:hover,hgroup h1 a:focus{color:#004f80} header nav{left:50%;overflow:hidden;position:relative;width:498px} header ul{float:left;line-height:1.5em;width:33%} header nav a{color:#555;font-size:.834em;text-decoration:none;text-transform:uppercase} header nav a:hover,header nav a:focus{color:#037fbb} article{margin:10em auto 15em auto;max-width:978px} section{margin:0 auto -3em auto;padding-top:7em;width:978px} div.col{display:inline-block;vertical-align:top;width:47.75%} div.col.left{padding-right:2%} div.col.right{padding-left:2%} div.col h3{margin-top:0} div.info-bar{margin-bottom:2em;text-align:center;width:100%} div.info-bar b{background:#e092aa;border:1px solid #ce8199;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;-webkit-border-radius:4px;border-radius:4px;box-shadow:inset 0 1px 2px rgba(255,255,255,.7);color:#600;display:inline-block;margin:0 auto;padding:1em 2em;text-shadow:0 1px 0 rgba(255,255,255,.5);text-transform:uppercase} pre,code{background:#2c2a29;color:#ddd;font:normal 1em/1.5em Courier,monospace;text-shadow:0 1px 0 #000;-webkit-text-stroke:.35px} pre{-moz-border-radius:10px;-ms-border-radius:10px;-o-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;font-size:1.1em;margin-bottom:2em;overflow-y:auto;padding:1em 2em;position:relative} p code,li code,dd code,dt code{background:#e4e1de;color:#333;text-shadow:0 1px 0 rgba(255,255,255,.5);padding:.25em .5em;white-space:nowrap} code span{color:#d5a514} code span.n{color:#c60} code span.kw{color:#add353} code span.s{color:#c00} code span.c{color:#aaa} code span.p{color:#99cee4} code span em{font-style:normal} pre code span.ln{background:#555;color:#999;display:inline-block;font:normal .834em Arial,sans-serif;margin-left:-2.5em;margin-right:1em;padding:.4em .5em;text-align:right;width:2.5em} #list-code{max-height:30em} #samples{background:#3b3735;border:1px solid #fff;-moz-border-radius:1em;-webkit-border-radius:1em;-o-border-radius:1em;-ms-border-radius:1em;border-radius:1em;padding-top:0;text-shadow:0 1px 0 #000;width:1024px} #maps-switcher{font-size:.834em;position:relative;text-align:center;top:-1.5em} #maps-switcher li{display:inline-block;margin:0 -2px} #maps-switcher a{background:#333;border-top:1px solid #fff;border-bottom:1px solid rgba(0,0,0,.3);color:#ccc;display:block;padding:1em 2em;text-decoration:none;text-transform:uppercase} #maps-switcher a:hover,#maps-switcher a:focus{background:#222;color:#fff} #maps-switcher a:active,#maps-switcher a.active{background:#222;color:#fd0} #maps-switcher li:first-child a{-moz-border-radius:6px 0 0 6px;-ms-border-radius:6px 0 0 6px;-o-border-radius:6px 0 0 6px;-webkit-border-radius:6px 0 0 6px;border-radius:6px 0 0 6px} #maps-switcher li:last-child a{-moz-border-radius:0 6px 6px 0;-ms-border-radius:0 6px 6px 0;-o-border-radius:0 6px 6px 0;-webkit-border-radius:0 6px 6px 0;border-radius:0 6px 6px 0} .sample{color:#eee;padding:30px 0;width:100%} .sample.hidden{left:-9999em;position:absolute} .sample.active{left:0;position:relative} .sample a,.sample .css-map li a,.sample .map-visible-list a{color:#eee;text-decoration:none} .sample a:hover,.sample a:focus,.sample .map-visible-list a:hover,.sample .map-visible-list a:focus,.sample .map-visible-list li.focus a{color:#fc0;text-decoration:none} .sample a:active,.sample .map-visible-list a:active,.sample .map-visible-list li.active-region a{color:#cc3} .sample .map-search-link{background:#111;background:rgba(0,0,0,.8);color:#eee;font:normal 14px 'Lucida Grande',Arial,sans-serif;float:right;margin-right:1em;overflow:hidden;padding:.8em 1.6em;text-shadow:0 1px 0 #000;-moz-border-radius:.6em;-ms-border-radius:.6em;-o-border-radius:.6em;-webkit-border-radius:.6em;border-radius:.6em} .sample .map-search-link:hover,a.sample .map-search-link:focus{color:#fd0;text-decoration: none} .m500 .sample .map-search-link{font-size:1em} .sample .m500 .map-search-link{font-size:1em} .sample pre{border-top:2px solid #7a7672;margin:2em 40px 0 40px;overflow:visible} .sample pre:before,.sample pre:after{border:solid;content:'';display:block;height:0;left:50%;position:absolute;width:0} .sample pre:before{border-color:#7a7672 transparent;border-width:0 9px 9px 9px;margin-left:-9px;top:-9px} .sample pre:after{border-color:#2c2a29 transparent;border-width:0 6px 6px 6px;margin-left:-6px;top:-6px} .map-visible-list{font-size:.9167em;padding-top:2em} .map-visible-list li{display:inline-block;line-height:1.5em} .m960 .map-visible-list li,.m810 .map-visible-list li{width:20%} .m660 .map-visible-list li{width:25%} .m500 .map-visible-list li{width:33%} .css-map-container.m1110,.css-map-container.m1450,.css-map-container.m2050{overflow-x:visible;width:100%} #example4 .css-map,#example4 .map-visible-list{display:inline-block;vertical-align:top} #example4 .css-map-container{width:825px} #example4 .map-visible-list{margin-left:20px;width:300px} #example4 .m500 .map-visible-list li{width:50%} footer{background:#e2dedb;border-top:1px solid rgba(0,0,0,.2);bottom:0;color:#666;font-size:.834em;left:0;position:fixed;width:100%;z-index:110} footer ul{border-top:1px solid rgba(255,255,255,.7);margin:0 auto;overflow:hidden;padding:1em 0 1.2em 0;width:978px} footer li{display:block;margin:0 1em;text-transform:uppercase} footer .fl{float:left} footer .fr{float:right} footer a{color:#555;text-decoration:none} footer a:hover,footer a:focus{color:#037fbb} #top-link{background:#e2dedb;border-top:1px solid rgba(0,0,0,.4);display:block;height:6em;left:50%;margin-left:-3em;position:absolute;text-decoration:none;top:-3em;width:6em;-moz-border-radius:50%;-ms-border-radius:50%;-o-border-radius:50%;-webkit-border-radius:50%;border-radius:50%} #top-link b{font-size:1.5em;left:0;margin-top:-.6em;position:absolute;text-align:center;top:50%;width:100%} #top-link:hover,#top-link:focus{top:-3.1em} #raw-file{position:relative;width:100%} #raw-file a{background:#9fc73f;bottom:-3em;color:#030;font-weight:bold;padding:1em;position:absolute;right:3em;text-decoration:none;text-shadow:0 1px 0 rgba(255,255,255,.5);text-transform:uppercase;z-index:99;-moz-box-shadow:0 2px 4px rgba(0,0,0,.8),inset 0 5px 7px rgba(255,255,255,.5);-ms-box-shadow:0 2px 4px rgba(0,0,0,.8),inset 0 5px 7px rgba(255,255,255,.5);box-shadow:0 2px 4px rgba(0,0,0,.8),inset 0 5px 7px rgba(255,255,255,.5);-moz-border-radius:2px;-ms-border-radius:2px;-webkit-border-radius:2px;border-radius:2px} #raw-file a:hover,#raw-file a:focus{background:#add353;color:#030} </style>
+   <link rel="alternate" type="application/rss+xml" title="CSS &amp; jQuery clickable maps plugin" href="http://cssmapsplugin.com/feed" />
+   <link rel="stylesheet" media="screen,projection" href="cssmap-europe/cssmap-europe.css" />
+    <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="http://cssmapsplugin.com/4/jquery.cssmap.js"></script>
+    <script>
+    $(function($) {
+      // THIS IS NOT A PART OF THE MAP'S SCRIPT! Don't put it on your site!
+      var msA=$('#maps-switcher').find('a'),scroll_timer,displayed=false,$message=$('#top-link'),$window=$(window),top=$(document.body).children(0).position().top;$('.in-nav').click(function(){var elementClicked=$(this).attr("href"),destination=$(elementClicked).offset().top;$("html:not(:animated),body:not(:animated)").animate({scrollTop:destination-20},1500);return false;});$window.scroll(function(){window.clearTimeout(scroll_timer);scroll_timer=window.setTimeout(function(){if($window.scrollTop()<=top){displayed=false;$message.fadeOut();}else if(displayed==false){displayed=true;$message.stop(true,true).fadeIn().click(function(){$("html:not(:animated),body:not(:animated)").animate({scrollTop:0},1500);$message.fadeOut('slow');return false;});}},300);}); $('.sample').addClass('hidden');$('#example1').addClass('active');$(msA).click(function(){var lH=$(this).attr('href'),mH=$(lH).outerHeight();$('#maps-switcher').find('a').removeClass('active');$('.sample').removeClass('active').addClass('hidden');$(lH).removeClass('hidden').addClass('active');$(this).addClass('active');return false;});
+      $("#map-europe").cssMap({size:960,tooltips:"floating"});
+      $("#map-europe2").cssMap({size:810,tooltips:false,cities:true});
+      $("#map-europe3").cssMap({size:660,multipleClick:true,clicksLimit:3});
+      $("#map-europe4").cssMap({size:500,tooltips:"floating-bottom-right",visibleList:true,cities:true});
+      $("#map-europe5").cssMap({size:660,onClick:function(e){var a=e.children('a'),link=a.attr('href'),text=a.text(),className=e.attr('class').split(' ')[0];$('#clickmessage1').text('=> '+link+'; ');$('#clickmessage2').text('=> '+text+'; ');$('#clickmessage3').text('=> '+className+'; ');} });
+    });
+
+    </script>
+ <title>Europe, CSS &amp; jQuery clickable map by Winston_Wolf</title>
+</head>
+<body>
+<header>
+ <hgroup><h1><a href="http://cssmapsplugin.com/europe/">Europe</a></h1><h2><abbr title="Cascading Style Sheets">CSS</abbr> &amp; jQuery <b>clickable map</b></h2></hgroup>
+ <nav><ul><li><a href="#setup" class="in-nav">Setup &amp; settings</a></li><li><a href="#the-css" class="in-nav">The <abbr title="Cascading Style Sheets">CSS</abbr> - tips and tricks</a></li><li><a href="#editing-map-file" class="in-nav">Editing a map file</a></li></ul><ul><li><a href="#visible-list" class="in-nav">Visible list of regions</a></li><li><a href="#multiple-click" class="in-nav">Multiple Click mode</a></li><li><a href="#agents-list" class="in-nav">List of addresses</a></li></ul><ul><li><a href="#troubleshooting" class="in-nav">Troubleshooting</a></li><li><a href="#license" class="in-nav">Royality Free License</a></li><li><a href="#contact" class="in-nav">Contact</a></li></ul></nav>
+</header>
+<article><hr/>
+ <!-- sample maps -->
+ <section id="samples"><hr/>
+  <ul id="maps-switcher"><li><a href="#example1" class="active" title="Default function call with specified size and floating tooltips">Example &#35;1</a></li><li><a href="#example2" title="Hidden tooltips and displayed layer with cities">Example &#35;2</a></li><li><a href="#example3" title="Multiple Click mode with three click limit">Example &#35;3</a></li><li><a href="#example4" title="Displayed lst of regions and the cities layer">Example &#35;4</a></li><li><a href="#example5" title="Sample usage of the onClick() method">Example &#35;5</a></li></ul>
+
+  <div id="example1" class="sample active">
+   <div id="map-europe"><ul class="europe">  <li class="eu1"><a href="#albania">Albania</a></li>  <li class="eu2"><a href="#andorra">Andorra</a></li>  <li class="eu3"><a href="#austria">Austria</a></li>  <li class="eu4"><a href="#belarus">Belarus</a></li>  <li class="eu5"><a href="#belgium">Belgium</a></li>  <li class="eu6"><a href="#bosnia-and-herzegovina">Bosnia and Herzegovina</a></li>  <li class="eu7"><a href="#bulgaria">Bulgaria</a></li>  <li class="eu8"><a href="#croatia">Croatia</a></li>  <li class="eu9"><a href="#cyprus">Cyprus</a></li>  <li class="eu10"><a href="#czech-republic">Czech Republic</a></li>  <li class="eu11"><a href="#denmark">Denmark</a></li>  <li class="eu12"><a href="#estonia">Estonia</a></li>  <li class="eu13"><a href="#france">France</a></li>  <li class="eu14"><a href="#finland">Finland</a></li>  <li class="eu15"><a href="#georgia">Georgia</a></li>  <li class="eu16"><a href="#germany">Germany</a></li>  <li class="eu17"><a href="#greece">Greece</a></li>  <li class="eu18"><a href="#hungary">Hungary</a></li>  <li class="eu19"><a href="#iceland">Iceland</a></li>  <li class="eu20"><a href="#ireland">Ireland</a></li>  <li class="eu21"><a href="#san-marino">San Marino</a></li>  <li class="eu22"><a href="#italy">Italy</a></li>  <li class="eu23"><a href="#kosovo">Kosovo</a></li>  <li class="eu24"><a href="#latvia">Latvia</a></li>  <li class="eu25"><a href="#liechtenstein">Liechtenstein</a></li>  <li class="eu26"><a href="#lithuania">Lithuania</a></li>  <li class="eu27"><a href="#luxembourg">Luxembourg</a></li>  <li class="eu28"><a href="#macedonia">Macedonia</a></li>  <li class="eu29"><a href="#malta">Malta</a></li>  <li class="eu30"><a href="#moldova">Moldova</a></li>  <li class="eu31"><a href="#monaco">Monaco</a></li>  <li class="eu32"><a href="#montenegro">Montenegro</a></li>  <li class="eu33"><a href="#netherlands">Netherlands</a></li>  <li class="eu34"><a href="#norway">Norway</a></li>  <li class="eu35"><a href="#poland">Poland</a></li>  <li class="eu36"><a href="#portugal">Portugal</a></li>  <li class="eu37"><a href="#romania">Romania</a></li>  <li class="eu38"><a href="#russia">Russia</a></li>  <li class="eu39"><a href="#serbia">Serbia</a></li>  <li class="eu40"><a href="#slovakia">Slovakia</a></li>  <li class="eu41"><a href="#slovenia">Slovenia</a></li>  <li class="eu42"><a href="#spain">Spain</a></li>  <li class="eu43"><a href="#sweden">Sweden</a></li>  <li class="eu44"><a href="#switzerland">Switzerland</a></li>  <li class="eu45"><a href="#turkey">Turkey</a></li>  <li class="eu46"><a href="#ukraine">Ukraine</a></li> <li class="eu48"><a href="#england">England</a></li>  <li class="eu49"><a href="#isle-of-man">Isle of Man</a></li>  <li class="eu50"><a href="#northern-ireland">Northern Ireland</a></li>  <li class="eu51"><a href="#scotland">Scotland</a></li>  <li class="eu52"><a href="#wales">Wales</a></li> </ul></div>
+   <pre><code><span class="c">// function call with specified size and floating tooltips;</span>
+$(<span class="s">'&#35;map-europe'</span>).cssMap({
+  <span class="n">'size'</span> : <span class="p">960</span>, 		<span class="c">// set map size;</span>
+  <span class="n">'tooltips'</span> : <span class="s">'floating'</span> 	<span class="c">// floating tooltips;</span>
+ });</code></pre>
+  </div>
+  <div id="example2" class="sample">
+   <div id="map-europe2"><ul class="europe">  <li class="eu1"><a href="#albania">Albania</a></li>  <li class="eu2"><a href="#andorra">Andorra</a></li>  <li class="eu3"><a href="#austria">Austria</a></li>  <li class="eu4"><a href="#belarus">Belarus</a></li>  <li class="eu5"><a href="#belgium">Belgium</a></li>  <li class="eu6"><a href="#bosnia-and-herzegovina">Bosnia and Herzegovina</a></li>  <li class="eu7"><a href="#bulgaria">Bulgaria</a></li>  <li class="eu8"><a href="#croatia">Croatia</a></li>  <li class="eu9"><a href="#cyprus">Cyprus</a></li>  <li class="eu10"><a href="#czech-republic">Czech Republic</a></li>  <li class="eu11"><a href="#denmark">Denmark</a></li>  <li class="eu12"><a href="#estonia">Estonia</a></li>  <li class="eu13"><a href="#france">France</a></li>  <li class="eu14"><a href="#finland">Finland</a></li>  <li class="eu15"><a href="#georgia">Georgia</a></li>  <li class="eu16"><a href="#germany">Germany</a></li>  <li class="eu17"><a href="#greece">Greece</a></li>  <li class="eu18"><a href="#hungary">Hungary</a></li>  <li class="eu19"><a href="#iceland">Iceland</a></li>  <li class="eu20"><a href="#ireland">Ireland</a></li>  <li class="eu21"><a href="#san-marino">San Marino</a></li>  <li class="eu22"><a href="#italy">Italy</a></li>  <li class="eu23"><a href="#kosovo">Kosovo</a></li>  <li class="eu24"><a href="#latvia">Latvia</a></li>  <li class="eu25"><a href="#liechtenstein">Liechtenstein</a></li>  <li class="eu26"><a href="#lithuania">Lithuania</a></li>  <li class="eu27"><a href="#luxembourg">Luxembourg</a></li>  <li class="eu28"><a href="#macedonia">Macedonia</a></li>  <li class="eu29"><a href="#malta">Malta</a></li>  <li class="eu30"><a href="#moldova">Moldova</a></li>  <li class="eu31"><a href="#monaco">Monaco</a></li>  <li class="eu32"><a href="#montenegro">Montenegro</a></li>  <li class="eu33"><a href="#netherlands">Netherlands</a></li>  <li class="eu34"><a href="#norway">Norway</a></li>  <li class="eu35"><a href="#poland">Poland</a></li>  <li class="eu36"><a href="#portugal">Portugal</a></li>  <li class="eu37"><a href="#romania">Romania</a></li>  <li class="eu38"><a href="#russia">Russia</a></li>  <li class="eu39"><a href="#serbia">Serbia</a></li>  <li class="eu40"><a href="#slovakia">Slovakia</a></li>  <li class="eu41"><a href="#slovenia">Slovenia</a></li>  <li class="eu42"><a href="#spain">Spain</a></li>  <li class="eu43"><a href="#sweden">Sweden</a></li>  <li class="eu44"><a href="#switzerland">Switzerland</a></li>  <li class="eu45"><a href="#turkey">Turkey</a></li>  <li class="eu46"><a href="#ukraine">Ukraine</a></li>  <li class="eu47"><a href="#united-kingdom">United Kingdom</a></li></ul></div>
+   <pre><code>$(<span class="s">'#map-europe'</span>).cssMap({
+  <span class="n">'size'</span>: <span class="p">810</span>,		<span class="c">// set map size to 810px wide;</span>
+  <span class="n">'tooltips'</span>: <span class="kw">false</span>,	<span class="c">// hide tooltips;</span>
+  <span class="n">'cities'</span>: <span class="kw">true</span>	<span class="c">// display cities;</span>
+ });</code></pre>
+  </div>
+  <div id="example3" class="sample">
+   <div id="map-europe3"><ul class="europe">  <li class="eu1"><a href="#albania">Albania</a></li>  <li class="eu2"><a href="#andorra">Andorra</a></li>  <li class="eu3"><a href="#austria">Austria</a></li>  <li class="eu4"><a href="#belarus">Belarus</a></li>  <li class="eu5"><a href="#belgium">Belgium</a></li>  <li class="eu6"><a href="#bosnia-and-herzegovina">Bosnia and Herzegovina</a></li>  <li class="eu7"><a href="#bulgaria">Bulgaria</a></li>  <li class="eu8"><a href="#croatia">Croatia</a></li>  <li class="eu9"><a href="#cyprus">Cyprus</a></li>  <li class="eu10"><a href="#czech-republic">Czech Republic</a></li>  <li class="eu11"><a href="#denmark">Denmark</a></li>  <li class="eu12"><a href="#estonia">Estonia</a></li>  <li class="eu13"><a href="#france">France</a></li>  <li class="eu14"><a href="#finland">Finland</a></li>  <li class="eu15"><a href="#georgia">Georgia</a></li>  <li class="eu16"><a href="#germany">Germany</a></li>  <li class="eu17"><a href="#greece">Greece</a></li>  <li class="eu18"><a href="#hungary">Hungary</a></li>  <li class="eu19"><a href="#iceland">Iceland</a></li>  <li class="eu20"><a href="#ireland">Ireland</a></li>  <li class="eu21"><a href="#san-marino">San Marino</a></li>  <li class="eu22"><a href="#italy">Italy</a></li>  <li class="eu23"><a href="#kosovo">Kosovo</a></li>  <li class="eu24"><a href="#latvia">Latvia</a></li>  <li class="eu25"><a href="#liechtenstein">Liechtenstein</a></li>  <li class="eu26"><a href="#lithuania">Lithuania</a></li>  <li class="eu27"><a href="#luxembourg">Luxembourg</a></li>  <li class="eu28"><a href="#macedonia">Macedonia</a></li>  <li class="eu29"><a href="#malta">Malta</a></li>  <li class="eu30"><a href="#moldova">Moldova</a></li>  <li class="eu31"><a href="#monaco">Monaco</a></li>  <li class="eu32"><a href="#montenegro">Montenegro</a></li>  <li class="eu33"><a href="#netherlands">Netherlands</a></li>  <li class="eu34"><a href="#norway">Norway</a></li>  <li class="eu35"><a href="#poland">Poland</a></li>  <li class="eu36"><a href="#portugal">Portugal</a></li>  <li class="eu37"><a href="#romania">Romania</a></li>  <li class="eu38"><a href="#russia">Russia</a></li>  <li class="eu39"><a href="#serbia">Serbia</a></li>  <li class="eu40"><a href="#slovakia">Slovakia</a></li>  <li class="eu41"><a href="#slovenia">Slovenia</a></li>  <li class="eu42"><a href="#spain">Spain</a></li>  <li class="eu43"><a href="#sweden">Sweden</a></li>  <li class="eu44"><a href="#switzerland">Switzerland</a></li>  <li class="eu45"><a href="#turkey">Turkey</a></li>  <li class="eu46"><a href="#ukraine">Ukraine</a></li> <li class="eu48"><a href="#england">England</a></li>  <li class="eu49"><a href="#isle-of-man">Isle of Man</a></li>  <li class="eu50"><a href="#northern-ireland">Northern Ireland</a></li>  <li class="eu51"><a href="#scotland">Scotland</a></li>  <li class="eu52"><a href="#wales">Wales</a></li> </ul></div>
+   <pre><code>$(<span class="s">'#map-europe'</span>).cssMap({
+  <span class="n">'size'</span>: <span class="p">660</span>, 			<span class="c">// set map size to 660px wide;</span>
+  <span class="n">'multipleClick'</span>: <span class="kw">true</span>, 	<span class="c">// enable Multiple Click mode;</span>
+  <span class="n">'clicksLimit'</span>: <span class="p">3</span> 		<span class="c">// three clicks limit;</span>
+ });</code></pre>
+  </div>
+  <div id="example4" class="sample">
+   <div id="map-europe4"><ul class="europe">  <li class="eu1"><a href="#albania">Albania</a></li>  <li class="eu2"><a href="#andorra">Andorra</a></li>  <li class="eu3"><a href="#austria">Austria</a></li>  <li class="eu4"><a href="#belarus">Belarus</a></li>  <li class="eu5"><a href="#belgium">Belgium</a></li>  <li class="eu6"><a href="#bosnia-and-herzegovina">Bosnia and Herzegovina</a></li>  <li class="eu7"><a href="#bulgaria">Bulgaria</a></li>  <li class="eu8"><a href="#croatia">Croatia</a></li>  <li class="eu9"><a href="#cyprus">Cyprus</a></li>  <li class="eu10"><a href="#czech-republic">Czech Republic</a></li>  <li class="eu11"><a href="#denmark">Denmark</a></li>  <li class="eu12"><a href="#estonia">Estonia</a></li>  <li class="eu13"><a href="#france">France</a></li>  <li class="eu14"><a href="#finland">Finland</a></li>  <li class="eu15"><a href="#georgia">Georgia</a></li>  <li class="eu16"><a href="#germany">Germany</a></li>  <li class="eu17"><a href="#greece">Greece</a></li>  <li class="eu18"><a href="#hungary">Hungary</a></li>  <li class="eu19"><a href="#iceland">Iceland</a></li>  <li class="eu20"><a href="#ireland">Ireland</a></li>  <li class="eu21"><a href="#san-marino">San Marino</a></li>  <li class="eu22"><a href="#italy">Italy</a></li>  <li class="eu23"><a href="#kosovo">Kosovo</a></li>  <li class="eu24"><a href="#latvia">Latvia</a></li>  <li class="eu25"><a href="#liechtenstein">Liechtenstein</a></li>  <li class="eu26"><a href="#lithuania">Lithuania</a></li>  <li class="eu27"><a href="#luxembourg">Luxembourg</a></li>  <li class="eu28"><a href="#macedonia">Macedonia</a></li>  <li class="eu29"><a href="#malta">Malta</a></li>  <li class="eu30"><a href="#moldova">Moldova</a></li>  <li class="eu31"><a href="#monaco">Monaco</a></li>  <li class="eu32"><a href="#montenegro">Montenegro</a></li>  <li class="eu33"><a href="#netherlands">Netherlands</a></li>  <li class="eu34"><a href="#norway">Norway</a></li>  <li class="eu35"><a href="#poland">Poland</a></li>  <li class="eu36"><a href="#portugal">Portugal</a></li>  <li class="eu37"><a href="#romania">Romania</a></li>  <li class="eu38"><a href="#russia">Russia</a></li>  <li class="eu39"><a href="#serbia">Serbia</a></li>  <li class="eu40"><a href="#slovakia">Slovakia</a></li>  <li class="eu41"><a href="#slovenia">Slovenia</a></li>  <li class="eu42"><a href="#spain">Spain</a></li>  <li class="eu43"><a href="#sweden">Sweden</a></li>  <li class="eu44"><a href="#switzerland">Switzerland</a></li>  <li class="eu45"><a href="#turkey">Turkey</a></li>  <li class="eu46"><a href="#ukraine">Ukraine</a></li>  <li class="eu47"><a href="#united-kingdom">United Kingdom</a></li></ul></div>
+   <pre><code>$(<span class="s">'#map-europe'</span>).cssMap({
+  <span class="n">'size'</span>: <span class="p">500</span>,  		<span class="c">// set map size to 500px wide;</span>
+  <span class="n">'visibleList'</span>: <span class="kw">true</span>, 		<span class="c">// show list of regions (customzied list shown);</span>
+  <span class="n">'cities'</span>: <span class="kw">true</span>,		<span class="c">// display cities;</span>
+  <span class="n">'tooltips'</span>: <span class="s">'floating-bottom-right'</span>	<span class="c">// floating tooltips with specified position to the mouse pointer;</span>
+ });</code></pre>
+<pre><code><span class="c">/* list of regions can be placed next to the map by these sample CSS rules: */</span>
+
+.css-map-container.m500{
+  <span class="n">width</span>: 825<span class="kw">px</span>; <span class="c">/* must be a sum of the map and visible list widths and paddings */</span>
+ }
+.m500 .css-map,.m500 .map-visible-list{
+  <span class="n">display</span>: inline-block; <span class="c">/* for IE7 use display:inline; zoom:1; */</span>
+  <span class="n">vertical-align</span>: top;
+ }
+.m500 .map-visible-list{
+  <span class="n">margin-left</span>: 20<span class="kw">px</span>;
+  <span class="n">width</span>: 300<span class="kw">px</span>;
+ }
+.m500 .map-visible-list li{ <span class="n">width</span>: 50%<span class="kw">%</span>; }</code></pre>
+  </div>
+  <div id="example5" class="sample">
+   <div id="map-europe5"><ul class="europe">  <li class="eu1"><a href="#albania">Albania</a></li>  <li class="eu2"><a href="#andorra">Andorra</a></li>  <li class="eu3"><a href="#austria">Austria</a></li>  <li class="eu4"><a href="#belarus">Belarus</a></li>  <li class="eu5"><a href="#belgium">Belgium</a></li>  <li class="eu6"><a href="#bosnia-and-herzegovina">Bosnia and Herzegovina</a></li>  <li class="eu7"><a href="#bulgaria">Bulgaria</a></li>  <li class="eu8"><a href="#croatia">Croatia</a></li>  <li class="eu9"><a href="#cyprus">Cyprus</a></li>  <li class="eu10"><a href="#czech-republic">Czech Republic</a></li>  <li class="eu11"><a href="#denmark">Denmark</a></li>  <li class="eu12"><a href="#estonia">Estonia</a></li>  <li class="eu13"><a href="#france">France</a></li>  <li class="eu14"><a href="#finland">Finland</a></li>  <li class="eu15"><a href="#georgia">Georgia</a></li>  <li class="eu16"><a href="#germany">Germany</a></li>  <li class="eu17"><a href="#greece">Greece</a></li>  <li class="eu18"><a href="#hungary">Hungary</a></li>  <li class="eu19"><a href="#iceland">Iceland</a></li>  <li class="eu20"><a href="#ireland">Ireland</a></li>  <li class="eu21"><a href="#san-marino">San Marino</a></li>  <li class="eu22"><a href="#italy">Italy</a></li>  <li class="eu23"><a href="#kosovo">Kosovo</a></li>  <li class="eu24"><a href="#latvia">Latvia</a></li>  <li class="eu25"><a href="#liechtenstein">Liechtenstein</a></li>  <li class="eu26"><a href="#lithuania">Lithuania</a></li>  <li class="eu27"><a href="#luxembourg">Luxembourg</a></li>  <li class="eu28"><a href="#macedonia">Macedonia</a></li>  <li class="eu29"><a href="#malta">Malta</a></li>  <li class="eu30"><a href="#moldova">Moldova</a></li>  <li class="eu31"><a href="#monaco">Monaco</a></li>  <li class="eu32"><a href="#montenegro">Montenegro</a></li>  <li class="eu33"><a href="#netherlands">Netherlands</a></li>  <li class="eu34"><a href="#norway">Norway</a></li>  <li class="eu35"><a href="#poland">Poland</a></li>  <li class="eu36"><a href="#portugal">Portugal</a></li>  <li class="eu37"><a href="#romania">Romania</a></li>  <li class="eu38"><a href="#russia">Russia</a></li>  <li class="eu39"><a href="#serbia">Serbia</a></li>  <li class="eu40"><a href="#slovakia">Slovakia</a></li>  <li class="eu41"><a href="#slovenia">Slovenia</a></li>  <li class="eu42"><a href="#spain">Spain</a></li>  <li class="eu43"><a href="#sweden">Sweden</a></li>  <li class="eu44"><a href="#switzerland">Switzerland</a></li>  <li class="eu45"><a href="#turkey">Turkey</a></li>  <li class="eu46"><a href="#ukraine">Ukraine</a></li> <li class="eu48"><a href="#england">England</a></li>  <li class="eu49"><a href="#isle-of-man">Isle of Man</a></li>  <li class="eu50"><a href="#northern-ireland">Northern Ireland</a></li>  <li class="eu51"><a href="#scotland">Scotland</a></li>  <li class="eu52"><a href="#wales">Wales</a></li> </ul></div>
+   <pre><code><span class="c">// sample usage of the onClick and onHover options (click on the map to run onClick function)</span>
+$(<span class="s">'#map-europe'</span>).cssMap({
+  <span class="n">'size'</span>: <span class="p">660</span>,  					<span class="c">// set map size to 660px wide;</span>
+  <span class="n">'onClick'</span>: <span class="kw">function</span>(e){
+    <span class="kw">var</span> link = e.children(<span class="s">'a'</span>).attr(<span class="s">'href'</span>), 		<span class="c">// <em id="clickmessage1"></em>get link's URL;</span>
+        text = e.children(<span class="s">'a'</span>).text(), 			<span class="c">// <em id="clickmessage2"></em>get text of the link;</span>
+        className = e.attr(<span class="s">'class'</span>).split(<span class="s">' '</span>)[<span class="p">0</span>]; 	<span class="c">// <em id="clickmessage3"></em>get class name of the list item;</span>
+   }
+ });</code></pre>
+  </div>
+ </section>
+ <!-- samples end -->
+
+ <section id="setup"><hr/>
+  <div class="info-bar"><b>Basic knowledge of the <abbr title="HyperText Markup Language">HTML</abbr>, <abbr title="Cascading Style Sheets">CSS</abbr> and Photoshop is required for a proper installation and customization of the map!</b></div>
+  <h2>Setup and settings</h2>
+   <h3>Link files</h3>
+   <p>In the <code>&#60;head&#62;</code> tag of your page add link to the style sheets and scripts. The <abbr title="Cascading Style Sheets">CSS</abbr> file must be loaded before scripts and links directly to the folder with maps.</p>
+   <pre><code> <span>&#60;link</span> <span class="n">rel=</span><span class="kw">"stylesheet"</span> <span class="n">type=</span><span class="kw">"text/css"</span> <span class="n">media=</span><span class="kw">"screen,projection"</span> <span class="n">href=</span><span class="kw">"cssmap-europe/cssmap-europe.css"</span> <span>/></span></code></pre>
+   <p>Now link to the jQuery library&#42; (if it hasn't been yet) and the map core script&#42;&#42;</p>
+   <pre><code><span>&#60;script </span> <span class="n">type=</span><span class="kw">"text/javascript"</span> <span class="n">src=</span><span class="kw">"http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"</span><span>>&#60;/script>
+ &#60;script</span> <span class="n">type=</span><span class="kw">"text/javascript"</span> <span class="n">src=</span><span class="kw">"http://cssmapsplugin.com/4/jquery.cssmap.js"</span><span>>&#60;/script> </span></code></pre>
+   <p>Finally you can initialize the <code>cssMap();</code> function with a specified map size:</p>
+   <pre><code> <span>&#60;script</span> <span class="n">type=</span><span class="kw">"text/javascript"</span><span>></span>
+   $(<span class="kw">function</span>($){
+     $(<span class="s">'&#35;map-europe'</span>).cssMap({<span class="n">'size'</span> : <span class="p">960</span>});
+    });
+ <span>&#60;/script></span></code></pre>
+  <div class="col left">
+   <p>&#42; <strong>the map requires jQuery 1.6 and higher, but you should always use the recent version!</strong></p>
+  </div>
+  <div class="col right">
+   <p>&#42;&#42; the script is stored in the Cloud, so you'll always have an access to the latest version. Load it only once even if you're using multiple maps on the one page.</p>
+  </div>
+   <h3>The markup</h3>
+   <p>Place following list of regions somewhere in the <code>&#60;body></code> tag of your page (or into post/article content).<br/>The <code>id</code> attribute of the map container can be set as you want, but <b>don't edit class names</b> in the list. The <abbr title="Cascading Style Sheets">CSS</abbr> targets that classes specifically. Of course you can change the links and names of regions.</p>
+   <p id="raw-file"><a href="list-europe.txt" title="Open txt file">view plain</a></p>
+   <pre id="list-code"><code><span>&#60;div</span> <span class="n">id=</span><span class="kw">"map-europe"</span><span>&#62;
+ &#60;ul</span> <span class="n">class=</span><span class="kw">"europe"</span><span>>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu1"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#albania"</span><span>&#62;</span>Albania<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu2"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#andorra"</span><span>&#62;</span>Andorra<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu3"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#austria"</span><span>&#62;</span>Austria<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu4"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#belarus"</span><span>&#62;</span>Belarus<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu5"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#belgium"</span><span>&#62;</span>Belgium<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu6"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#bosnia-and-herzegovina"</span><span>&#62;</span>Bosnia and Herzegovina<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu7"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#bulgaria"</span><span>&#62;</span>Bulgaria<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu8"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#croatia"</span><span>&#62;</span>Croatia<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu9"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#cyprus"</span><span>&#62;</span>Cyprus<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu10"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#czech-republic"</span><span>&#62;</span>Czech Republic<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu11"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#denmark"</span><span>&#62;</span>Denmark<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu12"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#estonia"</span><span>&#62;</span>Estonia<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu13"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#france"</span><span>&#62;</span>France<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu14"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#finland"</span><span>&#62;</span>Finland<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu15"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#georgia"</span><span>&#62;</span>Georgia<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu16"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#germany"</span><span>&#62;</span>Germany<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu17"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#greece"</span><span>&#62;</span>Greece<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu18"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#hungary"</span><span>&#62;</span>Hungary<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu19"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#iceland"</span><span>&#62;</span>Iceland<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu20"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#ireland"</span><span>&#62;</span>Ireland<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu21"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#san-marino"</span><span>&#62;</span>San Marino<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu22"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#italy"</span><span>&#62;</span>Italy<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu23"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#kosovo"</span><span>&#62;</span>Kosovo<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu24"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#latvia"</span><span>&#62;</span>Latvia<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu25"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#liechtenstein"</span><span>&#62;</span>Liechtenstein<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu26"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#lithuania"</span><span>&#62;</span>Lithuania<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu27"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#luxembourg"</span><span>&#62;</span>Luxembourg<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu28"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#macedonia"</span><span>&#62;</span>Macedonia<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu29"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#malta"</span><span>&#62;</span>Malta<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu30"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#moldova"</span><span>&#62;</span>Moldova<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu31"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#monaco"</span><span>&#62;</span>Monaco<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu32"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#montenegro"</span><span>&#62;</span>Montenegro<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu33"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#netherlands"</span><span>&#62;</span>Netherlands<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu34"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#norway"</span><span>&#62;</span>Norway<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu35"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#poland"</span><span>&#62;</span>Poland<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu36"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#portugal"</span><span>&#62;</span>Portugal<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu37"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#romania"</span><span>&#62;</span>Romania<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu38"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#russia"</span><span>&#62;</span>Russia<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu39"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#serbia"</span><span>&#62;</span>Serbia<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu40"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#slovakia"</span><span>&#62;</span>Slovakia<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu41"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#slovenia"</span><span>&#62;</span>Slovenia<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu42"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#spain"</span><span>&#62;</span>Spain<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu43"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#sweden"</span><span>&#62;</span>Sweden<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu44"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#switzerland"</span><span>&#62;</span>Switzerland<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu45"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#turkey"</span><span>&#62;</span>Turkey<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu46"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#ukraine"</span><span>&#62;</span>Ukraine<span>&#60;/a>&#60;/li>
+  &#60;li</span> <span class="n">class=</span><span class="kw">"eu47"</span><span>&#62;&#60;a</span> <span class="n">href=</span><span class="kw">"#united-kingdom"</span><span>&#62;</span>United Kingdom<span>&#60;/a>&#60;/li></span>
+<span class="c">&#60;!-- remove this comment and UK list item (above) to activate countries of the United Kingdom
+  &#60;li class="eu48"&#62;&#60;a href="#england"&#62;England&#60;/a&#62;&#60;/li&#62;
+  &#60;li class="eu49"&#62;&#60;a href="#isle-of-man"&#62;Isle of Man&#60;/a&#62;&#60;/li&#62;
+  &#60;li class="eu50"&#62;&#60;a href="#northern-ireland"&#62;Northern Ireland&#60;/a&#62;&#60;/li&#62;
+  &#60;li class="eu51"&#62;&#60;a href="#scotland"&#62;Scotland&#60;/a&#62;&#60;/li&#62;
+  &#60;li class="eu52"&#62;&#60;a href="#wales"&#62;Wales&#60;/a&#62;&#60;/li&#62;
+--&#62;</span>
+<span> &#60;/ul>
+&#60;/div></span></code></pre>
+ <div class="info-bar"><b>Do not copy anything from the source code of this demo page!</b></div>
+  <h3>Adjust map to your needs</h3>
+  <p>List of all script options available to customize the map (default values listed):</p>
+  <pre><code><span class="n">'size'</span> : <span class="p">960</span>,			<span class="c">//String: map width; availalbe sizes: 250, 500, 660, 810 and 960;</span>
+<span class="n">'tooltips'</span> : <span class="kw">"sticky"</span>,		<span class="c">// String: "sticky" - display tooltip in the center of the region;
+				// "floating" - tooltip follows the mouse pointer; position to the cursor: "floating-top-center" (default), "floating-bottom", "floating-left", "floating-right", "floating-middle-left", "floating-bottom-right" etc;
+				// false - hidden tooltips;</span>
+<span class="n">'tooltipArrowHeight'</span> : <span class="p">5</span>,	<span class="c">// Integer: height of the arrow under the tooltip; is set by border-width of the .css-map li a .tooltip-arrow;</span>
+<span class="n">'cities'</span> : <span class="kw">false</span>,		<span class="c">// Boolean: display cities on the map;</span>
+<span class="n">'visibleList'</span> : <span class="kw">false</span>,		<span class="c">// Boolean: show a list of regions;</span>
+<span class="n">'loadingText'</span> : <span class="s">'Loading ...'</span>,	<span class="c">// Sting: text of the preloader; HTML tags allowed;</span>
+
+<span class="c">// Multiple Click mode</span>
+<span class="n">'multipleClick'</span> : <span class="kw">false</span>,	<span class="c">// Boolean: Multiple Click mode;</span>
+<span class="n">'searchUrl'</span> : <span class="s">'search.php'</span>,	<span class="c">// String: URL to the search engine; in the Multiple Click mode search link is displayed under the map;</span>
+<span class="n">'searchLink'</span> : <span class="s">'Search'</span>,	<span class="c">// String: Name of the search link;</span>
+<span class="n">'searchLinkVar'</span> : <span class="s">'region'</span>,	<span class="c">// String: variable passing to the search engine;</span>
+<span class="n">'searchLinkSeparator'</span> : <span class="s">'|'</span>,	<span class="c">// String: separator of the values passed to the search engine; => ?region=value1|value2|value3</span>
+<span class="n">'clicksLimit'</span> : <span class="p">0</span>,		<span class="c">// Integer: limited number of clicks; 0 - unlimited clicks;</span>
+<span class="n">'clicksLimitAlert'</span> : <span class="s">'You can select only %d region! || regions!'</span>,
+				<span class="c">// String: error message when the clicks limit has been reached;
+				// syntax: [beginning of sentences] %d [singular] || [plural] - where %d is a number of clicks (added by script);</span>
+
+<span class="c">// List of addresses</span>
+<span class="n">'agentsListId'</span> : <span class="s">''</span>,		<span class="c">// Selector: ID of the list of agents/addresses; must start with a hash (&#35;) mark;</span>
+<span class="n">'agentsListOnHover'</span> : <span class="kw">false</span>,	<span class="c">// Boolean: show and hide agent/address on hover;</span>
+<span class="n">'agentsListSpeed'</span> : <span class="p">0</span>,		<span class="c">// Integer: fade in/fade out delay in miliseconds; 0 - no fade effect;
+				// doesn't work when the agentsListOnHover mode is on;</span>
+
+<span class="c">// custom events</span>
+<span class="n">'onHover'</span> : <span class="kw">function</span>(e){},	<span class="c">// Callback: function(listItem) - Fires when the mouse pointer enters a region and passing a current list item element;</span>
+<span class="n">'onClick'</span> : <span class="kw">function</span>(e){},	<span class="c">// Callback: function(listItem) - Fires when region is clicked and passing a current list item element;</span>
+<span class="n">'onLoad'</span> : <span class="kw">function</span>(e){}	<span class="c">// Callback: function(mapObject) - Fires when map is fully loaded and passing a mapObject; => $('&#35;map-europe');</span>
+</code></pre>
+ <div class="col left">
+  <h3>Default features</h3>
+   <p>This map is based on well-known <abbr title="Cascading Style Sheets">CSS</abbr> sprites. The <a href="http://jquery.com">jQuery</a> is used to simplify the markup and adds additional functionality, as activated region, multipe clicks etc. The map script allows to:</p>
+   <ul class="dashed-list">
+    <li>- highlight or activate one region and reference to a page in the link,</li>
+    <li>- in <a href="#multiple-click" class="in-nav">the Multiple Click mode</a> allows to select several regions and pass their values to the search engine,</li>
+    <li>- show or hide list of addresses (agents) in selected region,</li>
+    <li>- navigate and activate region using a keyboard,</li>
+    <li>- display simple list of regions when user disable JavaScript.</li>
+   </ul>
+   <h4>Limitations</h4>
+    <p><strong>The map is hand-coded in specific sizes, which can't be changed. The only way to change the size of a map is to rewrite most of the <abbr title="Cascading Style Sheets">CSS</abbr> file.</strong></p>
+ </div>
+ <div class="col right">
+  <h3>Supported browsers</h3>
+   <h4>This map has been successfully tested in:</h4>
+    <ul class="dashed-list">
+     <li>Chrome 1+</li>
+     <li>Firefox 3.6+</li>
+     <li>Internet Explorer 7+</li>
+     <li>Opera 9+</li>
+     <li>Safari 3+</li>
+     <li>mobile Safari (iPhone, iPod Touch, iPad)</li>
+    </ul>
+    <p>Of course there are several limitations caused by lack of the <abbr title="Cascading Style Sheets">CSS</abbr> support in older browsers. For example in the <abbr title="Internet Explorer">IE</abbr>7 cities layer can't be displayed, also there's a bug with arrows under the tooltips in the <abbr title="Internet Explorer">IE</abbr>7 and Firefox below 3.6.</p>
+    <p>You can force it to work in the <abbr title="Internet Explorer">IE</abbr>6 (<abbr title="Service Pack">SP</abbr>2) by using <abbr title="Graphics Interchange Format">GIF</abbr> files instead of transparent <abbr title="Portable Network Graphics">PNG</abbr>.</p>
+ </div>
+ </section>
+ <section id="the-css"><hr/>
+ <h2>The <abbr title="Cascading Style Sheets">CSS</abbr> - Tips and tricks</h2>
+  <h3>The basics</h3>
+  <p>By <abbr title="Cascading Style Sheets">CSS</abbr> style sheets you can customize almost any map element. You can edit them in the default map's <abbr title="Cascading Style Sheets">CSS</abbr> file (<a href="cssmap-europe/cssmap-europe.css">cssmap-europe.css</a>) or in the style sheet of your site. As you can see, there is nothing more than <abbr title="Cascading Style Sheets">CSS</abbr> rules you should be familiar with.</p>
+   <h4>Styling 'tooltips'</h4>
+   <p>By default names of the regions are displayed as a 'tooltip' with arrow. You can customize it by style rules for the <code>.css-map li a, #map-tooltip</code> element:</p>
+   <pre><code>.css-map li a, .css-map li a:<span class="kw">hover</span>, #map-tooltip{
+ <span class="n">background</span>: #111;  <span class="c">/* background color for older browsers */</span>
+ <span class="n">background</span>: rgba(0,0,0,.8);  <span class="c">/* transparent background in modern browsers */</span>
+ <span class="n">color</span>: #eee;  <span class="c">/* text color */</span>
+ <span class="n">font</span>: normal 13<span class="kw">px</span> <span class="s">'Lucida Grande'</span>,Arial,sans-serif;
+ <span class="n">padding</span>: .5<span class="kw">em</span> 1.2<span class="kw">em</span>;
+ <span class="n">text-align</span>: center;
+ <span class="n">text-shadow</span>: 0 1<span class="kw">px</span> 0 #000;
+ <span class="n">white-space</span>: nowrap;  <span class="c">/* prevents text braking */</span>
+ <span class="n">-moz-border-radius</span>: .6<span class="kw">em</span>;
+ <span class="n">-ms-border-radius</span>: .6<span class="kw">em</span>;
+ <span class="n">-o-border-radius</span>: .6<span class="kw">em</span>;
+ <span class="n">-webkit-border-radius</span>: .6<span class="kw">em</span>;
+ <span class="n">border-radius</span>: .6<span class="kw">em</span>;
+}</code></pre>
+   <p>..arrow of the "sticky" tooltips can by customized by <code>.css-map li a .tooltip-arrow</code></p>
+   <pre><code>.css-map li a .tooltip-arrow{
+ <span class="n">bottom</span>: -5<span class="kw">px</span>;  <span class="c">/* must be the same as border-width */</span>
+ <span class="n">border</span>: solid;
+ <span class="n">border-color</span>: #111 transparent;  <span class="c">/* border color for older browsers */</span>
+ <span class="n">border-color</span>: rgba(0,0,0,.8) transparent;
+ <span class="n">border-width</span>: 5<span class="kw">px</span> 5<span class="kw">px</span> 0 5<span class="kw">px</span>;  <span class="c">/* this's a height of the arrow */</span>
+ <span class="n">margin-left</span>: -5<span class="kw">px</span>;  <span class="c">/* must be the same as border-width */</span>
+}</code></pre>
+  <div class="col left">
+   <h4>Styling visible list of regions</h4>
+   <p>If you enable a visible list of regions you can customize its link by <code>#map-europe .map-visible-list a</code></p>
+   <pre><code>#map-europe .map-visible-list a{
+  <span class="c">/* default link style */</span>
+
+ }
+#map-europe .map-visible-list a:<span class="kw">hover</span>,
+#map-europe .map-visible-list a:<span class="kw">focus</span>,
+#map-europe .map-visible-list li.focus a{
+  <span class="c">/* selected link (region) */</span>
+
+ }
+#map-europe .map-visible-list a:<span class="kw">active</span>,
+#map-europe .map-visible-list li.active-region a{
+  <span class="c">/* active link (region) */</span>
+
+ }</code></pre>
+  </div>
+  <div class="col right">
+   <h4>Styling search link (in the Multiple Click mode)</h4>
+   <p>The search link will display under the map in <a href="#multiple-click" class="in-nav">the Multiple Click mode</a> and can by styled by <code>.map-search-link</code></p>
+   <pre><code>.map-search-link{
+ <span class="c">/* default link style */</span>
+
+}
+.map-search-link:<span class="kw">hover</span>,
+.map-search-link:<span class="kw">focus</span>{
+ <span class="c">/* selected link */</span>
+
+ }
+.m540 .map-search-link{
+ <span class="c">/* style for a specific map size */</span>
+
+ }</code></pre>
+  </div>
+  <div class="col left">
+   <h4>Hiding pre-loader</h4>
+   <p>If you want to hide a pre-loader when map is not loaded use these rules (must be set before map's style sheet):</p>
+   <pre><code>.map-loader{ <span class="n">display</span>: <span class="kw">none</span>; }</code></pre>
+  </div>
+  <div class="col right">
+   <h4>Hiding region's names before script is loaded</h4>
+   <pre><code>#map-europe li a{
+  <span class="n">margin</span>: -9999<span class="kw">em</span> 0 0 0;
+  <span class="n">position</span>: absolute;
+ }</code></pre>
+   <p><b>Use responsibly!</b> It must be set before map's style sheet. <b>You'll be unable to see and use links</b> when the map doesn't load!</p>
+  </div>
+  <h3>Maps in the responsive designs</h3>
+  <div class="col left">
+   <p>We all love the responsive designs and other goodness brought us by <abbr title="Cascading Style Sheets">CSS</abbr>3.<br/>So, how you can modify the <abbr title="Cascading Style Sheets">CSS</abbr> to work with &#64;media queries?</p>
+  </div>
+  <div class="col right">
+   <p>In the <abbr title="Cascading Style Sheets">CSS</abbr> file you'll find styles for all available map sizes. All you need to do is wrap them in the <code>&#64;media</code> rules and replace all size classes <code>.m123</code> to the one used in your project.</p>
+  </div>
+   <pre><code><span class="c">/* sample usage of the &#64;media queries for the 960px wide map */</span>
+
+<span class="kw">&#64;media</span> screen and (<span class="n">min-width</span>: 500<span class="kw">px</span>){
+  <span class="c">/* size: 540 */</span>
+  .m960{<span class="n">width</span>:540<span class="kw">px</span>} .m960 .country-name,.m960 .country-name .bg,.m960 .country-name-cities{<span class="n">background</span>:transparent <span class="kw">url</span>(<span class="s">'li-540.png'</span>) no-repeat -1230<span class="kw">px</span> 0} ...
+  .m960 .li1.focus .bg,.m960 .li1.active-region .bg{<span class="n">height</span>:47<span class="kw">px</span>;<span class="n">left</span>:232<span class="kw">px</span>;<span class="n">top</span>:68<span class="kw">px</span>;<span class="n">width</span>:27<span class="kw">px</span>} .m960 .li1 ...
+  .m960 .li1 a{<span class="n">left</span>:253<span class="kw">px</span>;<span class="n">top</span>:101<span class="kw">px</span>} .m960 .li2 a{<span class="n">left</span>:112<span class="kw">px</span>;<span class="n">top</span>:205<span class="kw">px</span>} .m960 .li3 a{ ...
+ }
+
+<span class="kw">&#64;media</span> screen and (<span class="n">min-width</span>: 750<span class="kw">px</span>){
+  <span class="c">/* size: 650 */</span>
+  .m960{<span class="n">width</span>:750<span class="kw">px</span>} .m960 .country-name,.m960 .country-name .bg,.m960 .country-name-cities{<span class="n">background</span>:transparent <span class="kw">url</span>(<span class="s">'li-650.png'</span>) no-repeat -890<span class="kw">px</span> 0} ...
+  .m960 .li1.focus .bg,.m960 .li1.active-region .bg{<span class="n">height</span>:70<span class="kw">px</span>;<span class="n">left</span>:353<span class="kw">px</span>;<span class="n">top</span>:107<span class="kw">px</span>;<span class="n">width</span>:40<span class="kw">px</span>}.m960 .li1 ...
+  .m960 .li1 a{<span class="n">left</span>:380<span class="kw">px</span>;<span class="n">top</span>:151<span class="kw">px</span>} .m960 .li2 a{<span class="n">left</span>:168<span class="kw">px</span>;<span class="n">top</span>:308<span class="kw">px</span>} .m960 .li3 a{ ...
+ }
+
+<span class="kw">&#64;media</span> screen and (<span class="n">min-width</span>: 960<span class="kw">px</span>){
+  <span class="c">/* size: 960 */</span>
+  .m960{<span class="n">width</span>:960<span class="kw">px</span>} .m960 .country-name,.m960 .country-name .bg,.m960 .country-name-cities{<span class="n">background</span>:transparent <span class="kw">url</span>(<span class="s">'li-750.png'</span>) no-repeat -1106<span class="kw">px</span> 0} ...
+  .m960 .li1.focus .bg,.m960 .li1.active-region .bg{<span class="n">height</span>:93<span class="kw">px</span>;<span class="n">left</span>:464<span class="kw">px</span>;<span class="n">top</span>:136<span class="kw">px</span>;<span class="n">width</span>:53<span class="kw">px</span>}.m960 .li1 ...
+  .m960 .li1 a{<span class="n">left</span>:497<span class="kw">px</span>;<span class="n">top</span>:192<span class="kw">px</span>} .m960 .li2 a{<span class="n">left</span>:214<span class="kw">px</span>;<span class="n">top</span>:403<span class="kw">px</span>} .m960 .li3 a{ ...
+ }</code></pre>
+  <div>
+   <p>Some mobile devices have limited the maximum size of the downloaded image, so in some cases (BlackBerry, first generation iPhone etc), you will see a list of regions instead of the map larger then 750px wide.</p>
+  </div>
+ </section>
+ <section id="editing-map-file"><hr/>
+ <div class="info-bar"><b>You should customize a map image to your needs!</b></div>
+ <h2>Editing a map file</h2>
+ <p>Best software to edit the <abbr title="Photoshop document">.psd</abbr> source files is the <a href="http://www.adobe.com/products/photoshop/" rel="nofollow">Adobe Photoshop</a> or the <a href="http://www.adobe.com/products/fireworks/" rel="nofollow">Adobe Fireworks</a> ..but you can also use <a href="http://pixlr.com/editor/" title="Pixlr" rel="external">the free online editor: Pixlr</a>!</p>
+  <h3>Layer styles</h3>
+   <p>You can freely edit the layer styles of the map, but:</p>
+   <ol>
+    <li><b>Do not change position of layers and shapes!</b> - by default position of all layers is locked.</li>
+    <li>Use a 'Layer Style' tool to change fill color, shadows, line color etc.</li>
+    <li>Position of the line (stroke) must be set to the center!</li>
+    <li>The shadow (Drop Shadow) and the outer glow (Outer Glow) of regions can't be wider than 10px (or 5px in the 210px wide maps).</li>
+    <li>Before you save a map file don't forget to hide the background layer (.bg).</li>
+    <li>The map file must be saved [Ctrl+Alt+Shift+S] as the <b><abbr title="Portable Network Graphics">PNG</abbr>-24 Transparent!</b></li>
+    <li>Don't remove the 'signature' layer.</li>
+   </ol>
+   <p>Of course you can hide or show layers with lakes and rivers if any.<br/>Also you can use the 'map area' layer to put anything you want on the map and display it instead of the cities labels.</p>
+   <p>Use <a href="http://pngquant.org" rel="external">pngquant</a>, <a href="http://imageoptim.com" rel="external">ImageOptim</a> or any other software to optimize <abbr title="Portable Network Graphics">PNG</abbr> files.</p>
+  <div class="info-bar"><b>Don't forget to optimize a map file before you send it to the server!</b></div>
+ </section>
+ <section id="visible-list"><hr/>
+ <h2>Visible list of regions</h2>
+ <div class="col left">
+  <p>To display a visible list of regions just add a <code>visibleList</code> parameter to the <code>cssMap();</code> function:</p>
+  <pre><code>$(<span class="s">'#map-europe'</span>).cssMap({
+  <span class="n">'visibleList'</span> : <span class="kw">true</span>
+ });</code></pre>
+ </div>
+ <div class="col right">
+  <p>The script duplicate list of regions with all its content and functionality. Second list is placed just under the main list and has <code>.map-visible-list</code> class.</p>
+  <p>The second list can be easily styled and positioned relative to the map: below, left, right or in columns. Learn more about styling a visible list of regions in <a href="#the-css" class="in-nav">'The <abbr title="Cascading Style Sheets">CSS</abbr> - tips and tricks'</a> section.</p>
+ </div>
+ </section>
+ <section id="multiple-click"><hr/>
+ <h2>The Multiple Click mode</h2>
+ <div class="col left">
+  <p>Allows to activate several regions, and pass their values to the search engine script by the <code>region</code> variable. To activate the Multiple Click mode just add a <code>multipleClick</code> parameter to the <code>cssMap();</code> function:</p>
+  <pre><code>$(<span class="s">'#map-europe'</span>).cssMap({
+  <span class="n">'multipleClick'</span> : <span class="kw">true</span>
+ });</code></pre>
+  <p>In the list of regions use secure URLs, example: <code>search.php?region=region-name</code> instead of <code>&#35;region-name</code>.<br/>That allows passing variables to the search engine for users with disabled JavaScript.</p>
+  <p>The values are assigned to the search link, according to the scheme: <code>search.php?region=value1|value2|value7</code></p>
+  <p>Variables sent to the <abbr title="Hypertext Preprocessor">PHP</abbr> script can be easily get by the <code>explode()</code> function:</p>
+  <pre><code><span class="p">&#60;?php</span>
+$regions=<span class="kw">$_GET</span>[<span class="s">'region'</span>];
+ <span class="kw">print_r</span>(<span class="n">explode</span>(<span class="s">'|'</span>,$regions));
+<span class="p">?&#62;</span></code></pre>
+ </div>
+ <div class="col right">
+  <p>By default you can select all regions, but if you want, you can set a clicks limit:</p>
+  <pre><code>$(<span class="s">'#map-europe'</span>).cssMap({
+  <span class="n">'multipleClick'</span> : <span class="kw">true</span>,
+  <span class="n">'clicksLimit'</span> : <span class="p">3</span>
+ });</code></pre>
+  <p>Below the map will be shown a link to the search engine, by default: <code>&#60;a href="search.php" class="map-search-link">Search&#60;/a></code>, but it can be customized by several parameters:</p>
+  <pre><code>$(<span class="s">'#map-europe'</span>).cssMap({
+  <span class="n">'multipleClick'</span> : <span class="kw">true</span>,	<span class="c">// enable Multiple Click mode;</span>
+  <span class="n">'searchUrl'</span> : <span class="s">'serach.php'</span>,	<span class="c">// URL to the search engine;</span>
+  <span class="n">'searchLink'</span> : <span class="s">'Search'</span>, 	<span class="c">// Name of the search link;</span>
+  <span class="n">'searchLinkVar'</span> : <span class="s">'region'</span>, 	<span class="c">// Variable passing to the search engine;</span>
+  <span class="n">'searchLinkSeparator'</span> : <span class="s">'|'</span>	<span class="c">// Separator of the values passed to the search engine; => ?region=value1|value2|value3</span>
+ });</code></pre>
+ </div>
+ </section>
+ <section id="agents-list"><hr/>
+ <h2>List of addresses</h2>
+ <div class="col left">
+  <p>Probably the main usage of the map should be possibility to show or hiding the list of addresses of the agents (offices) in the regions.</p>
+  <p>To activate a list of addresses just add a <code>agentsListId</code> parameter to the <code>cssMap();</code> function:</p>
+  <pre><code>$(<span class="s">'#map-europe'</span>).cssMap({
+  <span class="n">'agentsListId'</span> : <span class="s">'#addresses'</span>
+
+  <span class="c">// optional: fade in/fade out delay in miliseconds;</span>
+  <span class="n">'agentsListSpeed'</span> : <span class="p">500</span>,
+  <span class="c">// optional: show and hide agent/address on hover;</span>
+  <span class="n">'agentsListOnHover'</span> : <span class="kw">true</span>,
+ });</code></pre>
+  <p>The value of this parameter must be the ID of the list of agents/addresses and start with the hash (&#35;) mark.</p>
+  <p>In the list of addresses (shown on the right) <code>id</code> of each list item must be the same as the link in the list of regions. That should works as any internal navigation when JavaScript is disabled.</p>
+ </div>
+ <div class="col right">
+  <p>Create a list of addresses, according to the scheme:</p>
+<pre><code><span>&lt;div</span> <span class="n">id=</span><span class="kw">"addresses"</span><span>&gt;
+ &lt;ul&gt;
+  &lt;li</span> <span class="n">id=</span><span class="kw">"albania"</span><span>&gt;</span>
+  <span class="c">&lt;!-- Albania --&gt;</span>
+
+  <span>&lt;/li&gt;
+  &lt;li</span> <span class="n">id=</span><span class="kw">"andorra"</span><span>&gt;</span>
+  <span class="c">&lt;!-- Andorra --&gt;</span>
+
+  <span>&lt;/li&gt;
+  &lt;li</span> <span class="n">id=</span><span class="kw">"bosnia-and-herzegovina"</span><span>&gt;</span>
+  <span class="c">&lt;!-- Bosnia and Herzegovina --&gt;</span>
+
+  <span>&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/div&gt;</span></code></pre>
+ </div>
+ </section>
+ <section id="troubleshooting"><hr/>
+ <h2>Troubleshooting</h2>
+ <div class="col left">
+  <h3>Error: map size must be set!</h3>
+   <p>Check <code>size</code> parameter in the <code>cssMap();</code> function:</p>
+   <pre><code><span class="c">// availalbe sizes: 250, 500, 660, 810 and 960;</span>
+$(<span class="s">'#map-europe'</span>).cssMap({<span class="n">'size'</span>: <span class="p">960</span>});</code></pre>
+ </div>
+ <div class="col right">
+  <h3>Not working! The map doesn't appear!</h3>
+  <ol>
+   <li><b>Make sure you've uploaded the cssmap-europe folder on your server.</b></li>
+   <li>Your page can't be in the quirks mode - <b>the <code>!doctype</code> must be set!</b></li>
+   <li>Check path to the <abbr title="Cascading Style Sheets">CSS</abbr> file.</li>
+   <li>Check path to the folder with maps.</li>
+   <li>Check names of the <abbr title="Portable Network Graphics">PNG</abbr> map files.</li>
+   <li>Once again check that the <abbr title="Portable Network Graphics">PNG</abbr> files are in the same folder as the <abbr title="Cascading Style Sheets">CSS</abbr> file (&nbsp;cssmap-europe.css&nbsp;)</li>
+  </ol>
+ </div>
+ <h3>Before you write for a help</h3>
+  <div class="col left">
+   <p>If you're using another <abbr title="JavaScript">JS</abbr> library, like a MooTools or Prototype make sure there is no conflict between them. For more information, see the jQuery documentation: <a href="http://docs.jquery.com/Using_jQuery_with_Other_Libraries" rel="external">Using jQuery with other libraries</a>.</p>
+   <p><b>Always use a recent version of jQuery!</b></p>
+  </div>
+  <div class="col right">
+   <p>Check if there are no errors in other scripts and make sure your code is written correctly. Errors in the scripts can be found in 'Error Console' in your browser or by the add-ons like <a href="http://getfirebug.com/" rel="external">Firebug</a> for Firefox. Also use the <a href="http://validator.w3.org" title="Markup Validation Service" rel="external"><abbr title="World Wide Web Consortium">W3C</abbr> Validator</a> to check your code.</p>
+  </div>
+ </section>
+ <section><hr />
+ <div id="license" class="col left">
+  <h2>Royality Free License</h2>
+  <p>Map is distributed under <b>royality&nbsp;free</b> license and can be used (also croped, modified or manipulated) in all kinds of web creations as websites, templates and themes (personal, commercial or client projects) without any extra&nbsp;fees.<br/><strong>Don't sub-license, resell, transfer or share this map in downloadable format.</strong> <a href="http://cssmapsplugin.com/license" rel="external">Read full license agreement</a></p>
+ </div>
+ <div id="contact" class="col right">
+  <h2>Contact</h2>
+   <p>If you have any questions regarding setup, licensing, payments, or would like to order custom map of any regions, feel free to contact me&nbsp;at <a href="http://cssmapsplugin.com/contact" title="Contact via e-mail" rel="author">support&#64;cssmapsplugin.com</a></p>
+   <p>..but remember <b>I'm not here to learn you basics of the <abbr title="HyperText Markup Language">HTML</abbr> or Photoshop</b>. If you're using any content management system (Joomla, Drupal, WordPress etc.) learn its documentation first.</p>
+ </div>
+ </section>
+</article>
+<footer>
+ <hr/>
+  <ul>
+   <li class="fl"><a href="#license" class="in-nav">Royality Free License</a></li>
+   <li class="fl"><a href="#contact" class="in-nav">Feedback &amp; contact</a></li>
+   <li class="fl"><a href="http://cssmapsplugin.com/feed">News feed</a></li>
+   <li class="fr">version: 4.4</li>
+   <li class="fr">Copyright &#169; 2009 - 2012 <a href="http://winstonwolf.pl" title="Winston Wolf - the quasi-blog of Łukasz Popardowski" rel="external">Winston Wolf</a></li>
+  </ul>
+  <a href="#css-europe" id="top-link" class="in-nav" title="Go to the top!"><b>TOP</b></a>
+</footer>
+</body>
+</html>
